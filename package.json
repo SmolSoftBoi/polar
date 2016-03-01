@@ -1,37 +1,37 @@
 {
-	"name": "Polar",
-	"version": "1.0.0",
-	"description": "Classroom polling application to provide pop quizzes to students with real-time feedback.",
-	"main": "index.php",
-	"repository": "EpicKris/polar.git",
-	"author": {
-		"name": "Kristian Matthews",
-		"email": "kristian.matthews@my.westminster.ac.uk"
-	},
-	"bugs": {
-		"url": "https://github.com/EpicKris/polar/issues",
-		"email": "kristian.matthews@my.westminster.ac.uk"
-	},
-	"homepage": "https://github.com/EpicKris/polar",
-	"dependencies": {
-		"angular": "^1",
-		"angular-animate": "^1",
-		"angular-messages": "^1",
-		"bootstrap": "^4.0.0-alpha",
-		"jquery": "^1",
-		"trianglify": "^0"
-	},
-	"devDependencies": {
-		"gulp": "^3",
-		"gulp-autoprefixer": "^3",
-		"gulp-browserify": "^0",
-		"gulp-clean-dest": "^0",
-		"gulp-copy": "^0",
-		"gulp-csscomb": "^3",
-		"gulp-cssnano": "^2",
-		"gulp-jsx": "^2",
-		"gulp-merge": "^0",
-		"gulp-rename": "^1",
-		"gulp-sass": "^2"
-	}
+    "name": "Polar",
+    "version": "1.0.0",
+    "description": "Classroom polling application to provide pop quizzes to students with real-time feedback.",
+    "main": "index.php",
+    "repository": "EpicKris/polar.git",
+    "author": {
+        "name": "Kristian Matthews",
+        "email": "kristian.matthews@my.westminster.ac.uk"
+    },
+    "bugs": {
+        "url": "https://github.com/EpicKris/polar/issues",
+        "email": "kristian.matthews@my.westminster.ac.uk"
+    },
+    "homepage": "https://github.com/EpicKris/polar",
+    "dependencies": {
+        "angular": "^1",
+        "angular-animate": "^1",
+        "angular-messages": "^1",
+        "bootstrap": "^4.0.0-alpha",
+        "jquery": "^1",
+        "trianglify": "^0"
+    },
+    "devDependencies": {
+        "gulp": "^3",
+        "gulp-autoprefixer": "^3",
+        "gulp-browserify": "^0",
+        "gulp-clean-dest": "^0",
+        "gulp-copy": "^0",
+        "gulp-csscomb": "^3",
+        "gulp-cssnano": "^2",
+        "gulp-jsx": "^2",
+        "gulp-merge": "^0",
+        "gulp-rename": "^1",
+        "gulp-sass": "^2"
+    }
 }
