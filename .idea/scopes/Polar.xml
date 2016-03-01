@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Polar" pattern="file[Polar]:*/&amp;&amp;!file[Polar]:.idea//*&amp;&amp;!file[Polar]:content//*&amp;&amp;!file[Polar]:node_modules//*&amp;&amp;!file[Polar]:polar/vendor//*&amp;&amp;!file[Polar]:system//*&amp;&amp;!file[Polar]:data//*" />
+</component>
