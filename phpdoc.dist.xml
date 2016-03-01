@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
+  -->
+
+<phpdoc>
+	<title>Polar</title>
+	<parser>
+		<target>data</target>
+		<markers>
+			<item>TODO</item>
+			<item>FIXME</item>
+		</markers>
+		<extensions>
+			<item>php</item>
+		</extensions>
+	</parser>
+	<transformer>
+		<target>data</target>
+	</transformer>
+	<logging>
+		<level>warn</level>
+		<paths>
+			<default>data/logs/{DATE}.log</default>
+		</paths>
+	</logging>
+	<transformations>
+		<template name="responsive"/>
+	</transformations>
+	<files>
+		<directory>polar</directory>
+		<directory>polar/vendor/epickris</directory>
+		<directory>src</directory>
+		<directory>system</directory>
+		<file>*.php</file>
+		<ignore>polar/logs/*</ignore>
+		<ignore>polar/vendor/*</ignore>
+	</files>
+</phpdoc>
