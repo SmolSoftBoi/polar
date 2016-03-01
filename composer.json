@@ -1,9 +1,13 @@
 {
-	"config": {
-		"vendor-dir": "polar/vendor"
-	},
-	"require": {
-		"aws/aws-sdk-php": "^3",
-		"epickris/ci-fuel": "dev-master"
-	}
+    "config": {
+        "vendor-dir": "polar/vendor",
+        "bin-dir": "bin"
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3",
+        "epickris/ci-fuel": "dev-master"
+    },
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "^2"
+    }
 }
