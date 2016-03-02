@@ -1,0 +1,17 @@
+/*
+ * Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
+ */
+
+/**
+ * Modal.
+ */
+
+.modal {
+	color: $gray-dark;
+}
+
+.modal-admin {
+	label {
+		@include sr-only();
+	}
+}
