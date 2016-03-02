@@ -13,7 +13,7 @@
         "email": "kristian.matthews@my.westminster.ac.uk"
     },
     "homepage": "https://github.com/EpicKris/polar",
-    "engines" {
+    "engines": {
         "node": "^5"
     },
     "dependencies": {
