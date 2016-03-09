@@ -16,11 +16,13 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 	<!-- Dashboard -->
 	<li class="nav-item">
-		<a class="nav-link <?php if (isset($nav)): if ($nav === 'dashboard'): ?>active<?php endif; endif; ?>" href="<?= site_url('admin') ?>">Dashboard</a>
+		<a class="nav-link <?php if (isset($nav)): if ($nav === 'dashboard'): ?>active<?php endif; endif; ?>"
+		   href="<?= site_url('admin') ?>">Dashboard</a>
 	</li>
 
 	<!-- Schools -->
 	<li class="nav-item">
-		<a class="nav-link <?php if (isset($nav)): if ($nav === 'schools'): ?>active<?php endif; endif; ?>" href="<?= site_url('admin/schools') ?>">Schools</a>
+		<a class="nav-link <?php if (isset($nav)): if ($nav === 'schools'): ?>active<?php endif; endif; ?>"
+		   href="<?= site_url('admin/schools') ?>">Schools</a>
 	</li>
 </ul>

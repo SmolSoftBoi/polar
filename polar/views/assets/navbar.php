@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 	<!-- Brand -->
 	<a class="navbar-brand" href="<?= site_url() ?>">
-		<?= $this->lang->line('brand') ?><?php if (ENVIRONMENT !== 'production' ): ?>
+		<?= $this->lang->line('brand') ?><?php if (ENVIRONMENT !== 'production'): ?>
 			<span class="label label-primary"><?= $this->lang->line(ENVIRONMENT . '_environment') ?></span>
 		<?php endif; ?>
 	</a>
