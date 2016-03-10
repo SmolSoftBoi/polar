@@ -6,32 +6,28 @@
  * Schools admin.
  */
 
-/*global angular */
+/*global angular, document */
 angular.module('polar')
-    .controller('adminSchools', ['$scope',
-        '$http',
-        'schoolItem',
-        'schoolModel',
-        function ($scope, $http, schoolItem, schoolModel) {
-            'use strict';
+    .controller('adminSchools', ['$scope', 'schoolItem', 'schoolModel', function ($scope, schoolItem, schoolModel) {
+        'use strict';
 
-            $scope.school  = angular.copy(schoolItem);
-            $scope.schools = schoolModel.search();
+        $scope.school  = angular.copy(schoolItem);
+        $scope.schools = schoolModel.search();
 
-            $scope.modal = {
-                title: undefined
-            };
+        $scope.modal = {
+            title: undefined
+        };
 
-            $scope.add = function ($event) {
-                $scope.school      = angular.copy(schoolItem);
-                $scope.modal.title = $event.target.innerText;
-            };
+        $scope.add = function ($event) {
+            $scope.school      = angular.copy(schoolItem);
+            $scope.modal.title = $event.target.innerText;
+        };
 
-            $scope.save = function () {
-                var schoolItem = schoolModel.setItem($scope.school);
+        $scope.save = function () {
+            var school = schoolModel.setItem($scope.school);
 
-                $scope.schools[schoolItem.schoolId] = schoolItem;
+            $scope.schools[school.schoolId] = school;
 
-                angular.element(document.getElementById('schoolModal')).modal('hide');
-            };
-        }]);
+            angular.element(document.getElementById('schoolModal')).modal('hide');
+        };
+    }]);

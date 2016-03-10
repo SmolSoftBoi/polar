@@ -13,11 +13,11 @@ angular.module('polar').directive('ngMatch', [function () {
     return {
         require: '^ngModel',
         restrict: 'A',
-        link: function (scope, element, attrs, ctrl) {
-            ctrl.$parsers.unshift(function (value) {
+        link: function (scope, element, attrs, controller) {
+            controller.$parsers.unshift(function (value) {
                 var valid = scope.$eval(attrs.ngMatch).$viewValue === value;
 
-                ctrl.$setValidity('match', valid);
+                controller.$setValidity('match', valid);
 
                 if (valid) {
                     return valid;
@@ -27,7 +27,7 @@ angular.module('polar').directive('ngMatch', [function () {
             });
 
             scope.$watch(attrs.ngMatch, function () {
-                ctrl.$setViewValue(ctrl.$viewValue);
+                controller.$setViewValue(controller.$viewValue);
             });
         }
     };

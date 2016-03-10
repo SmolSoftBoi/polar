@@ -30,7 +30,7 @@ angular.module('polar').directive('ngUnique', ['$http', '$q', 'url', function ($
                     timeout: cancel.promise
                 }).then(function successCallback(response) {
                     ctrl.$setValidity('unique', response.data.unique);
-                }, function errorCallback(response) {
+                }, function errorCallback() {
                     ctrl.$setValidity('unique', null);
                 });
             });
