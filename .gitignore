@@ -1,0 +1,27 @@
+# Content
+content/**/*.css
+content/**/*.js
+content/**/*.map
+
+# Configuration
+config/development/**
+config/testing/**
+
+# Bin
+bin/**
+
+# Logs
+*.log
+log-*
+
+# PHP Phars
+*.phar
+
+# Composer
+vendor/**
+
+# phpDoc
+phpdoc-cache-*
+
+# OS X
+.DS_Store
