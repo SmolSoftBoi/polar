@@ -94,3 +94,8 @@ $config['migration_version'] = '00000000000003';
 |
 */
 $config['migration_path'] = APPPATH . 'migrations/';
+
+/**
+ * Migration seed.
+ */
+$config['migration_seed'] = FALSE;
