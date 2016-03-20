@@ -14,3 +14,11 @@
 	@include card-variant($brand-faded, $brand-faded);
 	color: $gray-dark;
 }
+
+.card-quiz {
+	@extend .card-faded;
+
+	h1 {
+		@extend .h3;
+	}
+}

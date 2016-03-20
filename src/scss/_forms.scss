@@ -47,6 +47,10 @@ form {
 			@extend .alert-info;
 			@extend .small;
 			padding: $input-padding-y-sm $input-padding-x;
+
+			.close {
+				font-size: $font-size-base;
+			}
 		}
 
 		&:first-of-type,

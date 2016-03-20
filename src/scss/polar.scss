@@ -2,22 +2,22 @@
  * Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
  */
 // Bootstrap
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../content/components/bootstrap/scss/bootstrap';
 // Core variables and mixins
-@import 'variables.scss';
+@import 'variables';
 // Core CSS
-@import 'core.scss';
-@import 'grid.scss';
-@import 'forms.scss';
+@import 'core';
+@import 'grid';
+@import 'forms';
 // Components
-@import 'custom-forms.scss';
-@import 'admin.scss';
-@import 'cover.scss';
-@import 'errors.scss';
-@import 'nav.scss';
-@import 'navbar.scss';
-@import 'card.scss';
+@import 'custom-forms';
+@import 'admin';
+@import 'cover';
+@import 'errors';
+@import 'nav';
+@import 'navbar';
+@import 'card';
 // Component with JavaScript
-@import 'modal.scss';
+@import 'modal';
 // Utility classes
 @import 'utilities-background';
