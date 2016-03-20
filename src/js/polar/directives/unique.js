@@ -13,11 +13,11 @@ angular.module('polar').directive('ngUnique', ['$http', '$q', 'url', function ($
     return {
         require: '^ngModel',
         restrict: 'A',
-        link: function (scope, element, attrs, ctrl) {
+        link: function (scope, element, attrs, controller) {
             var cancel = $q.defer();
 
             scope.$watch(function () {
-                return ctrl.$viewValue;
+                return controller.$viewValue;
             }, function () {
                 cancel.resolve();
                 cancel = $q.defer();
@@ -25,13 +25,13 @@ angular.module('polar').directive('ngUnique', ['$http', '$q', 'url', function ($
                 $http.get(url.siteUrl('api/form/unique'), {
                     params: {
                         control: attrs.ngUnique,
-                        value: ctrl.$viewValue
+                        value: controller.$viewValue
                     },
                     timeout: cancel.promise
                 }).then(function successCallback(response) {
-                    ctrl.$setValidity('unique', response.data.unique);
+                    controller.$setValidity('unique', response.data.unique);
                 }, function errorCallback() {
-                    ctrl.$setValidity('unique', null);
+                    controller.$setValidity('unique', null);
                 });
             });
         }

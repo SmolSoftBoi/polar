@@ -9,6 +9,7 @@ angular.module('polar', ['ngAnimate', 'ngMessages']);
 require('./run.js');
 require('./controllers/admin/schools.js');
 require('./controllers/auth.js');
+require('./directives/domain.js');
 require('./directives/match.js');
 require('./directives/unique.js');
 require('./directives/trianglify.js');
