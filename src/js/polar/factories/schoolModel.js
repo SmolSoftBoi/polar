@@ -12,7 +12,7 @@ angular.module('polar').factory('schoolModel', ['$http', 'url', function ($http,
 
     return {
         search: function (schoolParams) {
-            return $http.get(url.siteUrl('api/schools/search'), schoolParams);
+            return $http.post(url.siteUrl('api/schools/search'), schoolParams);
         },
         getItems: function (schoolIds) {
             return $http.get(url.siteUrl('api/schools'), schoolIds);
