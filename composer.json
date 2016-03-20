@@ -5,7 +5,8 @@
     },
     "require": {
         "aws/aws-sdk-php": "^3",
-        "epickris/ci-fuel": "dev-master"
+        "epickris/ci-fuel": "dev-master",
+        "fzaninotto/faker": "^1"
     },
     "require-dev": {
         "phpdocumentor/phpdocumentor": "^2"
