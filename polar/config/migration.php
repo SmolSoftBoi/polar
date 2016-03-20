@@ -81,7 +81,7 @@ $config['migration_auto_latest'] = FALSE;
 | be upgraded / downgraded to.
 |
 */
-$config['migration_version'] = '00000000000003';
+$config['migration_version'] = '00000000000014';
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +99,13 @@ $config['migration_path'] = APPPATH . 'migrations/';
  * Migration seed.
  */
 $config['migration_seed'] = FALSE;
+
+/**
+ * Migration seed magnitude.
+ */
+$config['migration_seed_magnitude'] = 1;
+
+/**
+ * Migration seed password.
+ */
+$config['migration_seed_password'] = '';

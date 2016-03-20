@@ -25,7 +25,6 @@ class Migration_Create_tables extends CI_Migration {
 	{
 		parent::__construct();
 		$this->load->database();
-		$this->load->dbforge();
 	}
 
 	/**
@@ -48,10 +47,11 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'answer'      => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45
+				'constraint' => 255
 			),
 			'score'       => array(
-				'type' => 'INTEGER'
+				'type'    => 'INTEGER',
+				'default' => 0
 			)
 		));
 		$this->dbforge->add_key('answer_id', TRUE);
@@ -86,7 +86,7 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'domain'    => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 24,
+				'constraint' => 255,
 				'unique'     => TRUE
 			)
 		));
@@ -102,7 +102,8 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'email_id'              => array(
 				'type'     => 'INTEGER',
-				'unsigned' => TRUE
+				'unsigned' => TRUE,
+				'unique'   => TRUE
 			),
 			'verification_code'     => array(
 				'type'       => 'VARCHAR',
@@ -123,7 +124,7 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'email'    => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 46,
+				'constraint' => 255,
 				'unique'     => TRUE
 			),
 			'verified' => array(
@@ -143,27 +144,32 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'media_url'    => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45
+				'constraint' => 255,
+				'unique'     => TRUE
 			),
 			'media_url_lg' => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
-				'null'       => TRUE
+				'constraint' => 255,
+				'null'       => TRUE,
+				'unique'     => TRUE
 			),
 			'media_url_md' => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
-				'null'       => TRUE
+				'constraint' => 255,
+				'null'       => TRUE,
+				'unique'     => TRUE
 			),
 			'media_url_sm' => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
-				'null'       => TRUE
+				'constraint' => 255,
+				'null'       => TRUE,
+				'unique'     => TRUE
 			),
 			'media_url_xs' => array(
 				'type'       => ' VARCHAR',
-				'constraint' => 45,
-				'null'       => TRUE
+				'constraint' => 255,
+				'null'       => TRUE,
+				'unique'     => TRUE
 			),
 			'image'        => array(
 				'type' => 'BOOLEAN'
@@ -223,12 +229,12 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'question_type_key'  => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
+				'constraint' => 17,
 				'unique'     => TRUE
 			),
 			'question_type_name' => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
+				'constraint' => 18,
 				'unique'     => TRUE
 			)
 		));
@@ -252,7 +258,7 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'question'         => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45
+				'constraint' => 255
 			),
 			'time_limit'       => array(
 				'type'     => 'INTEGER',
@@ -296,14 +302,14 @@ class Migration_Create_tables extends CI_Migration {
 				'type'     => 'INTEGER',
 				'unsigned' => TRUE
 			),
-			'slug'             => array(
+			'quiz_name'        => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
-				'unique'     => TRUE
+				'constraint' => 255
 			),
-			'title'            => array(
+			'quiz_slug'        => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45
+				'constraint' => 255,
+				'unique'     => TRUE
 			),
 			'description'      => array(
 				'type' => 'TEXT'
@@ -336,12 +342,12 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'role_key'  => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
+				'constraint' => 14,
 				'unique'     => TRUE
 			),
 			'role_name' => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 45,
+				'constraint' => 15,
 				'unique'     => TRUE
 			)
 		));
@@ -379,7 +385,7 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'school_name' => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 30,
+				'constraint' => 255,
 				'unique'     => TRUE
 			)
 		));
@@ -429,6 +435,27 @@ class Migration_Create_tables extends CI_Migration {
 		//$this->dbforge->add_foreign_key('role_id', 'roles', 'role_id');
 		$this->dbforge->create_table('user_roles', TRUE);
 
+		// Create user schools
+		$this->dbforge->add_field(array(
+			'user_school_id' => array(
+				'type'           => 'INTEGER',
+				'unsigned'       => TRUE,
+				'auto_increment' => TRUE
+			),
+			'user_id'        => array(
+				'type'     => 'INTEGER',
+				'unsigned' => TRUE
+			),
+			'school_id'      => array(
+				'type'     => 'INTEGER',
+				'unsigned' => TRUE
+			)
+		));
+		$this->dbforge->add_key('user_school_id', TRUE);
+		//$this->dbforge->add_foreign_key('user_id', 'users', 'user_id');
+		//$this->dbforge->add_foreign_key('school_id', 'schools', 'school_id');
+		$this->dbforge->create_table('user_schools', TRUE);
+
 		// Create users
 		$this->dbforge->add_field(array(
 			'user_id'       => array(
@@ -438,11 +465,11 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'first_name'    => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 10
+				'constraint' => 255
 			),
 			'last_name'     => array(
 				'type'       => 'VARCHAR',
-				'constraint' => 10
+				'constraint' => 255
 			),
 			'password_hash' => array(
 				'type'       => 'VARCHAR',
