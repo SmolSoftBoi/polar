@@ -17,7 +17,7 @@ class Errors extends POLAR_Controller {
 	/**
 	 * 404 not found.
 	 */
-	public function notfound()
+	public function not_found()
 	{
 		$data['heading'] = '404 Page Not Found';
 		$data['message'] = 'The page you requested was not found.';

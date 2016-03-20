@@ -34,30 +34,29 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			<dd><?= $line ?></dd>
 
 			<?php if (defined('SHOW_DEBUG_BACKTRACE') && SHOW_DEBUG_BACKTRACE === TRUE): ?>
-			<!-- Backtrace -->
-			<dt>Backtrace:</dt>
-			<dd>
-				<?php foreach ($exception->getTrace() as $error): ?>
-				<?php if (isset($error['file']) && strpos($error['file'], realpath(BASEPATH)) !== 0): ?>
-				<dl class="dl-horizontal">
+				<!-- Backtrace -->
+				<dt>Backtrace:</dt>
+				<dd>
+					<?php foreach ($exception->getTrace() as $error):
+						?><?php if (isset($error['file']) && strpos($error['file'], realpath(BASEPATH)) !== 0): ?>
+						<dl class="dl-horizontal">
 
-					<!-- Type -->
-			<dt>Type:</dt>
-			<dd><?= $error['file'] ?></dd>
+							<!-- Type -->
+							<dt>Type:</dt>
+							<dd><?= $error['file'] ?></dd>
 
-			<!-- Line -->
-			<dt>Line:</dt>
-			<dd><?= $error['line'] ?></dd>
+							<!-- Line -->
+							<dt>Line:</dt>
+							<dd><?= $error['line'] ?></dd>
 
-			<!-- Function -->
-			<dt>Function:</dt>
-			<dd><?= $error['function'] ?></dd>
+							<!-- Function -->
+							<dt>Function:</dt>
+							<dd><?= $error['function'] ?></dd>
 
-		</dl>
-		<?php endif; ?>
-		<?php endforeach; ?>
-		</dd>
-		<?php endif; ?>
+						</dl>
+					<?php endif; ?><?php endforeach; ?>
+				</dd>
+			<?php endif; ?>
 
 		</dl>
 	</div>

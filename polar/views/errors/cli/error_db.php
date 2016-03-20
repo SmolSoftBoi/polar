@@ -15,4 +15,4 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 Database error: <?= $heading ?>
 
-	<?= $message ?>
+<?= $message ?>
