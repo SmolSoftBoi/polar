@@ -20,57 +20,7 @@ var config = {
     srcPath: 'src/'
 };
 
-gulp.task('content:angularAnimate', function () {
-    'use strict';
-
-    return gulp.src(['**/*.js', '**/*.map'], {
-        cwd: config.nodeModulesPage + 'angular-animate/'
-    }).pipe(copy(config.contentPath + 'js/'));
-});
-
-gulp.task('content:angularMessages', function () {
-    'use strict';
-
-    return gulp.src(['**/*.js', '**/*.map'], {
-        cwd: config.nodeModulesPage + 'angular-messages/'
-    }).pipe(copy(config.contentPath + 'js/'));
-});
-
-gulp.task('content:angular', ['content:angularAnimate', 'content:angularMessages'], function () {
-    'use strict';
-
-    return gulp.src(['**/*.js', '**/*.map'], {
-        cwd: config.nodeModulesPage + 'angular/'
-    }).pipe(copy(config.contentPath + 'js/'));
-});
-
-gulp.task('content:jquery', function () {
-    'use strict';
-
-    return gulp.src('**/**', {
-        cwd: config.nodeModulesPage + 'jquery/dist/'
-    }).pipe(copy(config.contentPath + 'js/'));
-});
-
-gulp.task('content:bootstrap', ['content:jquery'], function () {
-    'use strict';
-
-    return gulp.src('js/**', {
-        cwd: config.nodeModulesPage + 'bootstrap/dist/'
-    }).pipe(copy(config.contentPath));
-});
-
-gulp.task('content:trianglify', function () {
-    'use strict';
-
-    return gulp.src('**/**', {
-        cwd: config.nodeModulesPage + 'trianglify/dist/'
-    }).pipe(copy(config.contentPath + 'js/'));
-});
-
-gulp.task('content', ['content:angular', 'content:bootstrap', 'content:jquery', 'content:trianglify']);
-
-gulp.task('scripts', ['content'], function () {
+gulp.task('scripts', function () {
     'use strict';
 
     return gulp.src(config.srcPath + 'js/polar.js')
