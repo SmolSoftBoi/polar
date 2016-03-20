@@ -1,12 +1,16 @@
 <?php
+/**
+ * @copyright Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
+ * @author    Kristian Matthews <kristian.matthews@my.westminster.ac.uk>
+ * @package   Polar
+ */
 
 namespace Faker\Provider\en_GB;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Book extends \Faker\Provider\Base
-{
-	protected static $schoolFormats = array(
+class School extends \Faker\Provider\Base {
+	protected $schoolFormats = array(
 		'Central {{city}} {{schoolSuffix}}',
 		'{{city}} City {{schoolSuffix}}',
 		'{{city}} {{schoolSuffix}}',
@@ -22,14 +26,14 @@ class Book extends \Faker\Provider\Base
 		'{{state}} South {{schoolSuffix}}'
 	);
 
-	protected static $schoolPrefixes = array(
+	protected $schoolPrefixes = array(
 		'Acadamy of',
 		'University College',
 		'University College of',
 		'University of'
 	);
 
-	protected static $schoolSuffixes = array(
+	protected $schoolSuffixes = array(
 		'College',
 		'Institute',
 		'School',
@@ -37,5 +41,5 @@ class Book extends \Faker\Provider\Base
 		'University College'
 	);
 
-	protected static $schoolTlds = array('ac.uk');
+	protected $schoolTlds = array('ac.uk');
 }
