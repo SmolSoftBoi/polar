@@ -17,14 +17,10 @@
         "node": "^5"
     },
     "dependencies": {
-        "angular": "^1",
-        "angular-animate": "^1",
-        "angular-messages": "^1",
-        "bootstrap": "^4.0.0-alpha",
-        "jquery": "^1",
-        "trianglify": "^0"
+        "bootstrap": "^4.0.0-alpha"
     },
     "devDependencies": {
+        "bower": "^1",
         "gulp": "^3",
         "gulp-autoprefixer": "^3",
         "gulp-browserify": "^0",
