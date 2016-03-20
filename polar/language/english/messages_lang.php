@@ -25,3 +25,4 @@ $lang['first_name_required_message'] = 'Please enter a first name…';
 $lang['last_name_maxlength_message'] = 'The last name is too long…';
 $lang['last_name_required_message'] = 'Please enter a last name…';
 $lang['password_required_message'] = 'Please enter a password…';
+$lang['school_email_message'] = 'Use your school email to automatically join your school.';

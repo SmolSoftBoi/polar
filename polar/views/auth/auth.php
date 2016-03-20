@@ -118,6 +118,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 				<input type="email" class="form-control" name="email"
 				       placeholder="<?= $this->lang->line('email_placeholder') ?>" ng-model="user.emails[0].email"
 				       ng-maxlength="255" ng-unique="email" required>
+				<div class="alert alert-info">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<?= $this->lang->line('school_email_message') ?>
+				</div>
 				<div class="alert" ng-messages="authSignUp.email.$error"
 				     ng-show="authSignUp.email.$dirty && authSignUp.email.$invalid">
 					<span ng-message="required"><?= $this->lang->line('email_required_message') ?></span>
