@@ -12,7 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @package Polar\Controllers\API
  *
- * @property Email_model $email_model Email model.
+ * @property Email_model  $email_model  Email model.
+ * @property School_model $school_model School model.
  */
 class Form extends POLAR_Controller {
 
@@ -22,13 +23,13 @@ class Form extends POLAR_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('email_model');
+		$this->load->model(array('domain_model', 'email_model', 'school_model'));
 	}
 
 	/**
 	 * GET Unique.
 	 */
-	public function _get_unique()
+	public function get_unique()
 	{
 		$control = $this->input->get('control', TRUE);
 		$value = $this->input->get('value', TRUE);
@@ -40,8 +41,14 @@ class Form extends POLAR_Controller {
 
 		switch (strtolower($control))
 		{
+			case 'domain':
+				$unique = $this->unique_domain($value);
+				break;
 			case 'email':
 				$unique = $this->unique_email($value);
+				break;
+			case 'schoolname':
+				$unique = $this->unique_school_name($value);
 				break;
 			default:
 				$this->api_status(HTTP_NOT_FOUND);
@@ -52,6 +59,29 @@ class Form extends POLAR_Controller {
 		$output->unique = $unique;
 
 		$this->api_output($output);
+	}
+
+	/**
+	 * Unique domain.
+	 *
+	 * @param string $value Domain value.
+	 *
+	 * @return bool Unique.
+	 */
+	private function unique_domain($value)
+	{
+		$domain_params = new Domain_params();
+
+		$domain_params->domain = $value;
+
+		$count = $this->domain_model->count($domain_params);
+
+		if ($count === 0)
+		{
+			return TRUE;
+		}
+
+		return FALSE;
 	}
 
 	/**
@@ -68,6 +98,29 @@ class Form extends POLAR_Controller {
 		$email_params->email = $value;
 
 		$count = $this->email_model->count($email_params);
+
+		if ($count === 0)
+		{
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	/**
+	 * Unique school name.
+	 *
+	 * @param string $value School name value.
+	 *
+	 * @return bool Unique.
+	 */
+	private function unique_school_name($value)
+	{
+		$school_params = new School_params();
+
+		$school_params->school_name = $value;
+
+		$count = $this->school_model->count($school_params);
 
 		if ($count === 0)
 		{
