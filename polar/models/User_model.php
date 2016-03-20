@@ -30,20 +30,6 @@ class User_model extends Item_model {
 	}
 
 	/**
-	 * Count.
-	 *
-	 * @param User_params $user_params User parameters.
-	 *
-	 * @return int Count.
-	 */
-	public function count($user_params = NULL)
-	{
-		$this->build($user_params);
-
-		return $this->db->count_all_results();
-	}
-
-	/**
 	 * Search.
 	 *
 	 * @param User_params|null $user_params User parameters.

@@ -25,7 +25,7 @@ class School_model extends Item_model {
 	{
 		$this->build($school_params);
 
-		$school_items = $this->db->get()->result('user_item');
+		$school_items = $this->db->get()->result('school_item');
 
 		foreach ($school_items as $key => $school_item)
 		{
@@ -119,8 +119,17 @@ class School_model extends Item_model {
 	 */
 	protected function build($school_params = NULL)
 	{
-		$this->db->select('schools.*');
-		$this->db->from('schools');
+		if (is_null($school_params))
+		{
+			$school_params = new School_params();
+		}
+
+		$this->db->select('schools.*')->from('schools');
+
+		if (isset($school_params->school_name))
+		{
+			$this->db->where('schools.school_name', $school_params->school_name);
+		}
 	}
 
 	/**

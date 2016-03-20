@@ -22,7 +22,7 @@ class Email_model extends Item_model {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('user_model'));
+		$this->load->model('user_model');
 	}
 
 	/**
