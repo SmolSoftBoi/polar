@@ -107,14 +107,23 @@ class Auth_default extends Auth_driver {
 	private function userdata($user_item)
 	{
 		$userdata = array(
+			'user_id'    => $user_item->user_id,
 			'first_name' => $user_item->first_name,
 			'last_name'  => $user_item->last_name,
-			'roles'      => array()
+			'roles'      => array(),
+			'schools'    => array()
 		);
 
 		foreach ($user_item->roles as $role)
 		{
 			$userdata['roles'][] = $role->role_key;
+		}
+
+		foreach ($user_item->schools as $school)
+		{
+			$userdata['schools'][] = array(
+				'school_id' => $school->school_id
+			);
 		}
 
 		return $userdata;
