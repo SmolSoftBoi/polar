@@ -12,30 +12,19 @@ angular.module('polar').factory('schoolModel', ['$http', 'url', function ($http,
 
     return {
         search: function (schoolParams) {
-            $http.get(url.siteUrl('api/schools/search'), schoolParams).then(function successCallback(response) {
-                return response.data;
-            });
+            return $http.get(url.siteUrl('api/schools/search'), schoolParams);
         },
         getItems: function (schoolIds) {
-            $http.get(url.siteUrl('api/schools'), schoolIds).then(function successCallback(response) {
-                return response.data;
-            });
+            return $http.get(url.siteUrl('api/schools'), schoolIds);
         },
         getItem: function (schoolId) {
-            $http.get(url.siteUrl('api/schools/' + schoolId), schoolId).then(function successCallback(response) {
-                return response.data;
-            });
+            return $http.get(url.siteUrl('api/schools'), schoolId);
         },
         setItems: function (schoolItems) {
-            $http.post(url.siteUrl('api/schools'), schoolItems).then(function successCallback(response) {
-                return response.data;
-            });
+            return $http.post(url.siteUrl('api/schools'), schoolItems);
         },
         setItem: function (schoolItem) {
-            $http.post(url.siteUrl('api/schools/' + schoolItem.schoolId), schoolItem)
-                .then(function successCallback(response) {
-                    return response.data;
-                });
+            return $http.post(url.siteUrl('api/schools'), schoolItem);
         }
     };
 }]);

@@ -12,11 +12,17 @@ angular.module('polar')
         'use strict';
 
         $scope.school  = angular.copy(schoolItem);
-        $scope.schools = schoolModel.search();
+        $scope.schools = {};
 
         $scope.modal = {
             title: undefined
         };
+
+        schoolModel.search().then(function successCallback(response) {
+            angular.forEach(response.data, function (school) {
+                $scope.schools[school.schoolId] = school;
+            });
+        });
 
         $scope.add = function ($event) {
             $scope.school      = angular.copy(schoolItem);
@@ -24,10 +30,12 @@ angular.module('polar')
         };
 
         $scope.save = function () {
-            var school = schoolModel.setItem($scope.school);
+            schoolModel.setItem($scope.school).then(function successCallback(response) {
+                var school = response.data;
 
-            $scope.schools[school.schoolId] = school;
+                $scope.schools[school.schoolId] = school;
 
-            angular.element(document.getElementById('schoolModal')).modal('hide');
+                angular.element(document.getElementById('schoolModal')).modal('hide');
+            });
         };
     }]);
