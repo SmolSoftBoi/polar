@@ -17,6 +17,9 @@ log-*
 # PHP Phars
 *.phar
 
+# Bower
+content/components/**
+
 # Composer
 vendor/**
 
