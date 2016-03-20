@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	</div>
 	<div class="card card-faded">
 		<div class="table-responsive">
-			<table class="table table-striped table-hover table-sm">
+			<table class="table table-hover table-sm">
 				<thead>
 				<tr>
 					<th>#</th>
@@ -51,16 +51,25 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 					<h4 class="modal-title" id="schoolModalLabel">{{modal.title}}</h4>
 				</div>
 				<div class="modal-body">
+					<form name="adminSchool">
 
-					<!-- School name -->
-					<label for="schoolName"><?= $this->lang->line('school_name_label') ?></label>
-					<input type="text" class="form-control" name="schoolName"
-					       placeholder="<?= $this->lang->line('school_name_placeholder') ?>"
-					       ng-model="school.schoolName">
+						<!-- School name -->
+						<label for="schoolName"><?= $this->lang->line('school_name_label') ?></label>
+						<input type="text" class="form-control" name="schoolName"
+						       placeholder="<?= $this->lang->line('school_name_placeholder') ?>"
+						       ng-model="school.schoolName" ng-maxlength="255" ng-unique="schoolName" required>
 
+						<!-- Domain -->
+						<label for="domain"><?= $this->lang->line('domain_label') ?></label>
+						<input type="text" class="form-control" name="domain"
+						       placeholder="<?= $this->lang->line('domain_placeholder') ?>"
+						       ng-model="school.domains[0].domain" ng-maxlength="255" ng-unique="domain" required
+						       ng-domain>
+
+					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" ng-click="save()">
+					<button type="submit" class="btn btn-primary" ng-disabled="adminSchool.$invalid" ng-click="save()">
 						<?= $this->lang->line('save_button') ?>
 					</button>
 				</div>

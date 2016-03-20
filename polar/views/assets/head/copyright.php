@@ -5,11 +5,5 @@
  * @package   Polar
  */
 
-/**
- * Copyright head asset.
- *
- * @package Polar\Views\Assets
- */
-
 defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <meta name="copyright" content="Copyright ©. All rights reserved.">

@@ -31,9 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <div class="container-fluid">
 	<div class="admin">
 		<div class="sidebar">
-			<div class="sidebar-wrapper">
-				<?php $this->template->asset('admin/navbar') ?>
-			</div>
+			<?php $this->template->asset('admin/navbar') ?>
 		</div>
 		<div class="content">
 

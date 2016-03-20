@@ -11,7 +11,6 @@
  * @package Polar\Views\Assets
  */
 
-defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<?php if (isset($description)): ?>
+defined('BASEPATH') OR exit('No direct script access allowed'); ?><?php if (isset($description)): ?>
 	<meta name="description" content="<?= $description ?>">
 <?php endif; ?>

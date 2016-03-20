@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 				<label for="email"><?= $this->lang->line('email_label') ?></label>
 				<input type="email" class="form-control" name="email"
 				       placeholder="<?= $this->lang->line('email_placeholder') ?>" ng-model="user.emails[0].email"
-				       ng-maxlength="46" required autofocus>
+				       ng-maxlength="255" required autofocus>
 				<div class="alert" ng-messages="authSignIn.email.$error" ng-show="authSignIn.email.$dirty && authSignIn
 				     .email.$invalid">
 					<span ng-message="required"><?= $this->lang->line('email_required_message') ?></span>
@@ -73,8 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			<!-- Sign up -->
 			<?= form_open('sign/up', array(
 				'class' => 'form-auth',
-				'name'  => 'authSignUp
-				'
+				'name'  => 'authSignUp'
 			)) ?>
 			<h1><?= $this->lang->line('sign_up_heading') ?></h1>
 
@@ -86,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 				<label for="firstName"><?= $this->lang->line('first_name_label') ?></label>
 				<input type="text" class="form-control" name="firstName"
 				       placeholder="<?= $this->lang->line('first_name_placeholder') ?>" ng-model="user.firstName"
-				       ng-maxlength="10" required autofocus>
+				       ng-maxlength="255" required autofocus>
 				<div class="alert" ng-messages="authSignUp.firstName.$error"
 				     ng-show="authSignUp.firstName.$dirty && authSignUp.firstName.$invalid">
 					<span ng-message="required"><?= $this->lang->line('first_name_required_message') ?></span>
@@ -102,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 				<label for="lastName"><?= $this->lang->line('last_name_label') ?></label>
 				<input type="text" class="form-control" name="lastName"
 				       placeholder="<?= $this->lang->line('last_name_placeholder') ?>" ng-model="user.lastName"
-				       ng-maxlength="10" required>
+				       ng-maxlength="255" required>
 				<div class="alert" ng-messages="authSignUp.lastName.$error"
 				     ng-show="authSignUp.lastName.$dirty && authSignUp.lastName.$invalid">
 					<span ng-message="required"><?= $this->lang->line('last_name_required_message') ?></span>
@@ -118,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 				<label for="email"><?= $this->lang->line('email_label') ?></label>
 				<input type="email" class="form-control" name="email"
 				       placeholder="<?= $this->lang->line('email_placeholder') ?>" ng-model="user.emails[0].email"
-				       ng-maxlength="46" ng-unique="email" required>
+				       ng-maxlength="255" ng-unique="email" required>
 				<div class="alert" ng-messages="authSignUp.email.$error"
 				     ng-show="authSignUp.email.$dirty && authSignUp.email.$invalid">
 					<span ng-message="required"><?= $this->lang->line('email_required_message') ?></span>
@@ -154,8 +153,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			           }" ng-model="user.passwordConfirm" ng-match="authSignUp.password" required>
 			</div>
 
-			<button type="submit" class="btn-primary"
-			        ng-disabled="authSignUp.$invalid"><?= $this->lang->line('sign_up_button') ?></button>
+			<button type="submit" class="btn-primary" ng-disabled="authSignUp.$invalid">
+				<?= $this->lang->line('sign_up_button') ?>
+			</button>
 			<?= form_close() ?>
 
 		</div>

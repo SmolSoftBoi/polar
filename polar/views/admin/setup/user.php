@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			<label for="firstName"><?= $this->lang->line('first_name_label') ?></label>
 			<input type="text" class="form-control" name="firstName"
 			       placeholder="<?= $this->lang->line('first_name_placeholder') ?>" ng-model="user.firstName"
-			       ng-maxlength="10" required autofocus>
+			       ng-maxlength="255" required autofocus>
 			<div class="alert" ng-messages="setupUser.firstName.$error"
 			     ng-show="setupUser.firstName.$dirty && setupUser.firstName.$invalid">
 				<span ng-message="required"><?= $this->lang->line('first_name_required_message') ?></span>
@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			<label for="lastName"><?= $this->lang->line('last_name_label') ?></label>
 			<input type="text" class="form-control" name="lastName"
 			       placeholder="<?= $this->lang->line('last_name_placeholder') ?>" ng-model="user.lastName"
-			       ng-maxlength="10" required>
+			       ng-maxlength="255" required>
 			<div class="alert" ng-messages="setupUser.lastName.$error"
 			     ng-show="setupUser.lastName.$dirty && setupUser.lastName.$invalid">
 				<span ng-message="required"><?= $this->lang->line('last_name_required_message') ?></span>
@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		}">
 			<label for="email"><?= $this->lang->line('email_label') ?></label>
 			<input type="email" class="form-control" name="email"
-			       placeholder="<?= $this->lang->line('email_placeholder') ?>" ng-model="user.email" ng-maxlength="46"
+			       placeholder="<?= $this->lang->line('email_placeholder') ?>" ng-model="user.email" ng-maxlength="255"
 			       ng-unique="email" required>
 			<div class="alert" ng-messages="setupUser.email.$error"
 			     ng-show="setupUser.email.$dirty && setupUser.email.$invalid">
