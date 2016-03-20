@@ -1,0 +1,24 @@
+{
+    "name": "Polar",
+    "version": "1.0.0",
+    "description": "Classroom polling application to provide pop quizzes to students with real-time feedback.",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/EpicKris/polar.git"
+    },
+    "authors": [
+        {
+            "name": "Kristian Matthews",
+            "email": "kristian.matthews@my.westminster.ac.uk"
+        }
+    ],
+    "private": true,
+    "dependencies": {
+        "angular": "^1",
+        "angular-animate": "^1",
+        "angular-messages": "^1",
+        "bootstrap": "^4.0.0-alpha",
+        "jquery": "^1",
+        "trianglify": "^0"
+    }
+}
