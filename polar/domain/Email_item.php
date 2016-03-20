@@ -15,22 +15,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Email_item extends Item {
 
 	/**
-	 * @var int Email ID.
+	 * @var int $email_id Email ID.
 	 */
 	public $email_id;
 
 	/**
-	 * @var string Email.
+	 * @var string $email Email.
 	 */
 	public $email;
 
 	/**
-	 * @var bool Verified.
+	 * @var bool $verified Verified.
 	 */
 	public $verified = FALSE;
 
 	/**
-	 * @var User_item User item.
+	 * @var User_item $user User item.
 	 */
 	public $user;
 

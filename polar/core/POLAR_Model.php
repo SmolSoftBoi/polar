@@ -120,9 +120,9 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	/**
 	 * Generate item.
 	 *
-	 * @param $item
+	 * @param Item $item Item.
 	 *
-	 * @return mixed
+	 * @return Item Item.
 	 */
 	abstract protected function generate($item);
 }

@@ -24,7 +24,7 @@ class Auth_default extends Auth_driver {
 	/**
 	 * Default authentication driver constructor.
 	 *
-	 * @param array() $params Parameters.
+	 * @param array $params Parameters.
 	 */
 	public function __construct($params = array())
 	{
