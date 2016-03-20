@@ -40,6 +40,11 @@ class User_item extends Item {
 	public $roles = array();
 
 	/**
+	 * @var School_item[] $schools Schools.
+	 */
+	public $schools = array();
+
+	/**
 	 * @var string $password Password.
 	 */
 	public $password;
@@ -73,6 +78,8 @@ class User_item extends Item {
 	 */
 	public function jsonDeserialize($object)
 	{
+		$object = json_decode($object);
+
 		if (isset($object->userId))
 		{
 			$this->user_id = $object->userId;

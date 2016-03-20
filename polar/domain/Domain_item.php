@@ -46,6 +46,8 @@ class Domain_item extends Item {
 	 */
 	public function jsonDeserialize($object)
 	{
+		$object = json_decode($object);
+
 		if (isset($object->domainId))
 		{
 			$this->domain_id = $object->domainId;

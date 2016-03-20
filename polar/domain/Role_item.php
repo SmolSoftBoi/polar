@@ -52,6 +52,8 @@ class Role_item extends Item {
 	 */
 	public function jsonDeserialize($object)
 	{
+		$object = json_decode($object);
+
 		if (isset($object->roleId))
 		{
 			$this->role_id = $object->roleId;

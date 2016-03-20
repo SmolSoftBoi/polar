@@ -61,6 +61,8 @@ class POLAR_Controller extends CI_Controller {
 	 */
 	protected function api_status($code, $text = '')
 	{
+		$this->output->enable_profiler(FALSE);
+
 		$this->output->set_status_header($code, $text)->_display();
 
 		exit();
@@ -73,6 +75,8 @@ class POLAR_Controller extends CI_Controller {
 	 */
 	protected function api_output($data)
 	{
+		$this->output->enable_profiler(FALSE);
+
 		$this->output->set_content_type('json')->set_output(json_encode($data));
 	}
 }

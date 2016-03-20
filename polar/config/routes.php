@@ -82,6 +82,9 @@ $route['admin'] = 'admin/dashboard';
  * API routes.
  */
 $route['api/form/unique']['GET'] = 'api/form/get_unique';
-$route['api/schools/search'] = 'api/schools/schools_search';
+$route['api/quizzes/search'] = 'api/quizzes/search';
+$route['api/quizzes']['GET'] = 'api/quizzes/get_quizzes';
+$route['api/quizzes']['POST'] = 'api/quizzes/post_quizzes';
+$route['api/schools/search'] = 'api/schools/search';
 $route['api/schools']['GET'] = 'api/schools/get_schools';
 $route['api/schools']['POST'] = 'api/schools/post_schools';

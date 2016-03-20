@@ -8,9 +8,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Parameters.
+ * Params interface.
  *
  * @package Polar\Domain\Params
  */
-abstract class Params extends POLAR_Model implements Params_interface {
+interface Params_interface extends JsonSerializable {
+
+	/**
+	 * Specify data which should be deserialized from JSON.
+	 *
+	 * @param object $object Data which can be deserialized.
+	 */
+	public function jsonDeserialize($object);
 }

@@ -28,7 +28,7 @@ class Schools extends POLAR_Controller {
 	/**
 	 * Schools search.
 	 */
-	public function schools_search()
+	public function search()
 	{
 		$this->api_authed($this->auth->authed_by_role('admin', FALSE));
 

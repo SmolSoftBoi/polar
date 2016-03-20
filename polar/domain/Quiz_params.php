@@ -8,21 +8,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Email parameters.
+ * Quiz parameters.
  *
  * @package Polar\Domain\Params
  */
-class Email_params extends Params {
+class Quiz_params extends Params {
 
 	/**
-	 * @var string $email Email.
+	 * @var int $school_id School ID.
 	 */
-	public $email;
+	public $school_id;
 
 	/**
-	 * @var string[] $emails Emails.
+	 * @var int[]|bool $school_ids School IDs.
 	 */
-	public $emails = array();
+	public $school_ids = array();
+
+	/**
+	 * @var bool|int $user_id User ID.
+	 */
+	public $user_id;
 
 	/**
 	 * JSON serialize.
@@ -33,8 +38,9 @@ class Email_params extends Params {
 	{
 		$object = new stdClass();
 
-		$object->email = $this->email;
-		$object->emails = $this->emails;
+		$object->schoolId = $this->school_id;
+		$object->schoolIds = $this->school_ids;
+		$object->userId = $this->user_id;
 
 		return $object;
 	}
@@ -48,14 +54,19 @@ class Email_params extends Params {
 	{
 		$object = json_decode($object);
 
-		if (isset($object->email))
+		if (isset($object->schoolId))
 		{
-			$this->email = $object->email;
+			$this->school_id = $object->schoolId;
 		}
 
-		if (isset($object->emails))
+		if (isset($object->schoolIds))
 		{
-			$this->emails = $object->emails;
+			$this->school_ids = $object->schoolIds;
+		}
+
+		if (isset($object->userId))
+		{
+			$this->user_id = $object->userId;
 		}
 	}
 }

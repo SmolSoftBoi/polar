@@ -58,6 +58,8 @@ class Email_item extends Item {
 	 */
 	public function jsonDeserialize($object)
 	{
+		$object = json_decode($object);
+
 		if (isset($object->emailId))
 		{
 			$this->email_id = $object->emailId;

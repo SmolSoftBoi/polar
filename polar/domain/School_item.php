@@ -46,6 +46,8 @@ class School_item extends Item {
 	 */
 	public function jsonDeserialize($object)
 	{
+		$object = json_decode($object);
+
 		if (isset($object->schoolId))
 		{
 			$this->school_id = $object->schoolId;
