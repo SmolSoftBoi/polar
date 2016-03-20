@@ -6,5 +6,10 @@ trim_trailing_whitespace = true
 insert_final_newline = false
 root = true
 
+# JavaScript & JSON
 [*.{js,json}]
+indent_style = space
+
+# Bower
+[.bowerrc]
 indent_style = space
