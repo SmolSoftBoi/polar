@@ -105,21 +105,6 @@ defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatic
 defined('SHOW_PROFILER') OR define('SHOW_PROFILER', FALSE);
 
 /**
- * HTTP bad request status code.
- */
-defined('HTTP_BAD_REQUEST') OR define('HTTP_BAD_REQUEST', 400);
-
-/**
- * HTTP unauthorised status code.
- */
-defined('HTTP_UNAUTHORISED') OR define('HTTP_UNAUTHORISED', 401);
-
-/**
- * HTTP not found status code.
- */
-defined('HTTP_NOT_FOUND') OR define('HTTP_NOT_FOUND', 404);
-
-/**
  * Admin role key.
  */
 defined('ROLE_KEY_ADMIN') OR define('ROLE_KEY_ADMIN', 'admin');
@@ -138,3 +123,24 @@ defined('ROLE_KEY_TEACHER') OR define('ROLE_KEY_TEACHER', 'teacher');
  * Student role key.
  */
 defined('ROLE_KEY_STUDENT') OR define('ROLE_KEY_STUDENT', 'student');
+
+/**
+ * Domain regular expression.
+ */
+defined('DOMAIN_REGEXP')
+OR define('DOMAIN_REGEXP', '/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i');
+
+/**
+ * HTTP bad request status code.
+ */
+defined('HTTP_BAD_REQUEST') OR define('HTTP_BAD_REQUEST', 400);
+
+/**
+ * HTTP unauthorised status code.
+ */
+defined('HTTP_UNAUTHORISED') OR define('HTTP_UNAUTHORISED', 401);
+
+/**
+ * HTTP not found status code.
+ */
+defined('HTTP_NOT_FOUND') OR define('HTTP_NOT_FOUND', 404);
