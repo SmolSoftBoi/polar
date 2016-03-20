@@ -14,6 +14,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$lang['domain_placeholder'] = 'Domain…';
 $lang['email_placeholder'] = 'Email…';
 $lang['first_name_placeholder'] = 'First name…';
 $lang['last_name_placeholder'] = 'Last name…';

@@ -15,6 +15,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['confirm_password_label'] = 'Confirm Password';
+$lang['domain_label'] = 'Domain';
 $lang['email_label'] = 'Email';
 $lang['first_name_label'] = 'First Name';
 $lang['last_name_label'] = 'Last Name';
