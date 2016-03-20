@@ -12,8 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @package Polar\Models
  *
- * @property Email_model $email_model Email model.
- * @property Role_model  $role_model  Role model.
+ * @property Email_model  $email_model  Email model.
+ * @property Role_model   $role_model   Role model.
+ * @property School_model $school_model School model.
  */
 class User_model extends Item_model {
 
@@ -25,7 +26,8 @@ class User_model extends Item_model {
 		parent::__construct();
 		$this->load->model(array(
 			'email_model',
-			'role_model'
+			'role_model',
+			'school_model'
 		));
 	}
 
@@ -197,6 +199,7 @@ class User_model extends Item_model {
 		}
 
 		$this->db->select('users.*')
+		         ->from('users')
 		         ->join('user_emails', 'users.user_id = user_emails.user_id')
 		         ->join('emails', 'user_emails.email_id = emails.email_id')
 		         ->join('user_roles', 'users.user_id = user_roles.user_id')
@@ -211,8 +214,6 @@ class User_model extends Item_model {
 		{
 			$this->db->where('roles.role_key', $user_params->role_key);
 		}
-
-		$this->db->from('users');
 	}
 
 	/**
@@ -230,7 +231,14 @@ class User_model extends Item_model {
 
 		$role_items = $this->role_model->search($role_params);
 
+		$school_params = new School_params();
+
+		$school_params->user_id = $user_item->user_id;
+
+		$school_items = $this->school_model->search($school_params);
+
 		$user_item->roles = $role_items;
+		$user_item->schools = $school_items;
 
 		return $user_item;
 	}

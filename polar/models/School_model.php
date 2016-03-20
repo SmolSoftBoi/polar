@@ -124,11 +124,18 @@ class School_model extends Item_model {
 			$school_params = new School_params();
 		}
 
-		$this->db->select('schools.*')->from('schools');
+		$this->db->select('schools.*')
+		         ->from('schools')
+		         ->join('user_schools', 'schools.school_id = user_schools.school_id');
 
 		if (isset($school_params->school_name))
 		{
 			$this->db->where('schools.school_name', $school_params->school_name);
+		}
+
+		if (isset($school_params->user_id))
+		{
+			$this->db->where('user_schools.user_id', $school_params->user_id);
 		}
 	}
 
