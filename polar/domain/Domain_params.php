@@ -8,14 +8,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * School parameters.
+ * Domain parameters.
  *
  * @package Polar\Domain\Params
  */
-class School_params extends Params {
+class Domain_params extends Params {
 
 	/**
-	 * @var string $school_name School name.
+	 * @var string $domain Domain.
 	 */
-	public $school_name;
+	public $domain;
 }
