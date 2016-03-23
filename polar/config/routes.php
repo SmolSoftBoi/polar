@@ -74,6 +74,11 @@ $route['auth/signout'] = 'sign/out';
 $route['auth/signup'] = 'sign/up';
 
 /**
+ * Quiz routes.
+ */
+$route['quizzes/(:any)'] = 'quizzes/quiz/$1';
+
+/**
  * Admin routes.
  */
 $route['admin'] = 'admin/dashboard';
@@ -81,6 +86,7 @@ $route['admin'] = 'admin/dashboard';
 /**
  * API routes.
  */
+$route['api/userdata']['GET'] = 'api/userdata/get';
 $route['api/form/unique']['GET'] = 'api/form/get_unique';
 $route['api/quizzes/search'] = 'api/quizzes/search';
 $route['api/quizzes']['GET'] = 'api/quizzes/get_quizzes';
