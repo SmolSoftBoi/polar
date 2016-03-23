@@ -61,12 +61,10 @@ class User_item extends Item {
 	 */
 	public function jsonSerialize()
 	{
-		$object = new stdClass();
+		$object = $this->base_json_serialize();
 
-		$object->firstName = $this->first_name;
-		$object->lastName = $this->last_name;
-		$object->emails = $this->emails;
-		$object->roles = $this->roles;
+		unset($object->password);
+		unset($object->passwordHash);
 
 		return $object;
 	}
@@ -78,22 +76,7 @@ class User_item extends Item {
 	 */
 	public function jsonDeserialize($object)
 	{
-		$object = json_decode($object);
-
-		if (isset($object->userId))
-		{
-			$this->user_id = $object->userId;
-		}
-
-		if (isset($object->firstName))
-		{
-			$this->first_name = $object->firstName;
-		}
-
-		if (isset($object->lastName))
-		{
-			$this->last_name = $object->lastName;
-		}
+		$object = $this->base_json_deserialize($object);
 
 		if (isset($object->emails))
 		{
@@ -116,6 +99,18 @@ class User_item extends Item {
 				$role_item->jsonDeserialize($role);
 
 				$this->roles[] = $role_item;
+			}
+		}
+
+		if (isset($object->schools))
+		{
+			foreach ($object->schools as $school)
+			{
+				$school_item = new Role_item();
+
+				$school_item->jsonDeserialize($school);
+
+				$this->schools[] = $school_item;
 			}
 		}
 	}

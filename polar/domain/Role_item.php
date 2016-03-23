@@ -30,47 +30,6 @@ class Role_item extends Item {
 	public $role_name;
 
 	/**
-	 * JSON serialize.
-	 *
-	 * @return object Object.
-	 */
-	function jsonSerialize()
-	{
-		$object = new stdClass();
-
-		$object->roleId = $this->role_id;
-		$object->roleKey = $this->role_key;
-		$object->roleName = $this->role_name;
-
-		return $object;
-	}
-
-	/**
-	 * JSON deserialize.
-	 *
-	 * @param object $object Object.
-	 */
-	public function jsonDeserialize($object)
-	{
-		$object = json_decode($object);
-
-		if (isset($object->roleId))
-		{
-			$this->role_id = $object->roleId;
-		}
-
-		if (isset($object->roleKey))
-		{
-			$this->role_key = $object->roleKey;
-		}
-
-		if (isset($object->roleName))
-		{
-			$this->role_name = $object->roleName;
-		}
-	}
-
-	/**
 	 * Database set.
 	 */
 	public function db_set()

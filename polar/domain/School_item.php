@@ -25,41 +25,6 @@ class School_item extends Item {
 	public $school_name;
 
 	/**
-	 * JSON serialize.
-	 *
-	 * @return object Object.
-	 */
-	function jsonSerialize()
-	{
-		$object = new stdClass();
-
-		$object->schoolId = $this->school_id;
-		$object->schoolName = $this->school_name;
-
-		return $object;
-	}
-
-	/**
-	 * JSON deserialize.
-	 *
-	 * @param object $object Object.
-	 */
-	public function jsonDeserialize($object)
-	{
-		$object = json_decode($object);
-
-		if (isset($object->schoolId))
-		{
-			$this->school_id = $object->schoolId;
-		}
-
-		if (isset($object->schoolName))
-		{
-			$this->school_name = $object->schoolName;
-		}
-	}
-
-	/**
 	 * Database set.
 	 */
 	public function db_set()

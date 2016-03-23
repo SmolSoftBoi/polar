@@ -8,16 +8,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * School parameters.
+ * Question parameters.
  *
  * @package Polar\Domain\Params
  */
-class School_params extends Params {
+class Question_params extends Params {
 
 	/**
-	 * @var string $school_name School name.
+	 * @var int $quiz_id Quiz ID.
 	 */
-	public $school_name;
+	public $quiz_id;
 
 	/**
 	 * @var int $user_id User ID.

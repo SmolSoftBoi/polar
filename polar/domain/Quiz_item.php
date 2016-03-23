@@ -55,44 +55,17 @@ class Quiz_item extends Item {
 	public $live;
 
 	/**
-	 * JSON serialize.
-	 *
-	 * @return object Object.
-	 */
-	function jsonSerialize()
-	{
-		$object = new stdClass();
-
-		$object->quizId = $this->quiz_id;
-		$object->quizName = $this->quiz_name;
-		$object->quizSlug = $this->quiz_slug;
-		$object->description = $this->description;
-
-		return $object;
-	}
-
-	/**
-	 * JSON deserialize.
-	 *
-	 * @param object $object Object.
-	 */
-	public function jsonDeserialize($object)
-	{
-		$object = json_decode($object);
-
-		if (isset($object->quizId))
-		{
-			$this->quiz_id = $object->quizId;
-		}
-	}
-
-	/**
 	 * Database set.
 	 */
 	public function db_set()
 	{
 		$this->db->set(array(
-			'quiz_id' => $this->quiz_id
+			'quiz_id' => $this->quiz_id,
+			'quiz_name' => $this->quiz_name,
+			'quiz_slug' => $this->quiz_slug,
+			'description' => $this->description,
+			'code' => $this->code,
+			'launch_timestamp' => $this->launch_timestamp
 		));
 	}
 }
