@@ -33,9 +33,6 @@ class POLAR_Controller extends CI_Controller {
 		$this->output->enable_profiler(SHOW_PROFILER);
 
 		$this->migration->current();
-
-		$data['brand_color'] = $this->config->item('brand_color');
-		$this->load->vars($data);
 	}
 
 	/**

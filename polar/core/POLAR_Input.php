@@ -15,5 +15,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property mixed $raw_input_stream       Raw input stream data.
  */
 class POLAR_Input extends CI_Input {
-
 }
