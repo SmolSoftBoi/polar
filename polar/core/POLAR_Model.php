@@ -275,7 +275,14 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 		{
 			if ( ! empty($params->$param_property))
 			{
-				$this->db->where($table . '.' . $field, $params->$param_property);
+				if (is_array($params->$param_property))
+				{
+					$this->db->where_in($table . '.' . $field, $params->$param_property);
+				}
+				else
+				{
+					$this->db->where($table . '.' . $field, $params->$param_property);
+				}
 			}
 		}
 	}

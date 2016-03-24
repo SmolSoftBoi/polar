@@ -40,35 +40,7 @@ class User_model extends Item_model {
 	 */
 	public function search($user_params = NULL)
 	{
-		$this->build($user_params);
-
-		$user_items = $this->db->get()->result('user_item');
-
-		foreach ($user_items as $key => $user_item)
-		{
-			$user_items[$key] = $this->generate($user_item);
-		}
-
-		return $user_items;
-	}
-
-	/**
-	 * Get user items.
-	 *
-	 * @param int[] $user_ids User IDs.
-	 *
-	 * @return User_item[] User items.
-	 */
-	public function get_items($user_ids)
-	{
-		$user_items = array();
-
-		foreach ($user_ids as $user_id)
-		{
-			$user_items[$user_id] = $this->get_item($user_id);
-		}
-
-		return $user_items;
+		return $this->base_search('user_item', 'user_id', $user_params);
 	}
 
 	/**
@@ -80,28 +52,7 @@ class User_model extends Item_model {
 	 */
 	public function get_item($user_id)
 	{
-		$this->build();
-
-		return $this->db->where('users.user_id', $user_id)->get()->row(0, 'user_item');
-	}
-
-	/**
-	 * Set user items.
-	 *
-	 * @param User_item[] $user_items User items.
-	 *
-	 * @return int[] User IDs.
-	 */
-	public function set_items($user_items)
-	{
-		$user_ids = array();
-
-		foreach ($user_items as $user_item)
-		{
-			$user_ids[] = $this->set_item($user_item);
-		}
-
-		return $user_ids;
+		return $this->base_get_item('users', 'user_id', 'user_item', $user_id);
 	}
 
 	/**
@@ -133,34 +84,23 @@ class User_model extends Item_model {
 			$user_item->roles[$index] = $this->role_model->get_item_by_key($role->role_key);
 		}
 
-		$user_item->db_set();
-
-		if ( ! isset($user_item->user_id) || $user_item->user_id === 0)
-		{
-			$this->db->insert('users');
-		}
-		else
-		{
-			$this->db->where('user_id', $user_item->user_id)->update('users');
-		}
-
-		$user_id = $this->db->insert_id();
+		$user_id = $this->base_set_item('users', 'user_id', 'user_id', $user_item);
 
 		$email_ids = $this->email_model->set_items($user_item->emails);
 
 		$this->db->where('user_id', $user_id)->where_not_in('email_id', $email_ids)->delete('user_emails');
 
-		$email_data = array();
+		$user_emails = array();
 
 		foreach ($email_ids as $email_id)
 		{
-			$email_data[] = array(
+			$user_emails[] = array(
 				'user_id'  => $user_id,
 				'email_id' => $email_id
 			);
 		}
 
-		$this->db->insert_batch('user_emails', $email_data);
+		$this->db->insert_batch('user_emails', $user_emails);
 
 		$role_ids = array();
 
@@ -171,17 +111,17 @@ class User_model extends Item_model {
 
 		$this->db->where('user_id', $user_id)->where_not_in('role_id', $role_ids)->delete('user_roles');
 
-		$role_data = array();
+		$user_roles = array();
 
 		foreach ($role_ids as $role_id)
 		{
-			$role_data[] = array(
+			$user_roles[] = array(
 				'user_id' => $user_id,
 				'role_id' => $role_id
 			);
 		}
 
-		$this->db->insert_batch('user_roles', $role_data);
+		$this->db->insert_batch('user_roles', $user_roles);
 
 		return $user_id;
 	}
@@ -198,22 +138,15 @@ class User_model extends Item_model {
 			$user_params = new User_params();
 		}
 
-		$this->db->select('users.*')
-		         ->from('users')
-		         ->join('user_emails', 'users.user_id = user_emails.user_id')
+		$this->base_build('users');
+
+		$this->db->join('user_emails', 'users.user_id = user_emails.user_id')
 		         ->join('emails', 'user_emails.email_id = emails.email_id')
 		         ->join('user_roles', 'users.user_id = user_roles.user_id')
 		         ->join('roles', 'user_roles.role_id = roles.role_id');
 
-		if (isset($user_params->email))
-		{
-			$this->db->where('emails.email', $user_params->email);
-		}
-
-		if (isset($user_params->role_key))
-		{
-			$this->db->where('roles.role_key', $user_params->role_key);
-		}
+		$this->build_param('email', 'emails', 'email');
+		$this->build_param('role_key', 'roles', 'role_key');
 	}
 
 	/**
@@ -225,9 +158,11 @@ class User_model extends Item_model {
 	 */
 	protected function generate($user_item)
 	{
+		$user_item = $this->base_generate('user_item_id', $user_item);
+
 		$role_params = new Role_params();
 
-		$role_params->user_id = $user_item->user_id;
+		$role_params->user_id = $user_item->user_item;
 
 		$role_items = $this->role_model->search($role_params);
 

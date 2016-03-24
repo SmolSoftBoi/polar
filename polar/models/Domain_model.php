@@ -23,35 +23,7 @@ class Domain_model extends Item_model {
 	 */
 	public function search($domain_params = NULL)
 	{
-		$this->build($domain_params);
-
-		$domain_items = $this->db->get()->result('domain_item');
-
-		foreach ($domain_items as $key => $domain_item)
-		{
-			$domain_items[$key] = $this->generate($domain_item);
-		}
-
-		return $domain_items;
-	}
-
-	/**
-	 * Get domain items.
-	 *
-	 * @param int[] $domain_ids Domain IDs.
-	 *
-	 * @return Domain_item[] Domain items.
-	 */
-	public function get_items($domain_ids)
-	{
-		$domain_items = array();
-
-		foreach ($domain_ids as $domain_id)
-		{
-			$domain_items[$domain_id] = $this->get_item($domain_id);
-		}
-
-		return $domain_items;
+		return $this->base_search('domain_item', 'domain_id', $domain_params);
 	}
 
 	/**
@@ -63,30 +35,7 @@ class Domain_model extends Item_model {
 	 */
 	public function get_item($domain_id)
 	{
-		$this->build();
-
-		$domain_item = $this->db->where('domains.domain_id', $domain_id)->get()->row(0, 'domain_item');
-
-		return $this->generate($domain_item);
-	}
-
-	/**
-	 * Set domain items.
-	 *
-	 * @param Domain_item[] $domain_items Domain items.
-	 *
-	 * @return int[] Domain IDs.
-	 */
-	public function set_items($domain_items)
-	{
-		$domain_ids = array();
-
-		foreach ($domain_items as $domain_item)
-		{
-			$domain_ids[] = $this->set_item($domain_item);
-		}
-
-		return $domain_ids;
+		return $this->base_get_item('domains', 'domain_id', 'domain_item', $domain_id);
 	}
 
 	/**
@@ -98,18 +47,7 @@ class Domain_model extends Item_model {
 	 */
 	public function set_item($domain_item)
 	{
-		$domain_item->db_set();
-
-		if ( ! isset($domain_item->domain_id) || $domain_item->domain_id === 0)
-		{
-			$this->db->insert('domains');
-		}
-		else
-		{
-			$this->db->where('domain_id', $domain_item->domain_id)->update('domains');
-		}
-
-		return $this->db->insert_id();
+		return $this->base_set_item('domains', 'domain_id', 'domain_id', $domain_item);
 	}
 
 	/**
@@ -124,12 +62,9 @@ class Domain_model extends Item_model {
 			$domain_params = new Domain_params();
 		}
 
-		$this->db->select('domains.*')->from('domains');
+		$this->base_build('domains');
 
-		if (isset($domain_params->domain))
-		{
-			$this->db->where('domains.domain', $domain_params->domain);
-		}
+		$this->build_param($domain_params, 'domain', 'domains', 'domain');
 	}
 
 	/**
@@ -141,6 +76,6 @@ class Domain_model extends Item_model {
 	 */
 	protected function generate($domain_item)
 	{
-		return $domain_item;
+		return $this->base_generate('domain_id', $domain_item);
 	}
 }

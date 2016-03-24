@@ -34,35 +34,7 @@ class Email_model extends Item_model {
 	 */
 	public function search($email_params = NULL)
 	{
-		$this->build($email_params);
-
-		$email_items = $this->db->get()->result('email_item');
-
-		foreach ($email_items as $key => $email_item)
-		{
-			$email_items[$key] = $this->generate($email_item);
-		}
-
-		return $email_items;
-	}
-
-	/**
-	 * Get email items.
-	 *
-	 * @param int[] $email_ids Email IDs.
-	 *
-	 * @return Email_item[] Email items.
-	 */
-	public function get_items($email_ids)
-	{
-		$email_items = array();
-
-		foreach ($email_ids as $email_id)
-		{
-			$email_items[$email_id] = $this->get_item($email_id);
-		}
-
-		return $email_items;
+		return $this->base_search('email_item', 'eamil_id', $email_params);
 	}
 
 	/**
@@ -74,30 +46,7 @@ class Email_model extends Item_model {
 	 */
 	public function get_item($email_id)
 	{
-		$this->build();
-
-		$email_item = $this->db->where('emails.email_id', $email_id)->get()->row(0, 'email_item');
-
-		return $this->generate($email_item);
-	}
-
-	/**
-	 * Set email items.
-	 *
-	 * @param Email_item[] $email_items Email items.
-	 *
-	 * @return int[] Email IDs.
-	 */
-	public function set_items($email_items)
-	{
-		$email_ids = array();
-
-		foreach ($email_items as $email_item)
-		{
-			$email_ids[] = $this->set_item($email_item);
-		}
-
-		return $email_ids;
+		return $this->base_get_item('emails', 'email_id', 'email_item', $email_id);
 	}
 
 	/**
@@ -109,18 +58,7 @@ class Email_model extends Item_model {
 	 */
 	public function set_item($email_item)
 	{
-		$email_item->db_set();
-
-		if ( ! isset($email_item->email_id) || $email_item->email_id === 0)
-		{
-			$this->db->insert('emails');
-		}
-		else
-		{
-			$this->db->where('email_id', $email_item->email_id)->update('emails');
-		}
-
-		return $this->db->insert_id();
+		return $this->base_set_item('emails', 'email_id', 'email_id', $email_item);
 	}
 
 	/**
@@ -135,20 +73,10 @@ class Email_model extends Item_model {
 			$email_params = new Email_params();
 		}
 
-		$this->db->select('emails.*')->from('emails');
+		$this->base_build('emails');
 
-		if (isset($email_params->email))
-		{
-			$this->db->where('emails.email', $email_params->email);
-		}
-
-		if ( ! empty($email_params->emails))
-		{
-			foreach ($email_params->emails as $email)
-			{
-				$this->db->where('emails.email', $email);
-			}
-		}
+		$this->build_param($email_params, 'email', 'emails', 'email');
+		$this->build_param($email_params, 'emails', 'emails', 'email');
 	}
 
 	/**
@@ -160,6 +88,8 @@ class Email_model extends Item_model {
 	 */
 	protected function generate($email_item)
 	{
+		$email_item = $this->base_generate($email_item);
+
 		$user_params = new User_params();
 
 		$user_params->email = $email_item->email;
@@ -168,7 +98,7 @@ class Email_model extends Item_model {
 
 		if (count($user_items) > 0)
 		{
-			$email_item->user = $user_items[0];
+			$email_item->user = reset($user_items);
 		}
 
 		return $email_item;

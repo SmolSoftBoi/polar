@@ -23,35 +23,7 @@ class School_model extends Item_model {
 	 */
 	public function search($school_params = NULL)
 	{
-		$this->build($school_params);
-
-		$school_items = $this->db->get()->result('school_item');
-
-		foreach ($school_items as $key => $school_item)
-		{
-			$school_items[$key] = $this->generate($school_item);
-		}
-
-		return $school_items;
-	}
-
-	/**
-	 * Get school items.
-	 *
-	 * @param int[] $school_ids School IDs.
-	 *
-	 * @return School_item[] School items.
-	 */
-	public function get_items($school_ids)
-	{
-		$school_items = array();
-
-		foreach ($school_ids as $school_id)
-		{
-			$school_items[$school_id] = $this->get_item($school_id);
-		}
-
-		return $school_items;
+		return $this->base_search('school_item', 'school_id', $school_params);
 	}
 
 	/**
@@ -63,30 +35,7 @@ class School_model extends Item_model {
 	 */
 	public function get_item($school_id)
 	{
-		$this->build();
-
-		$school_item = $this->db->where('schools.school_id', $school_id)->get()->row(0, 'school_item');
-
-		return $this->generate($school_item);
-	}
-
-	/**
-	 * Set school items.
-	 *
-	 * @param School_item[] $school_items School items.
-	 *
-	 * @return int[] School IDs.
-	 */
-	public function set_items($school_items)
-	{
-		$school_ids = array();
-
-		foreach ($school_items as $school_item)
-		{
-			$school_ids[] = $this->set_item($school_item);
-		}
-
-		return $school_ids;
+		return $this->base_get_item('schools', 'school_id', 'school_item', $school_id);
 	}
 
 	/**
@@ -98,18 +47,7 @@ class School_model extends Item_model {
 	 */
 	public function set_item($school_item)
 	{
-		$school_item->db_set();
-
-		if ( ! isset($school_item->school_id) || $school_item->school_id === 0)
-		{
-			$this->db->insert('schools');
-		}
-		else
-		{
-			$this->db->where('school_id', $school_item->school_id)->update('schools');
-		}
-
-		return $this->db->insert_id();
+		$this->base_set_item('schools', 'school_id', 'school_id', $school_item);
 	}
 
 	/**
@@ -124,19 +62,12 @@ class School_model extends Item_model {
 			$school_params = new School_params();
 		}
 
-		$this->db->select('schools.*')
-		         ->from('schools')
-		         ->join('user_schools', 'schools.school_id = user_schools.school_id');
+		$this->base_build('schools');
 
-		if (isset($school_params->school_name))
-		{
-			$this->db->where('schools.school_name', $school_params->school_name);
-		}
+		$this->db->join('user_schools', 'schools.school_id = user_schools.school_id');
 
-		if (isset($school_params->user_id))
-		{
-			$this->db->where('user_schools.user_id', $school_params->user_id);
-		}
+		$this->build_param($school_params, 'school_name', 'schools', 'school_name');
+		$this->build_param($school_params, 'user_id', 'user_schools', 'user_id');
 	}
 
 	/**
@@ -148,6 +79,6 @@ class School_model extends Item_model {
 	 */
 	protected function generate($school_item)
 	{
-		return $school_item;
+		return $this->base_generate('school_id', $school_item);
 	}
 }
