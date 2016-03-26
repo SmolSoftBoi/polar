@@ -26,7 +26,7 @@ class Quiz extends \Faker\Provider\Base {
 	public function quizQuestion()
 	{
 		$question = $this->generator->sentence($this->generator->numberBetween(2, 8));
-		$question = rtrim($question, '.') + '?';
+		$question = rtrim($question, '.') . '?';
 
 		return $question;
 	}
