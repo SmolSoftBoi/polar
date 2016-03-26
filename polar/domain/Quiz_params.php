@@ -15,6 +15,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Quiz_params extends Params {
 
 	/**
+	 * @var string $code Code.
+	 */
+	public $code;
+
+	/**
 	 * @var string $quiz_slug Quiz slug.
 	 */
 	public $quiz_slug;
