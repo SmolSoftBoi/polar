@@ -145,8 +145,8 @@ class User_model extends Item_model {
 		         ->join('user_roles', 'users.user_id = user_roles.user_id')
 		         ->join('roles', 'user_roles.role_id = roles.role_id');
 
-		$this->build_param('email', 'emails', 'email');
-		$this->build_param('role_key', 'roles', 'role_key');
+		$this->build_param($user_params, 'email', 'emails', 'email');
+		$this->build_param($user_params, 'role_key', 'roles', 'role_key');
 	}
 
 	/**
@@ -158,11 +158,11 @@ class User_model extends Item_model {
 	 */
 	protected function generate($user_item)
 	{
-		$user_item = $this->base_generate('user_item_id', $user_item);
+		$user_item = $this->base_generate('user_id', $user_item);
 
 		$role_params = new Role_params();
 
-		$role_params->user_id = $user_item->user_item;
+		$role_params->user_id = $user_item->user_id;
 
 		$role_items = $this->role_model->search($role_params);
 

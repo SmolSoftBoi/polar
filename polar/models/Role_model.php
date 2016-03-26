@@ -51,28 +51,6 @@ class Role_model extends Item_model {
 	}
 
 	/**
-	 * Build.
-	 *
-	 * @param Role_params|null $role_params Role parameters.
-	 */
-	protected function build($role_params = NULL)
-	{
-		$this->base_build('roles');
-	}
-
-	/**
-	 * Generate.
-	 *
-	 * @param Role_item $role_item Role item.
-	 *
-	 * @return Role_item Role item.
-	 */
-	protected function generate($role_item)
-	{
-		return $this->base_generate('role_id', $role_item);
-	}
-
-	/**
 	 * Get role items by keys.
 	 *
 	 * @param string[] $role_keys Role keys.
@@ -101,5 +79,27 @@ class Role_model extends Item_model {
 	public function get_item_by_key($role_key)
 	{
 		return $this->base_get_item('roles', 'role_key', 'role_item', $role_key);
+	}
+
+	/**
+	 * Build.
+	 *
+	 * @param Role_params|null $role_params Role parameters.
+	 */
+	protected function build($role_params = NULL)
+	{
+		$this->base_build('roles');
+	}
+
+	/**
+	 * Generate.
+	 *
+	 * @param Role_item $role_item Role item.
+	 *
+	 * @return Role_item Role item.
+	 */
+	protected function generate($role_item)
+	{
+		return $this->base_generate('role_id', $role_item);
 	}
 }
