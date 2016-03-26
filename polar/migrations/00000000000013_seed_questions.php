@@ -63,6 +63,8 @@ class Migration_Seed_questions extends CI_Migration {
 
 			$faker->addProvider(new Faker\Provider\Quiz($faker));
 
+			$time_limits = range(30, 120, 30);
+
 			$this->db->trans_start();
 
 			$multiple_choice_question_type = $this->db->where('question_type_key', 'multiplechoice')
@@ -86,7 +88,7 @@ class Migration_Seed_questions extends CI_Migration {
 						'question_type_id' => $multiple_choice_question_type->question_type_id,
 						'quiz_id'          => $quiz->quiz_id,
 						'question'         => $faker->quizQuestion,
-						'time_limit'       => $faker->numberBetween(60, 60 * 60)
+						'time_limit'       => $faker->randomElement($time_limits)
 					);
 				}
 
