@@ -13,10 +13,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <div class="site-wrapper">
-	<div class="site-wrapper-inner error">
+	<div class="site-wrapper-inner">
+		<div class="cover-container error">
 
-		<h1><?= $heading ?></h1>
-		<p><?= $message ?></p>
+			<h1><?= $heading ?></h1>
+			<p><?= $message ?></p>
 
+		</div>
 	</div>
 </div>
