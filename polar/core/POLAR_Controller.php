@@ -33,6 +33,85 @@ class POLAR_Controller extends CI_Controller {
 		$this->output->enable_profiler(SHOW_PROFILER);
 
 		$this->migration->current();
+
+		$data['brand_color'] = $this->config->item('brand_color');
+
+		$this->load->vars($data);
+	}
+
+	/**
+	 * Base API search.
+	 *
+	 * @param string $params_class Parameters class.
+	 * @param string $model_class Model class.
+	 *
+	 * @return Item[] Items.
+	 */
+	protected function base_api_search($params_class, $model_class)
+	{
+		$json = $this->input->raw_input_stream;
+
+		$params = new $params_class();
+
+		$params->jsonDeserialize($json);
+
+		$items = $this->$model_class->search($params);
+
+		return $items;
+	}
+
+	/**
+	 * Base API gets.
+	 *
+	 * @param string $model_class Model class.
+	 *
+	 * @return Item[] Items.
+	 */
+	protected function base_api_gets($model_class)
+	{
+		$items = $this->$model_class->search();
+
+		return $items;
+	}
+
+	/**
+	 * Base API get.
+	 *
+	 * @param string $model_class Model class.
+	 * @param int $id ID.
+	 * @param string $get_item_method Get item method.
+	 *
+	 * @return Item Item.
+	 */
+	protected function base_api_get($model_class, $id, $get_item_method = 'get_item')
+	{
+		$item = $this->$model_class->$get_item_method($id);
+
+		return $item;
+	}
+
+	/**
+	 * Base API set.
+	 *
+	 * @param string $item_class Item class.
+	 * @param string $model_class Model class.
+	 * @param Item $item Item.
+	 *
+	 * @return Item Item.
+	 */
+	protected function base_api_set($item_class, $model_class)
+	{
+		$json = $this->input->raw_input_stream;
+
+		$item = new $item_class();
+
+		$item->jsonDeserialize($json);
+
+		$id = $this->$model_class->set_item($item);
+
+		$item = $this->$model_class->get_item($id);
+
+		return $item;
 	}
 
 	/**
@@ -46,7 +125,7 @@ class POLAR_Controller extends CI_Controller {
 		{
 			$this->output->set_status_header(HTTP_UNAUTHORISED)->_display();
 
-			exit();
+			exit;
 		}
 	}
 
@@ -62,7 +141,7 @@ class POLAR_Controller extends CI_Controller {
 
 		$this->output->set_status_header($code, $text)->_display();
 
-		exit();
+		exit;
 	}
 
 	/**

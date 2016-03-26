@@ -30,28 +30,7 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function search()
 	{
-		$json = $this->input->raw_input_stream;
-
-		$quiz_params = new Quiz_params();
-
-		$quiz_params->jsonDeserialize($json);
-
-		if ($quiz_params->school_ids === TRUE)
-		{
-			$quiz_params->school_ids = array();
-
-			foreach ($_SESSION['schools'] as $school)
-			{
-				$quiz_params->school_ids[] = $school['school_id'];
-			}
-		}
-
-		if ($quiz_params->user_id === TRUE)
-		{
-			$quiz_params->user_id = $_SESSION['user_id'];
-		}
-
-		$quiz_items = $this->quiz_model->search($quiz_params);
+		$quiz_items = $this->base_api_search('Quiz_params', 'quiz_model');
 
 		$this->api_output($quiz_items);
 	}
@@ -61,29 +40,36 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function get_quizzes()
 	{
-		$this->api_authed($this->auth->authed_by_role('admin', FALSE));
-
-		$quiz_items = $this->quiz_model->search();
+		$quiz_items = $this->base_api_gets('quiz_model');
 
 		$this->api_output($quiz_items);
 	}
 
 	/**
+	 * GET quiz.
+	 *
+	 * @param int $quiz_id Quiz ID.
+	 */
+	public function get_quiz($quiz_id)
+	{
+		$quiz_item = $this->base_api_get('quiz_model', $quiz_id);
+
+		$this->api_output($quiz_item);
+	}
+
+	public function get_quiz_by_slug($quiz_slug)
+	{
+		$quiz_item = $this->base_api_get('quiz_model', $quiz_slug, 'get_item_by_slug');
+
+		$this->api_output($quiz_item);
+	}
+
+	/**
 	 * POST quizzes.
 	 */
-	public function post_schools()
+	public function post_quiz()
 	{
-		$this->api_authed($this->auth->authed_by_role('admin', FALSE));
-
-		$json = $this->input->raw_input_stream;
-
-		$quiz_item = new School_item();
-
-		$quiz_item->jsonDeserialize($json);
-
-		$quiz_id = $this->quiz_model->set_item($quiz_item);
-
-		$quiz_item = $this->quiz_model->get_item($quiz_id);
+		$quiz_item = $this->base_api_set('quiz_item', 'quiz_model');
 
 		$this->api_output($quiz_item);
 	}

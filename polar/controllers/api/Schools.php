@@ -30,8 +30,6 @@ class Schools extends POLAR_Controller {
 	 */
 	public function search()
 	{
-		$this->api_authed($this->auth->authed_by_role('admin', FALSE));
-
 		$school_items = $this->school_model->search();
 
 		$this->api_output($school_items);
@@ -42,8 +40,6 @@ class Schools extends POLAR_Controller {
 	 */
 	public function get_schools()
 	{
-		$this->api_authed($this->auth->authed_by_role('admin', FALSE));
-
 		$school_items = $this->school_model->search();
 
 		$this->api_output($school_items);
@@ -54,8 +50,6 @@ class Schools extends POLAR_Controller {
 	 */
 	public function post_schools()
 	{
-		$this->api_authed($this->auth->authed_by_role('admin', FALSE));
-
 		$json = $this->input->raw_input_stream;
 
 		$school_item = new School_item();
