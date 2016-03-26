@@ -170,12 +170,15 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 * @param string      $item_class       Item class.
 	 * @param string      $item_id_property Item ID property.
 	 * @param Params|null $params           Parameters.
+	 * @param string $build_method Build method.
+	 * @param string $generate_method Generate method.
 	 *
 	 * @return Item[] Items.
 	 */
-	protected function base_search($item_class, $item_id_property, $params = NULL)
+	protected function base_search($item_class, $item_id_property, $params = NULL, $build_method = 'build',
+	                               $generate_method = 'generate')
 	{
-		$this->build($params);
+		$this->$build_method($params);
 
 		$search_items = $this->db->get()->result($item_class);
 
@@ -183,7 +186,7 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 
 		foreach ($search_items as $item)
 		{
-			$item = $this->generate($item);
+			$item = $this->$generate_method($item);
 
 			$items[$item->$item_id_property] = $item;
 		}
@@ -198,16 +201,19 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 * @param string $id_field   ID field.
 	 * @param string $item_class Item class.
 	 * @param int    $id         ID.
+	 * @param string $build_method Build method.
+	 * @param string $generate_method Generate method.
 	 *
 	 * @return Item Item.
 	 */
-	protected function base_get_item($table, $id_field, $item_class, $id)
+	protected function base_get_item($table, $id_field, $item_class, $id, $build_method = 'build', $generate_method =
+	'generate')
 	{
-		$this->build();
+		$this->$build_method();
 
-		$item = $this->db->where($table, $id_field, $id)->get()->row(0, $item_class);
+		$item = $this->db->where($table . '.' . $id_field, $id)->get()->row(0, $item_class);
 
-		return $this->generate($item);
+		return $this->$generate_method($item);
 	}
 
 	/**
