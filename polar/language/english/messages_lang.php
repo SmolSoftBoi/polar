@@ -25,6 +25,7 @@ $lang['email_unique_message'] = 'The email is already used…';
 $lang['email_valid_message'] = 'The email is not valid…';
 $lang['first_name_maxlength_message'] = 'The first name is too long…';
 $lang['first_name_required_message'] = 'Please enter a first name…';
+$lang['javascript_required_message'] = 'Polar doesn\'t work properly without JavaScript enabled.';
 $lang['last_name_maxlength_message'] = 'The last name is too long…';
 $lang['last_name_required_message'] = 'Please enter a last name…';
 $lang['password_required_message'] = 'Please enter a password…';

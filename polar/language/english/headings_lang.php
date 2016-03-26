@@ -16,6 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['setup_heading'] = 'Setup';
 $lang['admin_account_heading'] = 'Admin Account';
+$lang['javascript_required_heading'] = 'JavaScript Required';
 $lang['school_name_heading'] = 'School Name';
 $lang['schools_heading'] = 'Schools';
 $lang['sign_in_heading'] = 'Sign In';
