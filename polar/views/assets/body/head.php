@@ -13,12 +13,13 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <noscript>
-	<div class="cover cover-no-script">
+	<div class="cover-no-script">
 		<div class="site-wrapper">
 			<div class="site-wrapper-inner">
 				<div class="cover-container">
 
-					<h1>JavaScript Required</h1>
+					<h1><?= $this->lang->line('javascript_required_heading') ?></h1>
+					<p><?= $this->lang->line('javascript_required_message') ?></p>
 
 				</div>
 			</div>
