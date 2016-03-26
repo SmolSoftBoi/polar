@@ -8,21 +8,40 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Domain item.
+ * Answer item.
  *
  * @package Polar\Domain\Items
  */
-class Domain_item extends Item {
+class Answer_item extends Item {
 
 	/**
-	 * @var int $domain_id Domain ID.
+	 * @var int $answer_id Answer ID.
 	 */
-	public $domain_id;
+	public $answer_id;
 
 	/**
-	 * @var string $domain Domain.
+	 * @var int $question_id Question ID.
 	 */
-	public $domain;
+	public $question_id;
+
+	/**
+	 * @var string $answer Answer.
+	 */
+	public $answer;
+
+	/**
+	 * @var int $score Score.
+	 */
+	public $score;
+
+	public function jsonSerialize()
+	{
+		$object = $this->base_json_serialize();
+
+		unset($object->score);
+
+		return $object;
+	}
 
 	/**
 	 * Database set.

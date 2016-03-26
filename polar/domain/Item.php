@@ -74,7 +74,7 @@ abstract class Item extends POLAR_Model implements Item_interface {
 
 		foreach ($object as $param => $value)
 		{
-			$param = ltrim(preg_replace('/[A-Z]/', '_$0', $param), '_');
+			$param = strtolower(ltrim(preg_replace('/[A-Z]/', '_$0', $param), '_'));
 
 			if (property_exists(__CLASS__, $param))
 			{

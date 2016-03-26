@@ -55,16 +55,21 @@ class Quiz_item extends Item {
 	public $live;
 
 	/**
+	 * @var Question_item[] $questions Questions.
+	 */
+	public $questions = array();
+
+	/**
 	 * Database set.
 	 */
 	public function db_set()
 	{
 		$this->db->set(array(
-			'quiz_id' => $this->quiz_id,
-			'quiz_name' => $this->quiz_name,
-			'quiz_slug' => $this->quiz_slug,
-			'description' => $this->description,
-			'code' => $this->code,
+			'quiz_id'          => $this->quiz_id,
+			'quiz_name'        => $this->quiz_name,
+			'quiz_slug'        => $this->quiz_slug,
+			'description'      => $this->description,
+			'code'             => $this->code,
 			'launch_timestamp' => $this->launch_timestamp
 		));
 	}

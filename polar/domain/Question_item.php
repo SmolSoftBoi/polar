@@ -35,15 +35,20 @@ class Question_item extends Item {
 	public $time_limit;
 
 	/**
+	 * @var Answer_item[] $answers Answers
+	 */
+	public $answers = array();
+
+	/**
 	 * Database set.
 	 */
 	public function db_set()
 	{
 		$this->db->set(array(
-			'question_id' => $this->question_id,
+			'question_id'      => $this->question_id,
 			'question_type_id' => $this->question_type_id,
-			'question' => $this->question,
-			'time_limit' => $this->time_limit
+			'question'         => $this->question,
+			'time_limit'       => $this->time_limit
 		));
 	}
 }

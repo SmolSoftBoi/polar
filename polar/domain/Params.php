@@ -31,7 +31,7 @@ abstract class Params extends POLAR_Model implements Params_interface {
 	 */
 	public function jsonDeserialize($object)
 	{
-		$this->base_json_deserialize('Question_params', $object);
+		$this->base_json_deserialize(get_class($this), $object);
 	}
 
 	/**
@@ -74,9 +74,9 @@ abstract class Params extends POLAR_Model implements Params_interface {
 
 		foreach ($object as $param => $value)
 		{
-			$param = ltrim(preg_replace('/[A-Z]/', '_$0', $param), '_');
+			$param = strtolower(ltrim(preg_replace('/[A-Z]/', '_$0', $param), '_'));
 
-			if (property_exists(__CLASS__, $param))
+			if (property_exists($param_class, $param))
 			{
 				$this->$param = $value;
 			}
