@@ -109,6 +109,7 @@ class Quiz_model extends Item_model {
 		$this->db->join('user_schools', 'quizzes.user_id = user_schools.user_id')
 		         ->join('schools', 'user_schools.school_id = schools.school_id');
 
+		$this->build_param($quiz_params, 'code', 'quizzes', 'code');
 		$this->build_param($quiz_params, 'quiz_slug', 'quizzes', 'quiz_slug');
 		$this->build_param($quiz_params, 'school_id', 'schools', 'school_id');
 		$this->build_param($quiz_params, 'school_ids', 'schools', 'school_id');
