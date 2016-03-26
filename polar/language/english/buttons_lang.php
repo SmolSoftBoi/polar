@@ -16,6 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['account_button'] = 'Account';
 $lang['add_school_button'] = 'Add School';
+$lang['go_button'] = 'Go!';
 $lang['save_button'] = 'Save';
 $lang['setup_admin_account_button'] = 'Setup Admin Account';
 $lang['sign_in_button'] = 'Sign In';

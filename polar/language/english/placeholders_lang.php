@@ -20,4 +20,5 @@ $lang['first_name_placeholder'] = 'First name…';
 $lang['last_name_placeholder'] = 'Last name…';
 $lang['password_placeholder'] = 'Password…';
 $lang['confirm_password_placeholder'] = 'Confirm password…';
+$lang['quiz_code_placeholder'] = 'Quiz code…';
 $lang['school_name_placeholder'] = 'School name…';

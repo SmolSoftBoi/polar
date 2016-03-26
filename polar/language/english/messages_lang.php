@@ -14,6 +14,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$lang['code_required_message'] = 'Please enter a code…';
+$lang['code_maxlength_message'] = 'The code is too long…';
+$lang['code_minlength_message'] = 'The code is too short…';
 $lang['confirm_password_match_message'] = 'The passwords do not match…';
 $lang['confirm_password_required_message'] = 'Please confirm the password…';
 $lang['email_maxlength_message'] = 'The email is too long…';
