@@ -12,7 +12,7 @@
  */
 
 defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<nav class="navbar navbar-main main navbar-fixed-top navbar-light bg-faded">
+<nav class="navbar-main ng-cloak">
 
 	<!-- Brand -->
 	<a class="navbar-brand" href="<?= site_url() ?>">
@@ -23,14 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 	<!-- User -->
 	<ul class="nav navbar-nav pull-xs-right">
-		<?php if (isset($_SESSION['authed'])) if ($_SESSION['authed']): ?>
+		<?php if (isset($_SESSION['authed'])): if ($_SESSION['authed']): ?>
 
 			<!-- User -->
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 				   aria-expanded="false">
-					<span class="first-name"><?= $_SESSION['first_name'] ?></span>
-					<span class="last-name"><?= $_SESSION['last_name'] ?></span>
+					<span class="first-name">{{user.firstName}}</span>
+					<span class="last-name">{{user.lastName}}</span>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
 
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 				</div>
 			</li>
 
-		<?php endif ?>
+		<?php endif; endif; ?>
 	</ul>
 
 </nav>
