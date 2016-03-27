@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @property Question_model $question_model Question model.
  */
-class Quizzes extends POLAR_Controller {
+class Questions extends POLAR_Controller {
 
 	/**
 	 * Questions API constructor.
@@ -106,9 +106,9 @@ class Quizzes extends POLAR_Controller {
 
 		$question_response_item->jsonDeserialize($json);
 
-		$question_response_id = $this->question_model->set_item($question_response_item);
+		$question_response_id = $this->question_model->set_response_item($question_response_item);
 
-		$question_response_item = $this->question_model->get_item($question_response_id);
+		$question_response_item = $this->question_model->get_response_item($question_response_id);
 
 		$this->api_output($question_response_item);
 	}
