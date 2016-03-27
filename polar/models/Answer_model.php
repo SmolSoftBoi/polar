@@ -79,6 +79,7 @@ class Answer_model extends Item_model {
 		$answer_item = $this->base_generate('answer_id', $answer_item);
 
 		$answer_item->question_id = intval($answer_item->question_id);
+		$answer_item->score = intval($answer_item->score);
 
 		return $answer_item;
 	}

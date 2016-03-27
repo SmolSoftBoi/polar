@@ -58,7 +58,7 @@ class Question_model extends Item_model {
 	 */
 	public function set_item($question_item)
 	{
-		return $this->base_set_item('questions', 'question_id', 'question_id', 'question_item', $question_item);
+		return $this->base_set_item('questions', 'question_id', 'question_id', $question_item);
 	}
 
 	/**
@@ -203,6 +203,15 @@ class Question_model extends Item_model {
 	 */
 	protected function generate_response($question_response_item)
 	{
-		return $this->base_generate('question_response_id', $question_response_item);
+		$question_response_item = $this->base_generate('question_response_id', $question_response_item);
+
+		$question_response_item->answer_id = intval($question_response_item->answer_id);
+		$question_response_item->user_id = intval($question_response_item->user_id);
+
+		$answer_item = $this->answer_model->get_item($question_response_item->answer_id);
+
+		$question_response_item->answer = $answer_item;
+
+		return $question_response_item;
 	}
 }
