@@ -31,7 +31,7 @@ abstract class Item extends POLAR_Model implements Item_interface {
 	 */
 	public function jsonDeserialize($object)
 	{
-		$this->base_json_deserialize('Question_params', $object);
+		$this->base_json_deserialize(get_class($this), $object);
 	}
 
 	/**
@@ -63,12 +63,12 @@ abstract class Item extends POLAR_Model implements Item_interface {
 	/**
 	 * Base JSON deserialize.
 	 *
-	 * @param string $param_class Parameter class.
+	 * @param string $item_class Item class.
 	 * @param object $object
 	 *
 	 * @return object Object.
 	 */
-	protected function base_json_deserialize($param_class, $object)
+	protected function base_json_deserialize($item_class, $object)
 	{
 		$object = json_decode($object);
 
@@ -76,7 +76,7 @@ abstract class Item extends POLAR_Model implements Item_interface {
 		{
 			$param = strtolower(ltrim(preg_replace('/[A-Z]/', '_$0', $param), '_'));
 
-			if (property_exists(__CLASS__, $param))
+			if (property_exists($item_class, $param))
 			{
 				$this->$param = $value;
 			}

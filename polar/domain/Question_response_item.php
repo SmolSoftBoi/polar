@@ -30,6 +30,22 @@ class Question_response_item extends Item {
 	public $user_id;
 
 	/**
+	 * @var Answer_item $answer Answer.
+	 */
+	public $answer;
+
+	public function jsonSerialize()
+	{
+		$object = $this->base_json_serialize();
+
+		if (isset($this->answer)) {
+			$object->score = $this->answer->score;
+		}
+
+		return $object;
+	}
+
+	/**
 	 * Database set.
 	 */
 	public function db_set()
