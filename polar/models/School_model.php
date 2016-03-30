@@ -79,6 +79,6 @@ class School_model extends Item_model {
 	 */
 	protected function generate($school_item)
 	{
-		return $this->base_generate('school_id', $school_item);
+		return $this->base_generate(1, 'school_id', $school_item);
 	}
 }

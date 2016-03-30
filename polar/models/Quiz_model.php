@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @package Polar\Models
  *
- *          @property Question_model $question_model Question model.
+ * @property Question_model $question_model Question model.
  */
 class Quiz_model extends Item_model {
 
@@ -62,37 +62,6 @@ class Quiz_model extends Item_model {
 	}
 
 	/**
-	 * Get quiz items by slug.
-	 *
-	 * @param string[] $quiz_slugs Quiz slugs.
-	 *
-	 * @return Quiz_item[] Quiz items.
-	 */
-	public function get_items_by_slug($quiz_slugs)
-	{
-		$quiz_items = array();
-
-		foreach ($quiz_slugs as $quiz_slug)
-		{
-			$quiz_items[$quiz_slug] = $this->get_item_by_slug($quiz_slug);
-		}
-
-		return $quiz_items;
-	}
-
-	/**
-	 * Get quiz item by slug.
-	 *
-	 * @param string $quiz_slug Quiz slug.
-	 *
-	 * @return Quiz_item Quiz item.
-	 */
-	public function get_item_by_slug($quiz_slug)
-	{
-		return $this->base_get_item('quizzes', 'quiz_slug', 'quiz_item', $quiz_slug);
-	}
-
-	/**
 	 * Build.
 	 *
 	 * @param Quiz_params|null $quiz_params Quiz parameters.
@@ -125,16 +94,62 @@ class Quiz_model extends Item_model {
 	 */
 	protected function generate($quiz_item)
 	{
-		$quiz_item = $this->base_generate('quiz_id', $quiz_item);
+		$quiz_item = $this->base_generate(3, 'quiz_id', $quiz_item);
+
+		if ($this->level < 2)
+		{
+			$this->level = 2;
+		}
 
 		$question_params = new Question_params();
 
 		$question_params->quiz_id = $quiz_item->quiz_id;
 
-		$question_items = $this->question_model->search($question_params);
+		$this->question_model->level = $this->level;
 
-		$quiz_item->questions = $question_items;
+		$quiz_item->questions = $this->question_model->search($question_params);
+
+		$quiz_item->score = 0;
+
+		foreach ($quiz_item->questions as $question_item)
+		{
+			foreach ($question_item->answers as $answer_item)
+			{
+				$quiz_item->score += $answer_item->score;
+			}
+		}
 
 		return $quiz_item;
+	}
+
+	/**
+	 * Get quiz items by slug.
+	 *
+	 * @param string[] $quiz_slugs Quiz slugs.
+	 *
+	 * @return Quiz_item[] Quiz items.
+	 */
+	public function get_items_by_slug($quiz_slugs)
+	{
+		$quiz_items = array();
+
+		foreach ($quiz_slugs as $quiz_slug)
+		{
+			$quiz_items[$quiz_slug] = $this->get_item_by_slug($quiz_slug);
+		}
+
+		return $quiz_items;
+	}
+
+	/**
+	 * Get quiz item by slug.
+	 *
+	 * @param string $quiz_slug Quiz slug.
+	 *
+	 * @return Quiz_item Quiz item.
+	 */
+	public function get_item_by_slug($quiz_slug)
+	{
+		return $this->base_get_item('quizzes', 'quiz_slug', 'quiz_item', $quiz_slug);
 	}
 }

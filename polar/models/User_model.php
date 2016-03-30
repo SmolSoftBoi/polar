@@ -158,22 +158,26 @@ class User_model extends Item_model {
 	 */
 	protected function generate($user_item)
 	{
-		$user_item = $this->base_generate('user_id', $user_item);
+		$user_item = $this->base_generate(2, 'user_id', $user_item);
 
-		$role_params = new Role_params();
+		if ($this->level > 0)
+		{
+			$role_params = new Role_params();
 
-		$role_params->user_id = $user_item->user_id;
+			$role_params->user_id = $user_item->user_id;
 
-		$role_items = $this->role_model->search($role_params);
+			$this->role_model->level = $this->level;
 
-		$school_params = new School_params();
+			$user_item->roles = $this->role_model->search($role_params);
 
-		$school_params->user_id = $user_item->user_id;
+			$school_params = new School_params();
 
-		$school_items = $this->school_model->search($school_params);
+			$school_params->user_id = $user_item->user_id;
 
-		$user_item->roles = $role_items;
-		$user_item->schools = $school_items;
+			$this->school_model->level = $this->level;
+
+			$user_item->schools = $this->school_model->search($school_params);
+		}
 
 		return $user_item;
 	}

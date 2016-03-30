@@ -11,8 +11,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Answer model.
  *
  * @package Polar\Models
+ *
+ * @property Question_model $question_model Question model.
  */
 class Answer_model extends Item_model {
+
+	/**
+	 * Email model constructor.
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('question_model');
+	}
 
 	/**
 	 * Search.
@@ -76,10 +87,17 @@ class Answer_model extends Item_model {
 	 */
 	protected function generate($answer_item)
 	{
-		$answer_item = $this->base_generate('answer_id', $answer_item);
+		$answer_item = $this->base_generate(1, 'answer_id', $answer_item);
 
 		$answer_item->question_id = intval($answer_item->question_id);
 		$answer_item->score = intval($answer_item->score);
+
+		if ($this->level > 0)
+		{
+			$this->question_model->level = $this->level;
+
+			$answer_item->question = $this->question_model->get_item($answer_item->question_id);
+		}
 
 		return $answer_item;
 	}

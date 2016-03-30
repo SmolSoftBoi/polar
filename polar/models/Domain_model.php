@@ -76,6 +76,6 @@ class Domain_model extends Item_model {
 	 */
 	protected function generate($domain_item)
 	{
-		return $this->base_generate('domain_id', $domain_item);
+		return $this->base_generate(1, 'domain_id', $domain_item);
 	}
 }

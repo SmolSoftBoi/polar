@@ -88,17 +88,22 @@ class Email_model extends Item_model {
 	 */
 	protected function generate($email_item)
 	{
-		$email_item = $this->base_generate('email_id', $email_item);
+		$email_item = $this->base_generate(2, 'email_id', $email_item);
 
-		$user_params = new User_params();
-
-		$user_params->email = $email_item->email;
-
-		$user_items = $this->user_model->search($user_params);
-
-		if (count($user_items) > 0)
+		if ($this->level > 0)
 		{
-			$email_item->user = reset($user_items);
+			$user_params = new User_params();
+
+			$user_params->email = $email_item->email;
+
+			$this->user_model->level = $this->level;
+
+			$user_items = $this->user_model->search($user_params);
+
+			if (count($user_items) > 0)
+			{
+				$email_item->user = reset($user_items);
+			}
 		}
 
 		return $email_item;
