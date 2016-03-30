@@ -34,6 +34,16 @@ class Answer_item extends Item {
 	 */
 	public $score;
 
+	/**
+	 * @var Question_item $question Question.
+	 */
+	public $question;
+
+	/**
+	 * JSON serialize.
+	 *
+	 * @return object Object.
+	 */
 	public function jsonSerialize()
 	{
 		$object = $this->base_json_serialize();

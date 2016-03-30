@@ -34,16 +34,15 @@ class Question_response_item extends Item {
 	 */
 	public $answer;
 
-	public function jsonSerialize()
-	{
-		$object = $this->base_json_serialize();
+	/**
+	 * @var int $correct_answer_id Correct answer ID.
+	 */
+	public $correct_answer_id;
 
-		if (isset($this->answer)) {
-			$object->score = $this->answer->score;
-		}
-
-		return $object;
-	}
+	/**
+	 * @var int $score Score.
+	 */
+	public $score;
 
 	/**
 	 * Database set.
@@ -51,9 +50,9 @@ class Question_response_item extends Item {
 	public function db_set()
 	{
 		$this->db->set(array(
-			'question_response_id'          => $this->question_response_id,
-			'answer_id'        => $this->answer_id,
-			'user_id'        => $this->user_id
+			'question_response_id' => $this->question_response_id,
+			'answer_id'            => $this->answer_id,
+			'user_id'              => $this->user_id
 		));
 	}
 }

@@ -45,7 +45,7 @@ class Quiz_item extends Item {
 	public $code;
 
 	/**
-	 * @var string $launch_timestamp Launch timestamp.
+	 * @var DateTime $launch_timestamp Launch timestamp.
 	 */
 	public $launch_timestamp;
 
@@ -53,6 +53,11 @@ class Quiz_item extends Item {
 	 * @var bool $live Live.
 	 */
 	public $live;
+
+	/**
+	 * @var int $score Score.
+	 */
+	public $score;
 
 	/**
 	 * @var Question_item[] $questions Questions.
@@ -70,7 +75,7 @@ class Quiz_item extends Item {
 			'quiz_slug'        => $this->quiz_slug,
 			'description'      => $this->description,
 			'code'             => $this->code,
-			'launch_timestamp' => $this->launch_timestamp
+			'launch_timestamp' => $this->launch_timestamp->getTimestamp()
 		));
 	}
 }

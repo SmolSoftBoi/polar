@@ -55,6 +55,11 @@ class User_item extends Item {
 	public $password_hash;
 
 	/**
+	 * @var string $initials Initials.
+	 */
+	public $initials;
+
+	/**
 	 * JSON serialize.
 	 *
 	 * return object Object.
