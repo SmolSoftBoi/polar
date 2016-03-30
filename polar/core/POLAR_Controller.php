@@ -43,7 +43,7 @@ class POLAR_Controller extends CI_Controller {
 	 * Base API search.
 	 *
 	 * @param string $params_class Parameters class.
-	 * @param string $model_class Model class.
+	 * @param string $model_class  Model class.
 	 *
 	 * @return Item[] Items.
 	 */
@@ -77,8 +77,8 @@ class POLAR_Controller extends CI_Controller {
 	/**
 	 * Base API get.
 	 *
-	 * @param string $model_class Model class.
-	 * @param int $id ID.
+	 * @param string $model_class     Model class.
+	 * @param int    $id              ID.
 	 * @param string $get_item_method Get item method.
 	 *
 	 * @return Item Item.
@@ -93,9 +93,9 @@ class POLAR_Controller extends CI_Controller {
 	/**
 	 * Base API set.
 	 *
-	 * @param string $item_class Item class.
+	 * @param string $item_class  Item class.
 	 * @param string $model_class Model class.
-	 * @param Item $item Item.
+	 * @param Item   $item        Item.
 	 *
 	 * @return Item Item.
 	 */

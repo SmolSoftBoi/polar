@@ -97,6 +97,11 @@ class POLAR_Model extends CI_Model {
 abstract class Item_model extends POLAR_Model implements Item_model_interface {
 
 	/**
+	 * @var int $level Level.
+	 */
+	public $level = 0;
+
+	/**
 	 * Count.
 	 *
 	 * @param Params|null $params Parameters.
@@ -121,8 +126,12 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	{
 		$items = array();
 
+		$level = $this->level;
+
 		foreach ($ids as $id)
 		{
+			$this->level = $level;
+
 			$items[$id] = $this->get_item($id);
 		}
 
@@ -170,13 +179,12 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 * @param string      $item_class       Item class.
 	 * @param string      $item_id_property Item ID property.
 	 * @param Params|null $params           Parameters.
-	 * @param string $build_method Build method.
-	 * @param string $generate_method Generate method.
+	 * @param string      $build_method     Build method.
+	 * @param string      $generate_method  Generate method.
 	 *
 	 * @return Item[] Items.
 	 */
-	protected function base_search($item_class, $item_id_property, $params = NULL, $build_method = 'build',
-	                               $generate_method = 'generate')
+	protected function base_search($item_class, $item_id_property, $params = NULL, $build_method = 'build', $generate_method = 'generate')
 	{
 		$this->$build_method($params);
 
@@ -184,8 +192,12 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 
 		$items = array();
 
+		$level = $this->level;
+
 		foreach ($search_items as $item)
 		{
+			$this->level = $level;
+
 			$item = $this->$generate_method($item);
 
 			$items[$item->$item_id_property] = $item;
@@ -197,17 +209,16 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	/**
 	 * Base get item.
 	 *
-	 * @param string $table      Table.
-	 * @param string $id_field   ID field.
-	 * @param string $item_class Item class.
-	 * @param int    $id         ID.
-	 * @param string $build_method Build method.
+	 * @param string $table           Table.
+	 * @param string $id_field        ID field.
+	 * @param string $item_class      Item class.
+	 * @param int    $id              ID.
+	 * @param string $build_method    Build method.
 	 * @param string $generate_method Generate method.
 	 *
 	 * @return Item Item.
 	 */
-	protected function base_get_item($table, $id_field, $item_class, $id, $build_method = 'build', $generate_method =
-	'generate')
+	protected function base_get_item($table, $id_field, $item_class, $id, $build_method = 'build', $generate_method = 'generate')
 	{
 		$this->$build_method();
 
@@ -255,13 +266,21 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	/**
 	 * Base generate.
 	 *
+	 * @param int    $level            Level.
 	 * @param string $item_id_property Item ID property.
 	 * @param Item   $item             Item.
 	 *
 	 * @return Item Item.
 	 */
-	protected function base_generate($item_id_property, $item)
+	protected function base_generate($level, $item_id_property, $item)
 	{
+		if ($this->level === 0)
+		{
+			$this->level = $level;
+		}
+
+		$this->level--;
+
 		$item->$item_id_property = intval($item->$item_id_property, 10);
 
 		return $item;
