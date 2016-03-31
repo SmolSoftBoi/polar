@@ -22,13 +22,13 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <body trianglify="{
 	seed: 'polar',
 	variance: 1,
-	x_colors: ['<?= $brand_color ?>', '<?= $brand_color ?>'],
-	y_colors: ['#fff', '<?= $brand_color ?>']
-}">
+	x_colors: ['{{polar.brandColor}}', '{{polar.brandColor}}'],
+	y_colors: ['#fff', '{{polar.brandColor}}']
+}" ng-init="polar.brandColor = '<?= $brand_color ?>'">
 <?php $this->template->asset('body/head') ?>
 
 <?php $this->template->asset('navbar') ?>
-<div class="container-fluid">
+<div class="container-fluid ng-cloak">
 
 	<?php if (isset($body)): ?><?= $body ?><?php endif; ?>
 

@@ -22,8 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <body trianglify="{
 	seed: 'polar',
 	variance: 1,
-	x_colors: ['<?= $brand_color ?>', '<?= $brand_color ?>'],
-	y_colors: ['#fff', '<?= $brand_color ?>']
+	x_colors: ['{{polar.brandColor}}', '{{polar.brandColor}}'],
+	y_colors: ['#fff', '{{polar.brandColor}}']
 }">
 <?php $this->template->asset('body/head') ?>
 
@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		<div class="sidebar">
 			<?php $this->template->asset('admin/navbar') ?>
 		</div>
-		<div class="content">
+		<div class="content" ng-cloak>
 
 			<?php if (isset($body)): ?><?= $body ?><?php endif; ?>
 
