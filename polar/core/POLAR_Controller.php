@@ -42,12 +42,13 @@ class POLAR_Controller extends CI_Controller {
 	/**
 	 * Base API search.
 	 *
-	 * @param string $params_class Parameters class.
-	 * @param string $model_class  Model class.
+	 * @param string $params_class  Parameters class.
+	 * @param string $model_class   Model class.
+	 * @param string $search_method Search method.
 	 *
 	 * @return Item[] Items.
 	 */
-	protected function base_api_search($params_class, $model_class)
+	protected function base_api_search($params_class, $model_class, $search_method = 'search')
 	{
 		$json = $this->input->raw_input_stream;
 
@@ -55,7 +56,7 @@ class POLAR_Controller extends CI_Controller {
 
 		$params->jsonDeserialize($json);
 
-		$items = $this->$model_class->search($params);
+		$items = $this->$model_class->$search_method($params);
 
 		return $items;
 	}
@@ -63,13 +64,14 @@ class POLAR_Controller extends CI_Controller {
 	/**
 	 * Base API gets.
 	 *
-	 * @param string $model_class Model class.
+	 * @param string $model_class   Model class.
+	 * @param string $search_method Search method.
 	 *
 	 * @return Item[] Items.
 	 */
-	protected function base_api_gets($model_class)
+	protected function base_api_gets($model_class, $search_method = 'search')
 	{
-		$items = $this->$model_class->search();
+		$items = $this->$model_class->$search_method();
 
 		return $items;
 	}
@@ -93,13 +95,14 @@ class POLAR_Controller extends CI_Controller {
 	/**
 	 * Base API set.
 	 *
-	 * @param string $item_class  Item class.
-	 * @param string $model_class Model class.
-	 * @param Item   $item        Item.
+	 * @param string $item_class      Item class.
+	 * @param string $model_class     Model class.
+	 * @param string $set_item_method Set item method.
+	 * @param string $get_item_method Get item method.
 	 *
 	 * @return Item Item.
 	 */
-	protected function base_api_set($item_class, $model_class)
+	protected function base_api_set($item_class, $model_class, $set_item_method = 'set_item', $get_item_method = 'get_item')
 	{
 		$json = $this->input->raw_input_stream;
 
@@ -107,9 +110,9 @@ class POLAR_Controller extends CI_Controller {
 
 		$item->jsonDeserialize($json);
 
-		$id = $this->$model_class->set_item($item);
+		$id = $this->$model_class->$set_item_method($item);
 
-		$item = $this->$model_class->get_item($id);
+		$item = $this->$model_class->$get_item_method($id);
 
 		return $item;
 	}

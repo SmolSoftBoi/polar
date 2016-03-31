@@ -57,6 +57,11 @@ class Quizzes extends POLAR_Controller {
 		$this->api_output($quiz_item);
 	}
 
+	/**
+	 * GET quiz by slug.
+	 *
+	 * @param string $quiz_slug Quiz slug.
+	 */
 	public function get_quiz_by_slug($quiz_slug)
 	{
 		$quiz_item = $this->base_api_get('quiz_model', $quiz_slug, 'get_item_by_slug');
@@ -67,7 +72,7 @@ class Quizzes extends POLAR_Controller {
 	/**
 	 * POST quizzes.
 	 */
-	public function post_quiz()
+	public function post_quizzes()
 	{
 		$quiz_item = $this->base_api_set('quiz_item', 'quiz_model');
 

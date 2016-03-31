@@ -30,13 +30,7 @@ class Questions extends POLAR_Controller {
 	 */
 	public function search()
 	{
-		$json = $this->input->raw_input_stream;
-
-		$question_params = new Question_params();
-
-		$question_params->jsonDeserialize($json);
-
-		$question_items = $this->question_model->search($question_params);
+		$question_items = $this->base_api_search('Question_params', 'question_model');
 
 		$this->api_output($question_items);
 	}
@@ -46,9 +40,21 @@ class Questions extends POLAR_Controller {
 	 */
 	public function get_questions()
 	{
-		$question_items = $this->question_model->search();
+		$question_items = $this->base_api_gets('question_model');
 
 		$this->api_output($question_items);
+	}
+
+	/**
+	 * GET question.
+	 *
+	 * @param int $question_id Question ID.
+	 */
+	public function get_question($question_id)
+	{
+		$question_item = $this->base_api_get('question_model', $question_id);
+
+		$this->api_output($question_item);
 	}
 
 	/**
@@ -56,15 +62,7 @@ class Questions extends POLAR_Controller {
 	 */
 	public function post_questions()
 	{
-		$json = $this->input->raw_input_stream;
-
-		$question_item = new Question_item();
-
-		$question_item->jsonDeserialize($json);
-
-		$question_id = $this->question_model->set_item($question_item);
-
-		$question_item = $this->question_model->get_item($question_id);
+		$question_item = $this->base_api_set('question_item', 'question_model');
 
 		$this->api_output($question_item);
 	}
@@ -74,13 +72,7 @@ class Questions extends POLAR_Controller {
 	 */
 	public function responses_search()
 	{
-		$json = $this->input->raw_input_stream;
-
-		$question_response_params = new Question_response_params();
-
-		$question_response_params->jsonDeserialize($json);
-
-		$question_response_items = $this->question_model->search_responses($question_response_params);
+		$question_response_items = $this->base_api_search('Question_response_params', 'question_model', 'search_responses');
 
 		$this->api_output($question_response_items);
 	}
@@ -90,9 +82,21 @@ class Questions extends POLAR_Controller {
 	 */
 	public function get_question_responses()
 	{
-		$question_response_items = $this->question_model->search_responses();
+		$question_response_items = $this->base_api_gets('question_model', 'search_responses');
 
 		$this->api_output($question_response_items);
+	}
+
+	/**
+	 * GET question response.
+	 *
+	 * @param int $question_response_id Question response ID.
+	 */
+	public function get_question_response($question_response_id)
+	{
+		$question_response_item = $this->base_api_get('question_model', $question_response_id, 'get_response_item');
+
+		$this->api_output($question_response_item);
 	}
 
 	/**
@@ -100,16 +104,8 @@ class Questions extends POLAR_Controller {
 	 */
 	public function post_question_responses()
 	{
-		$json = $this->input->raw_input_stream;
+		$quiz_item = $this->base_api_set('question_item', 'question_model', 'set_response_item', 'get_response_item');
 
-		$question_response_item = new Question_response_item();
-
-		$question_response_item->jsonDeserialize($json);
-
-		$question_response_id = $this->question_model->set_response_item($question_response_item);
-
-		$question_response_item = $this->question_model->get_response_item($question_response_id);
-
-		$this->api_output($question_response_item);
+		$this->api_output($quiz_item);
 	}
 }
