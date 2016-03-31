@@ -14,6 +14,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Connection_model extends Item_model {
 
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->clean();
+	}
+
 	/**
 	 * Search.
 	 *
@@ -84,5 +91,17 @@ class Connection_model extends Item_model {
 		$connection_item->connection_timestamp = new DateTime($connection_item->connection_timestamp);
 
 		return $connection_item;
+	}
+
+	/**
+	 * Clean.
+	 */
+	private function clean()
+	{
+		$timestamp = new DateTime();
+
+		$timestamp->sub(new DateInterval('T30S'));
+
+		$this->db->where('connection_timestamp', '< ' . $timestamp->getTimestamp())->delete('connections');
 	}
 }
