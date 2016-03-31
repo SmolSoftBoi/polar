@@ -31,7 +31,6 @@
 		<directory>polar</directory>
 		<directory>polar/vendor/epickris</directory>
 		<directory>src</directory>
-		<directory>system</directory>
 		<file>*.php</file>
 		<ignore>polar/logs/*</ignore>
 		<ignore>polar/vendor/*</ignore>
