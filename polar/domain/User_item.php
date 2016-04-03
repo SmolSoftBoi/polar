@@ -81,7 +81,7 @@ class User_item extends Item {
 	 */
 	public function jsonDeserialize($object)
 	{
-		$object = $this->base_json_deserialize($object);
+		$object = $this->base_json_deserialize('User_item', $object);
 
 		if (isset($object->emails))
 		{

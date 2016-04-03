@@ -18,4 +18,9 @@ class Connection_params extends Params {
 	 * @var int $quiz_id Quiz ID.
 	 */
 	public $quiz_id;
+
+	/**
+	 * @var int $user_id User ID.
+	 */
+	public $user_id;
 }

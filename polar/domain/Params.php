@@ -70,7 +70,10 @@ abstract class Params extends POLAR_Model implements Params_interface {
 	 */
 	protected function base_json_deserialize($param_class, $object)
 	{
-		$object = json_decode($object);
+		if (is_string($object))
+		{
+			$object = json_decode($object);
+		}
 
 		foreach ($object as $param => $value)
 		{

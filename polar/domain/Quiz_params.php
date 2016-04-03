@@ -20,6 +20,11 @@ class Quiz_params extends Params {
 	public $code;
 
 	/**
+	 * @var int $connection_id Connection ID.
+	 */
+	public $connection_id;
+
+	/**
 	 * @var string $quiz_slug Quiz slug.
 	 */
 	public $quiz_slug;

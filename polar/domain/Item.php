@@ -70,7 +70,9 @@ abstract class Item extends POLAR_Model implements Item_interface {
 	 */
 	protected function base_json_deserialize($item_class, $object)
 	{
-		$object = json_decode($object);
+		if (is_string($object)) {
+			$object = json_decode($object);
+		}
 
 		foreach ($object as $param => $value)
 		{

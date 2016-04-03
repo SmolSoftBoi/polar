@@ -35,6 +35,49 @@ class Connection_item extends Item {
 	public $user;
 
 	/**
+	 * @var Quiz_item $quiz Quiz.
+	 */
+	public $quiz;
+
+	/**
+	 * JSON serialize.
+	 *
+	 * @return object Object.
+	 */
+	public function jsonSerialize()
+	{
+		$object = $this->base_json_serialize();
+
+		$object->connectionTimestamp = $this->connection_timestamp->format(DateTime::ATOM);
+
+		return $object;
+	}
+
+	/**
+	 * JSON deserialize.
+	 *
+	 * @param object $object Object.
+	 */
+	public function jsonDeserialize($object)
+	{
+		$object = $this->base_json_deserialize('Connection_item', $object);
+
+		if (isset($object->connectionTimestamp))
+		{
+			$this->connection_timestamp = new DateTime($object->connectionTimestamp);
+		}
+
+		if (isset($object->quiz))
+		{
+			$quiz_item = new Quiz_item();
+
+			$quiz_item->jsonDeserialize($object->quiz);
+
+			$this->quiz = $quiz_item;
+		}
+	}
+
+	/**
 	 * Database set.
 	 */
 	public function db_set()
