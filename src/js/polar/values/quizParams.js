@@ -8,6 +8,8 @@
 
 /*global angular */
 angular.module('polar').value('quizParams', {
+    code: undefined,
+    quizSlug: undefined,
     schoolId: undefined,
     schoolIds: [],
     userId: undefined
