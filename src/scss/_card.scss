@@ -15,10 +15,33 @@
 	color: $gray-dark;
 }
 
+@include media-breakpoint-up(sm) {
+	.card-columns {
+		column-count: 2;
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.card-columns {
+		column-count: 3;
+	}
+}
+
 .card-quiz {
+	@extend .card;
 	@extend .card-faded;
+	transition-duration: 0.5s;
+	transition-property: opacity;
 
 	h1 {
 		@extend .h3;
+	}
+
+	.btn {
+		@extend .btn-primary;
+	}
+
+	&.ng-enter {
+		opacity: 0;
 	}
 }

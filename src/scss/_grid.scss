@@ -6,6 +6,11 @@
  * Grid.
  */
 
+.container,
 .container-fluid {
 	height: 100%;
+}
+
+.row {
+	margin-bottom: $spacer-y;
 }

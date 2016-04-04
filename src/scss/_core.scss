@@ -12,6 +12,7 @@ body {
 }
 
 body {
+	@include gradient-vertical(hsl(hue($brand-primary), saturation($brand-primary), lightness($gray-light)), $brand-primary);
 	padding-top: $navbar-padding-vertical * 8;
 	width: 100%;
 	background-color: $brand-primary;

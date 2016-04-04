@@ -10,7 +10,19 @@
 	@extend .text-xs-center;
 
 	h1 {
-		@extend .display-1;
+		@extend .display-4;
+
+		@include media-breakpoint-up(sm) {
+			@extend .display-3;
+		}
+
+		@include media-breakpoint-up(md) {
+			@extend .display-2;
+		}
+
+		@include media-breakpoint-up(lg) {
+			@extend .display-1;
+		}
 	}
 
 	p {

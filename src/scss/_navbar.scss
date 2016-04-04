@@ -16,6 +16,11 @@
 }
 
 .navbar-main {
+	@extend .navbar;
+	@extend .navbar-fixed-top;
+	@extend .navbar-light;
+	@extend .bg-faded;
+
 	.last-name {
 		@extend .hidden-xs-down;
 	}

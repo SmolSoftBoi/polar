@@ -1,0 +1,22 @@
+/*
+ * Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
+ */
+
+/**
+ * Progress.
+ */
+
+.progress-load {
+	@extend .progress;
+	@extend .progress-striped;
+	@extend .progress-animated;
+	transition-duration: 0.5s;
+	transition-property: height, margin, opacity;
+
+	&.ng-hide {
+		height: 0%;
+		margin-bottom: 0;
+		margin-top: 0;
+		opacity: 0;
+	}
+}

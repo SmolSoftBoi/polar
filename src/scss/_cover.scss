@@ -8,11 +8,79 @@
 
 .site-wrapper {
 	display: table;
+	min-height: 100%;
 	width: 100%;
 	height: 100%;
+}
 
-	.site-wrapper-inner {
-		display: table-cell;
-		vertical-align: middle;
+.site-wrapper-inner {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.cover-container {
+	@extend .container;
+	height: auto;
+}
+
+.cover {
+	@extend .bg-faded;
+	@extend .text-xs-center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: max($zindex-navbar, $zindex-dropdown, $zindex-popover, $zindex-tooltip, $zindex-navbar-fixed, $zindex-navbar-sticky, $zindex-modal-bg, $zindex-modal) + 1;
+	color: $gray-dark;
+
+	h1 {
+		@extend .display-4;
+		color: $gray-dark;
+
+		@include media-breakpoint-up(sm) {
+			@extend .display-3;
+		}
+
+		@include media-breakpoint-up(md) {
+			@extend .display-2;
+		}
+
+		@include media-breakpoint-up(lg) {
+			@extend .display-1;
+		}
+	}
+
+	p {
+		@extend .lead;
+		color: $gray-dark;
+	}
+}
+
+.cover-no-script {
+	@extend .cover;
+}
+
+.cover-cloak {
+	@extend .cover;
+	z-index: $zindex-navbar - 1;
+	display: none;
+
+	&.ng-cloak {
+		display: block !important;
+	}
+
+	.progress {
+		@extend .progress-striped;
+		@extend .progress-animated;
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 100%;
+		border-radius: 0;
+		animation: progress-bar-stripes 0.2s linear infinite;
+		backdrop-filter: blur($spacer) saturate(200%);
 	}
 }
