@@ -62,7 +62,7 @@ class Connections extends POLAR_Controller {
 	 */
 	public function post_connections()
 	{
-		$connection_item = $this->base_api_set('connection_item', 'connection_model');
+		$connection_item = $this->base_api_set('Connection_item', 'connection_model');
 
 		$this->api_output($connection_item);
 	}
