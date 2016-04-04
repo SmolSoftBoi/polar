@@ -3,15 +3,26 @@
  */
 
 /*global angular */
-angular.module('polar').run(['$rootScope', function ($rootScope) {
+angular.module('polar').run(['$rootScope', '$http', '$q', 'url', function ($rootScope, $http, $q, url) {
     'use strict';
 
-    $rootScope.config = {
-        baseUrl: '',
-        indexPage: 'index.php'
-    };
+    function load() {
+        var q = $q.defer();
 
-    $rootScope.polar = {
-        brandColor: '0275d8'
-    };
+        $http.get(url.baseUrl('api/userdata')).then(function successCallback(response) {
+            var session = angular.fromJson(response.data);
+
+            $rootScope.polar = session.polar;
+
+            if (session.user) {
+                $rootScope.user = session.user;
+            }
+
+            q.resolve(session);
+        });
+
+        $rootScope.session = q.promise;
+    }
+
+    load();
 }]);
