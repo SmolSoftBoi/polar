@@ -8,7 +8,7 @@
 
 /*global angular, document */
 angular.module('polar')
-    .controller('adminSchools', ['$scope', 'schoolItem', 'schoolModel', function ($scope, schoolItem, schoolModel) {
+    .controller('adminSchools', function ($scope, schoolItem, schoolModel) {
         'use strict';
 
         $scope.school  = angular.copy(schoolItem);
@@ -38,4 +38,4 @@ angular.module('polar')
                 angular.element(document.getElementById('schoolModal')).modal('hide');
             });
         };
-    }]);
+    });

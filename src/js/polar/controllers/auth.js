@@ -7,9 +7,6 @@
  */
 
 /*global angular */
-angular.module('polar').controller('auth', ['$scope', 'emailItem', 'userItem', function ($scope, emailItem, userItem) {
+angular.module('polar').controller('auth', function ($scope) {
     'use strict';
-
-    $scope.user = angular.copy(userItem);
-    $scope.user.emails.push(angular.copy(emailItem));
-}]);
+});

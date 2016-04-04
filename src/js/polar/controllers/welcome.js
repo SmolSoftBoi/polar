@@ -8,18 +8,36 @@
 
 /*global angular */
 angular.module('polar')
-    .controller('welcome', ['$scope', 'quizParams', 'quizModel', function ($scope, quizParams, quizModel) {
+    .controller('welcome', function ($rootScope, $scope, quizParams, quizModel) {
         'use strict';
 
-        $scope.quizzes = {};
+        function load() {
+            $scope.go = go;
 
-        var quizParams = angular.copy(quizParams);
+            $rootScope.session.then(function (session) {
+                angular.forEach(session.user.schools, function (school) {
+                    quizParams.schoolIds.push(school.schoolId);
+                });
 
-        quizParams.schoolIds = true;
-
-        quizModel.search(quizParams).then(function successCallback(response) {
-            angular.forEach(response.data, function (quiz) {
-                $scope.quizzes[quiz.quizId] = quiz;
+                loadQuizzes();
             });
-        });
-    }]);
+        }
+
+        function loadQuizzes() {
+            var search = angular.copy(quizParams);
+
+            search.schoolIds = [];
+
+            quizModel.search(search).then(function successCallback(response) {
+                var quizzes = angular.fromJson(response.data);
+
+                $scope.quizzes = quizzes;
+            });
+        }
+
+        var go = function () {
+            location.pathname = 'quizzes/' + $scope.quiz.quizSlug;
+        };
+
+        load();
+    });
