@@ -16,12 +16,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	<div class="site-wrapper-inner">
 		<div class="cover-container quiz">
 
-			<progress class="progress progress-striped progress-animated" value="100" max="100" ng-hide="quiz">
+			<progress class="progress-load" value="100" max="100" ng-hide="quiz">
 				<?= $this->lang->line('quiz_progress') ?>
 			</progress>
 
 			<!-- Quiz -->
-			<div class="ng-hide" ng-show="quiz && questionId === 0" ng-cloak>
+			<div class="quiz ng-hide" ng-show="quiz && questionId === 0" ng-cloak>
 				<h1>{{quiz.quizName}}</h1>
 				<p>{{quiz.description}}</p>
 				<div class="connections">
@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			</div>
 
 			<!-- Questions -->
-			<div class="ng-hide" ng-repeat="question in quiz.questions"
+			<div class="question ng-hide" ng-repeat="question in quiz.questions"
 			     ng-show="question.questionId === questionId" ng-cloak>
 				<h2>{{question.question}}</h2>
 				<div class="answers">
@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			</div>
 
 			<!-- Results -->
-			<div class="ng-hide" ng-show="questionId === -1" ng-cloak>
+			<div class="score ng-hide" ng-show="questionId === -1" ng-cloak>
 				<h2>{{score}}</h2>
 			</div>
 

@@ -33,13 +33,13 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 				</div>
 			</div>
 
-			<progress class="progress progress-striped progress-animated" value="100" max="100" ng-hide="quizzes">
+			<progress class="progress-load" value="100" max="100" ng-hide="quizzes">
 				<?= $this->lang->line('quizzes_progress') ?>
 			</progress>
 
 			<div class="row-quizzes">
 				<div class="card-columns" ng-show="quizzes" ng-cloak>
-					<div class="card card-quiz" ng-repeat="quiz in quizzes">
+					<div class="card-quiz" ng-repeat="quiz in quizzes">
 						<h1 class="card-header">{{quiz.quizName}}</h1>
 						<div class="card-block">
 							<p class="card-text">{{quiz.description}}</p>
