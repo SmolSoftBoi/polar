@@ -6,4 +6,4 @@
  */
 
 defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<meta name="copyright" content="Copyright ©. All rights reserved.">
+<meta name="copyright" content="Copyright © 2014 - <?= date('Y') ?> Kristian Matthews. All rights reserved.">
