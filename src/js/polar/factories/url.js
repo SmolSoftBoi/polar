@@ -7,20 +7,14 @@
  */
 
 /*global angular, location */
-angular.module('polar').factory('url', ['$rootScope', '$location', function ($rootScope, $location) {
+angular.module('polar').factory('url', function ($location) {
     'use strict';
 
-    var siteUrl = function (uri) {
-        var baseUrl = $rootScope.config.baseUrl;
-
-        if (!baseUrl) {
-            baseUrl = $location.protocol() + '://' + location.host;
-        }
-
-        return baseUrl + '/' + $rootScope.config.indexPage + '/' + uri;
-    };
-
     return {
-        siteUrl: siteUrl
+        baseUrl: function (uri) {
+            var baseUrl = $location.protocol() + '://' + location.host;
+
+            return baseUrl + '/' + uri;
+        }
     };
-}]);
+});

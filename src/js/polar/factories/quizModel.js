@@ -7,24 +7,24 @@
  */
 
 /*global angular */
-angular.module('polar').factory('quizModel', ['$http', 'url', function ($http, url) {
+angular.module('polar').factory('quizModel', function ($http, url) {
     'use strict';
 
     return {
         search: function (quizParams) {
-            return $http.post(url.siteUrl('api/quizzes/search'), quizParams);
+            return $http.post(url.baseUrl('api/quizzes/search'), quizParams);
         },
-        getItems: function (quizIds) {
-            return $http.get(url.siteUrl('api/quizzes'), quizIds);
+        getItems: function () {
+            return $http.get(url.baseUrl('api/quizzes'));
         },
         getItem: function (quizId) {
-            return $http.get(url.siteUrl('api/quizzes'), quizId);
-        },
-        setItems: function (quizItems) {
-            return $http.post(url.siteUrl('api/quizzes'), quizItems);
+            return $http.get(url.baseUrl('api/quizzes/' + quizId));
         },
         setItem: function (quizItem) {
-            return $http.post(url.siteUrl('api/quizzes'), quizItem);
+            return $http.post(url.baseUrl('api/quizzes'), quizItem);
+        },
+        getItemBySlug: function (quizSlug) {
+            return $http.get(url.baseUrl('api/quizzes/' + quizSlug));
         }
     };
-}]);
+});

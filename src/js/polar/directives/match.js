@@ -3,11 +3,11 @@
  */
 
 /**
- * March directive.
+ * Match directive.
  */
 
 /*global angular */
-angular.module('polar').directive('ngMatch', [function () {
+angular.module('polar').directive('ngMatch', function () {
     'use strict';
 
     return {
@@ -31,4 +31,4 @@ angular.module('polar').directive('ngMatch', [function () {
             });
         }
     };
-}]);
+});

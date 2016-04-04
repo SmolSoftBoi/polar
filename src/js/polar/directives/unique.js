@@ -7,7 +7,7 @@
  */
 
 /*global angular */
-angular.module('polar').directive('ngUnique', ['$http', '$q', 'url', function ($http, $q, url) {
+angular.module('polar').directive('ngUnique', function ($http, $q, url) {
     'use strict';
 
     return {
@@ -22,7 +22,7 @@ angular.module('polar').directive('ngUnique', ['$http', '$q', 'url', function ($
                 cancel.resolve();
                 cancel = $q.defer();
 
-                $http.get(url.siteUrl('api/form/unique'), {
+                $http.get(url.baseUrl('api/form/unique'), {
                     params: {
                         control: attrs.ngUnique,
                         value: controller.$viewValue
@@ -36,4 +36,4 @@ angular.module('polar').directive('ngUnique', ['$http', '$q', 'url', function ($
             });
         }
     };
-}]);
+});

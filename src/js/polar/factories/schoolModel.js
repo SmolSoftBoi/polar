@@ -7,24 +7,21 @@
  */
 
 /*global angular */
-angular.module('polar').factory('schoolModel', ['$http', 'url', function ($http, url) {
+angular.module('polar').factory('schoolModel', function ($http, url) {
     'use strict';
 
     return {
         search: function (schoolParams) {
-            return $http.post(url.siteUrl('api/schools/search'), schoolParams);
+            return $http.post(url.baseUrl('api/schools/search'), schoolParams);
         },
-        getItems: function (schoolIds) {
-            return $http.get(url.siteUrl('api/schools'), schoolIds);
+        getItems: function () {
+            return $http.get(url.baseUrl('api/schools'));
         },
         getItem: function (schoolId) {
-            return $http.get(url.siteUrl('api/schools'), schoolId);
-        },
-        setItems: function (schoolItems) {
-            return $http.post(url.siteUrl('api/schools'), schoolItems);
+            return $http.get(url.baseUrl('api/schools/' + schoolId));
         },
         setItem: function (schoolItem) {
-            return $http.post(url.siteUrl('api/schools'), schoolItem);
+            return $http.post(url.baseUrl('api/schools'), schoolItem);
         }
     };
-}]);
+});

@@ -7,7 +7,7 @@
  */
 
 /*global angular */
-angular.module('polar').directive('ngDomain', [function () {
+angular.module('polar').directive('ngDomain', function () {
     'use strict';
 
     return {
@@ -29,8 +29,9 @@ angular.module('polar').directive('ngDomain', [function () {
             if (valid) {
                 return valid;
             }
+            []
 
             return false;
         }
     };
-}]);
+});

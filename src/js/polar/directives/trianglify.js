@@ -7,7 +7,7 @@
  */
 
 /*global angular, Trianglify, XMLSerializer */
-angular.module('polar').directive('trianglify', ['$parse', function ($parse) {
+angular.module('polar').directive('trianglify', function ($parse) {
     'use strict';
 
     return {
@@ -35,4 +35,4 @@ angular.module('polar').directive('trianglify', ['$parse', function ($parse) {
             });
         }
     };
-}]);
+});
