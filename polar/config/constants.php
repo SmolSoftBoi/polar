@@ -144,3 +144,8 @@ defined('HTTP_UNAUTHORISED') OR define('HTTP_UNAUTHORISED', 401);
  * HTTP not found status code.
  */
 defined('HTTP_NOT_FOUND') OR define('HTTP_NOT_FOUND', 404);
+
+/**
+ * HTTP internal server error status code.
+ */
+defined('HTTP_INTERNAL_SERVER_ERROR') OR define('HTTP_INTERNAL_SERVER_ERROR', 500);
