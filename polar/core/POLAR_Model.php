@@ -244,13 +244,25 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 		if ( ! isset($item->$item_id_property) || $item->$item_id_property === 0)
 		{
 			$this->db->insert($table);
+
+			return $this->db->insert_id();
 		}
 		else
 		{
 			$this->db->where($id_field, $item->$item_id_property)->update($table);
-		}
 
-		return $this->db->insert_id();
+			$field_data = $this->db->field_data($table);
+
+			foreach ($field_data as $field_data)
+			{
+				if (boolval($field_data->primary_key))
+				{
+					$field_name = $field_data->name;
+
+					return $item->$field_name;
+				}
+			}
+		}
 	}
 
 	/**
