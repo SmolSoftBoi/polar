@@ -75,14 +75,22 @@ class Quiz_model extends Item_model {
 
 		$this->base_build('quizzes');
 
-		$this->db->join('user_schools', 'quizzes.user_id = user_schools.user_id')
+		$this->db->join('quiz_connections', 'quizzes.quiz_id = quiz_connections.quiz_id')
+			     ->join('connections', 'quiz_connections.connection_id = connections.connection_id')
+		         ->join('user_schools', 'quizzes.user_id = user_schools.user_id')
 		         ->join('schools', 'user_schools.school_id = schools.school_id');
 
 		$this->build_param($quiz_params, 'code', 'quizzes', 'code');
+		$this->build_param($quiz_params, 'connection_id', 'quiz_connections', 'connection_id');
 		$this->build_param($quiz_params, 'quiz_slug', 'quizzes', 'quiz_slug');
 		$this->build_param($quiz_params, 'school_id', 'schools', 'school_id');
 		$this->build_param($quiz_params, 'school_ids', 'schools', 'school_id');
 		$this->build_param($quiz_params, 'user_id', 'quizzes', 'user_id');
+
+		if (isset($quiz_params->connection_id))
+		{
+			$this->db->order_by('connections.connection_timestamp', 'DESC');
+		}
 	}
 
 	/**
@@ -95,6 +103,9 @@ class Quiz_model extends Item_model {
 	protected function generate($quiz_item)
 	{
 		$quiz_item = $this->base_generate(3, 'quiz_id', $quiz_item);
+
+		$quiz_item->user_id = intval($quiz_item->user_id);
+		$quiz_item->live = boolval($quiz_item->live);
 
 		if ($this->level < 2)
 		{

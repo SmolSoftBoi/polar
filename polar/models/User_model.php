@@ -160,6 +160,8 @@ class User_model extends Item_model {
 	{
 		$user_item = $this->base_generate(2, 'user_id', $user_item);
 
+		$user_item->initials = strtoupper($user_item->first_name[0] . $user_item->last_name[0]);
+
 		if ($this->level > 0)
 		{
 			$role_params = new Role_params();
