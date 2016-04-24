@@ -29,16 +29,20 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 						{{connection.user.initials}}
 					</div>
 				</div>
-				<a href="#" class="btn btn-start" role="button" ng-click="start()">
-					<?= $this->lang->line('start_quiz_button') ?>
-				</a>
+				<p>
+					<a href="#" class="btn btn-start" role="button" ng-click="start()">
+						<?= $this->lang->line('start_quiz_button') ?>
+					</a>
+				</p>
 			</div>
 
 			<!-- Questions -->
 			<div class="question ng-hide" ng-repeat="question in quiz.questions"
 			     ng-show="question.questionId === questionId" ng-cloak>
 				<h2>{{question.question}}</h2>
-				<div class="answers">
+				<div id="question-{{question.questionId}}-chart" class="chart" ng-show="quiz.userId === user
+				.userId"></div>
+				<div class="answers" ng-hide="quiz.userId === user.userId">
 					<div class="answer answer-{{question.answersCount}}" ng-class="{
 						'correct': answer.correct === true,
 						'incorrect': answer.correct === false
