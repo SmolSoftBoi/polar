@@ -1,0 +1,16 @@
+<component name="CopyrightManager">
+  <settings default="Kristian Matthews PHP">
+    <module2copyright>
+      <element module="Polar PHP" copyright="Kristian Matthews PHP" />
+      <element module="Polar" copyright="Kristian Matthews" />
+    </module2copyright>
+    <LanguageOptions name="PHP">
+      <option name="separateBefore" value="true" />
+      <option name="separateAfter" value="true" />
+      <option name="box" value="true" />
+    </LanguageOptions>
+    <LanguageOptions name="__TEMPLATE__">
+      <option name="box" value="true" />
+    </LanguageOptions>
+  </settings>
+</component>

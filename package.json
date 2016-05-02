@@ -1,0 +1,36 @@
+{
+    "name": "Polar",
+    "version": "1.0.0",
+    "description": "Classroom polling application to provide pop quizzes to students with real-time feedback.",
+    "main": "index.php",
+    "repository": "EpicKris/polar.git",
+    "author": {
+        "name": "Kristian Matthews",
+        "email": "kristian.matthews@my.westminster.ac.uk"
+    },
+    "bugs": {
+        "url": "https://github.com/EpicKris/polar/issues",
+        "email": "kristian.matthews@my.westminster.ac.uk"
+    },
+    "homepage": "https://github.com/EpicKris/polar",
+    "engines": {
+        "node": "^5"
+    },
+    "dependencies": {
+        "bootstrap": "^4.0.0-alpha"
+    },
+    "devDependencies": {
+        "bower": "^1",
+        "gulp": "^3",
+        "gulp-autoprefixer": "^3",
+        "gulp-browserify": "^0",
+        "gulp-clean-dest": "^0",
+        "gulp-copy": "^0",
+        "gulp-csscomb": "^3",
+        "gulp-cssnano": "^2",
+        "gulp-jsx": "^2",
+        "gulp-merge": "^0",
+        "gulp-rename": "^1",
+        "gulp-sass": "^2"
+    }
+}

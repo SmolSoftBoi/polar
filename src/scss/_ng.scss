@@ -1,0 +1,19 @@
+/*
+ * Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
+ */
+
+/**
+ * Angular NG.
+ */
+
+.ng-cloak {
+	display: none;
+}
+
+.ng-valid {
+	@extend .has-success;
+}
+
+.ng-invalid {
+	@extend .has-error;
+}

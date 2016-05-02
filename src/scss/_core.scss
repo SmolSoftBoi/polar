@@ -1,0 +1,27 @@
+/*
+ * Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
+ */
+
+/**
+ * Core.
+ */
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	@include gradient-vertical(hsl(hue($brand-primary), saturation($brand-primary), lightness($gray-light)), $brand-primary);
+	padding-top: $navbar-padding-vertical * 8;
+	width: 100%;
+	background-color: $brand-primary;
+	background-attachment: fixed;
+	background-position: center center;
+	background-size: cover;
+	color: $gray-lightest;
+}
+
+.row {
+	@include make-row();
+}

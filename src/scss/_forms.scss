@@ -1,0 +1,130 @@
+/*
+ * Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
+ */
+
+/**
+ * Forms.
+ */
+form {
+	margin: 0 auto;
+	padding: $spacer-y $spacer-x;
+
+	h1,
+	h2 {
+		@extend .text-xs-center;
+	}
+
+	h1 {
+		margin-bottom: $spacer-y / 2;
+	}
+
+	.form-group.row {
+		label {
+			@include make-col();
+			@include make-col-span(2);
+		}
+
+		.col {
+			@include make-col();
+			@include make-col-span(10);
+		}
+
+		.col-offset {
+			@include make-col-offset(2);
+		}
+	}
+}
+
+.form-auth,
+.form-setup {
+	@include make-col();
+	@include make-col-span(12);
+	max-width: 34em;
+
+	@include media-breakpoint-up(sm) {
+		@include make-col-span(6);
+	}
+
+	.form-group {
+		margin-bottom: 0;
+
+		label {
+			@include sr-only();
+		}
+
+		.form-control,
+		.alert {
+			@extend .input-lg;
+			position: relative;
+			z-index: 1;
+			margin-bottom: -1px;
+			border-radius: 0;
+		}
+
+		.form-control {
+			z-index: 2;
+
+			&:focus {
+				z-index: 3;
+			}
+		}
+
+		.alert {
+			@extend .alert-info;
+			@extend .small;
+			padding: $input-padding-y-sm $input-padding-x;
+
+			.close {
+				font-size: $font-size-base;
+			}
+		}
+
+		&:first-of-type,
+		&.form-group-first {
+			.form-control:first-child,
+			.alert:first-child,
+			label:first-child + .form-control,
+			label:first-child + .alert,
+			.form-control-first,
+			.alert-first {
+				@include border-top-radius($border-radius-lg);
+			}
+		}
+
+		&:last-of-type,
+		&.form-group-last {
+			margin-bottom: $spacer-y / 2;
+
+			.form-control:last-child,
+			.alert:last-child,
+			.form-control-last,
+			.alery-last {
+				@include border-bottom-radius($border-radius-lg);
+			}
+		}
+
+		&.has-success {
+			.alert {
+				@extend .alert-success;
+			}
+		}
+
+		&.has-danger {
+			.alert {
+				@extend .alert-danger;
+			}
+		}
+	}
+
+	.checkbox {
+		margin-right: $input-padding-x-lg;
+		margin-left: $input-padding-x-lg;
+	}
+
+	button[type="submit"] {
+		@extend .btn;
+		@extend .btn-lg;
+		@extend .btn-primary;
+		@extend .btn-block;
+	}
+}
