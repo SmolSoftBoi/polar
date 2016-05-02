@@ -30,9 +30,15 @@ class Schools extends POLAR_Controller {
 	 */
 	public function search()
 	{
-		$school_items = $this->school_model->search();
+		try
+		{
+			$school_items = $this->school_model->search();
 
-		$this->api_output($school_items);
+			$this->api_output($school_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -40,9 +46,15 @@ class Schools extends POLAR_Controller {
 	 */
 	public function get_schools()
 	{
-		$school_items = $this->school_model->search();
+		try
+		{
+			$school_items = $this->school_model->search();
 
-		$this->api_output($school_items);
+			$this->api_output($school_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -50,16 +62,14 @@ class Schools extends POLAR_Controller {
 	 */
 	public function post_schools()
 	{
-		$json = $this->input->raw_input_stream;
+		try
+		{
+			$school_item = $this->base_api_set('school_item', 'school_model');
 
-		$school_item = new School_item();
-
-		$school_item->jsonDeserialize($json);
-
-		$school_id = $this->school_model->set_item($school_item);
-
-		$school_item = $this->school_model->get_item($school_id);
-
-		$this->api_output($school_item);
+			$this->api_output($school_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 }

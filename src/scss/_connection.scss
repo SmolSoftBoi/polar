@@ -9,6 +9,11 @@
 .connections {
 	.connection {
 		display: inline-block;
+		margin-right: $spacer-x;
+
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 }
 
@@ -16,8 +21,8 @@
 	@extend .bg-faded;
 	@extend .display-4;
 	@extend .img-round;
-	border-radius: 100%;
-	height: $display2-size;
 	margin-bottom: $spacer-y;
 	width: $display2-size;
+	height: $display2-size;
+	border-radius: 100%;
 }

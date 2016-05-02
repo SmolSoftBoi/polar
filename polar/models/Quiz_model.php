@@ -58,7 +58,49 @@ class Quiz_model extends Item_model {
 	 */
 	public function set_item($quiz_item)
 	{
-		return $this->base_set_item('quizzes', 'quiz_id', 'quiz_id', $quiz_item);
+		if (empty($quiz_item->quiz_slug))
+		{
+			$quiz_slug = url_title($quiz_item->quiz_name, '-', TRUE);
+
+			$quiz_item->quiz_slug = $quiz_slug;
+
+			$quiz_item_by_slug = $this->get_item_by_slug($quiz_item->quiz_slug);
+
+			if ( ! is_null($quiz_item_by_slug))
+			{
+				$i = 1;
+				while ( ! is_null($quiz_item_by_slug))
+				{
+					$quiz_item->quiz_slug = $quiz_slug . $i;
+
+					$quiz_item_by_slug = $this->get_item_by_slug($quiz_item->quiz_slug);
+
+					$i++;
+				}
+			}
+		}
+
+		if (is_null($quiz_item->live))
+		{
+			$quiz_item->live = FALSE;
+		}
+
+		$quiz_id = $this->base_set_item('quizzes', 'quiz_id', 'quiz_id', $quiz_item);
+
+		if (isset($quiz_item->questions))
+		{
+			foreach ($quiz_item->questions as $question_item)
+			{
+				if (empty($question_item->quiz_id))
+				{
+					$question_item->quiz_id = $quiz_id;
+				}
+
+				$this->question_model->set_item($question_item);
+			}
+		}
+
+		return $quiz_id;
 	}
 
 	/**
@@ -75,10 +117,10 @@ class Quiz_model extends Item_model {
 
 		$this->base_build('quizzes');
 
-		$this->db->join('quiz_connections', 'quizzes.quiz_id = quiz_connections.quiz_id')
-			     ->join('connections', 'quiz_connections.connection_id = connections.connection_id')
-		         ->join('user_schools', 'quizzes.user_id = user_schools.user_id')
-		         ->join('schools', 'user_schools.school_id = schools.school_id');
+		$this->db->join('quiz_connections', 'quizzes.quiz_id = quiz_connections.quiz_id', 'left')
+		         ->join('connections', 'quiz_connections.connection_id = connections.connection_id', 'left')
+		         ->join('user_schools', 'quizzes.user_id = user_schools.user_id', 'left')
+		         ->join('schools', 'user_schools.school_id = schools.school_id', 'left');
 
 		$this->build_param($quiz_params, 'code', 'quizzes', 'code');
 		$this->build_param($quiz_params, 'connection_id', 'quiz_connections', 'connection_id');
@@ -87,9 +129,25 @@ class Quiz_model extends Item_model {
 		$this->build_param($quiz_params, 'school_ids', 'schools', 'school_id');
 		$this->build_param($quiz_params, 'user_id', 'quizzes', 'user_id');
 
+		if (isset($quiz_params->min_launch_timestamp))
+		{
+			if ( ! empty($quiz_params->min_launch_timestamp))
+			{
+				$timestamp = new DateTime($quiz_params->min_launch_timestamp);
+
+				$this->db->group_start()
+				         ->where('quizzes.launch_timestamp', NULL)
+				         ->or_where('quizzes.launch_timestamp >=', $timestamp->getTimestamp())
+				         ->group_end();
+			}
+		}
+
 		if (isset($quiz_params->connection_id))
 		{
-			$this->db->order_by('connections.connection_timestamp', 'DESC');
+			if ( ! empty($quiz_params->connection_id))
+			{
+				$this->db->order_by('connections.connection_timestamp', 'DESC');
+			}
 		}
 	}
 
@@ -102,10 +160,22 @@ class Quiz_model extends Item_model {
 	 */
 	protected function generate($quiz_item)
 	{
+		if (is_null($quiz_item))
+		{
+			return $quiz_item;
+		}
+
 		$quiz_item = $this->base_generate(3, 'quiz_id', $quiz_item);
 
+		$quiz_item->question_id = intval($quiz_item->question_id);
 		$quiz_item->user_id = intval($quiz_item->user_id);
 		$quiz_item->live = boolval($quiz_item->live);
+
+		$timestamp = new DateTime();
+
+		$timestamp->setTimestamp($quiz_item->launch_timestamp);
+
+		$quiz_item->launch_timestamp = $timestamp;
 
 		if ($this->level < 2)
 		{

@@ -17,7 +17,7 @@ class POLAR_Loader extends CI_Loader {
 	/**
 	 * @var CI_Controller $CI CodeIgniter instance.
 	 */
-	private $CI;
+	protected $CI;
 
 	public function __construct()
 	{
@@ -29,10 +29,10 @@ class POLAR_Loader extends CI_Loader {
 	/**
 	 * Load the database forge class.
 	 *
-	 * @param	object	$db	Database object.
-	 * @param	bool	$return	Whether to return the database forge class object or not.
+	 * @param    object $db     Database object.
+	 * @param    bool   $return Whether to return the database forge class object or not.
 	 *
-	 * @return	object Database forge class object.
+	 * @return    object Database forge class object.
 	 */
 	public function dbforge($db = NULL, $return = FALSE)
 	{
@@ -56,7 +56,8 @@ class POLAR_Loader extends CI_Loader {
 
 		if ( ! empty($db->subdriver))
 		{
-			$driver_path = BASEPATH . 'database/drivers/' . $db->dbdriver . '/subdrivers/' . $db->dbdriver . '_' . $db->subdriver . '_forge.php';
+			$driver_path = BASEPATH . 'database/drivers/' . $db->dbdriver . '/subdrivers/' . $db->dbdriver . '_'
+			               . $db->subdriver . '_forge.php';
 
 			if (file_exists($driver_path))
 			{
@@ -64,7 +65,8 @@ class POLAR_Loader extends CI_Loader {
 
 				$class = 'CI_DB_' . $db->dbdriver . '_' . $db->subdriver . '_forge';
 
-				$driver_path = APPPATH . 'database/drivers/' . $db->dbdriver . '/subdrivers/' . $subclass_prefix . $db->dbdriver . '_' . $db->subdriver . '_forge.php';
+				$driver_path = APPPATH . 'database/drivers/' . $db->dbdriver . '/subdrivers/' . $subclass_prefix
+				               . $db->dbdriver . '_' . $db->subdriver . '_forge.php';
 
 				if (file_exists($driver_path))
 				{

@@ -10,7 +10,6 @@
 	.dropdown-menu {
 		@extend .bg-faded;
 		@include border-top-radius(0);
-		margin-top: $navbar-padding-vertical * 1.05;
 		border: none;
 	}
 }
@@ -20,8 +19,13 @@
 	@extend .navbar-fixed-top;
 	@extend .navbar-light;
 	@extend .bg-faded;
+	height: $navbar-padding-vertical * 7;
 
 	.last-name {
 		@extend .hidden-xs-down;
+	}
+
+	.navbar-toggler {
+		@extend .pull-xs-left;
 	}
 }

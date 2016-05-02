@@ -14,6 +14,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <nav class="navbar-main ng-cloak">
 
+	<?php if (isset($_SESSION['authed'])): if ($_SESSION['authed']): ?><?php if (in_array('teacher', $_SESSION['roles'])): ?>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">&#9776;</button>
+	<?php endif; ?><?php endif; endif; ?>
+
 	<!-- Brand -->
 	<a class="navbar-brand" href="<?= site_url() ?>">
 		<?= $this->lang->line('brand') ?><?php if (ENVIRONMENT !== 'production'): ?>
@@ -53,3 +57,10 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	</ul>
 
 </nav>
+<div class="collapse collapse-navbar" id="navbar">
+	<nav class="nav nav-inline">
+		<a class="nav-link active" href="<?= site_url('quizzes/create') ?>">
+			<?= $this->lang->line('create_quiz_button') ?>
+		</a>
+	</nav>
+</div>

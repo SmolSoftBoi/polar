@@ -30,9 +30,15 @@ class Connections extends POLAR_Controller {
 	 */
 	public function search()
 	{
-		$connection_items = $this->base_api_search('Connection_params', 'connection_model');
+		try
+		{
+			$connection_items = $this->base_api_search('Connection_params', 'connection_model');
 
-		$this->api_output($connection_items);
+			$this->api_output($connection_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -40,9 +46,15 @@ class Connections extends POLAR_Controller {
 	 */
 	public function get_connections()
 	{
-		$connection_items = $this->base_api_gets('connection_model');
+		try
+		{
+			$connection_items = $this->base_api_gets('connection_model');
 
-		$this->api_output($connection_items);
+			$this->api_output($connection_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -52,9 +64,15 @@ class Connections extends POLAR_Controller {
 	 */
 	public function get_connection($connection_id)
 	{
-		$connection_item = $this->base_api_get('connection_model', $connection_id);
+		try
+		{
+			$connection_item = $this->base_api_get('connection_model', $connection_id);
 
-		$this->api_output($connection_item);
+			$this->api_output($connection_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -62,8 +80,14 @@ class Connections extends POLAR_Controller {
 	 */
 	public function post_connections()
 	{
-		$connection_item = $this->base_api_set('Connection_item', 'connection_model');
+		try
+		{
+			$connection_item = $this->base_api_set('Connection_item', 'connection_model');
 
-		$this->api_output($connection_item);
+			$this->api_output($connection_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 }

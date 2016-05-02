@@ -8,5 +8,6 @@
 
 /*global angular */
 angular.module('polar').value('connectionParams', {
-    quizId: undefined
+    quizId: undefined,
+    userId: undefined
 });

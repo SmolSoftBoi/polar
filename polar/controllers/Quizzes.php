@@ -29,6 +29,11 @@ class Quizzes extends POLAR_Controller {
 		$this->template->view('default', 'welcome_message');
 	}
 
+	public function create()
+	{
+		$this->template->view('default', 'quizzes/form');
+	}
+
 	/**
 	 * Quiz slug.
 	 *
@@ -36,6 +41,6 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function quiz()
 	{
-		$this->template->view('default', 'quiz');
+		$this->template->view('default', 'quizzes/quiz');
 	}
 }

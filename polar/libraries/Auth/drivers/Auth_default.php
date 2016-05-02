@@ -8,7 +8,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Default Authentication driver.
+ * Default authentication driver.
  *
  * @package Polar\Libraries\Auth\Drivers
  *
@@ -17,9 +17,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth_default extends Auth_driver {
 
 	/**
-	 * @var User_item $valid_user_item Valid user item.
+	 * @var int $valid_user_id Valid user ID.
 	 */
-	private $valid_user_item;
+	private $valid_user_id;
 
 	/**
 	 * Default authentication driver constructor.
@@ -44,7 +44,9 @@ class Auth_default extends Auth_driver {
 
 		if ($valid)
 		{
-			$this->auth($this->userdata($this->valid_user_item));
+			$user_item = $this->CI->user_model->get_item($this->valid_user_id);
+
+			$this->auth($this->userdata($user_item));
 		}
 	}
 
@@ -88,7 +90,7 @@ class Auth_default extends Auth_driver {
 					$this->user_model->set_user($email_item->user);
 				}
 
-				$this->valid_user_item = $email_item->user;
+				$this->valid_user_id = $email_item->user->user_id;
 
 				return TRUE;
 			}

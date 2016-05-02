@@ -35,6 +35,11 @@ class Answer_item extends Item {
 	public $score;
 
 	/**
+	 * @var int $user_id User ID.
+	 */
+	public $user_id;
+
+	/**
 	 * @var Question_item $question Question.
 	 */
 	public $question;
@@ -48,7 +53,21 @@ class Answer_item extends Item {
 	{
 		$object = $this->base_json_serialize();
 
-		unset($object->score);
+		if (isset($_SESSION['user']))
+		{
+			$user_item = new User_item();
+
+			$user_item->jsonDeserialize($_SESSION['user']);
+
+			if ($this->user_id !== $user_item->user_id)
+			{
+				unset($object->score);
+			}
+		}
+		else
+		{
+			unset($object->score);
+		}
 
 		return $object;
 	}
@@ -59,8 +78,10 @@ class Answer_item extends Item {
 	public function db_set()
 	{
 		$this->db->set(array(
-			'domain_id' => $this->domain_id,
-			'domain'    => $this->domain
+			'answer_id'   => $this->answer_id,
+			'question_id' => $this->question_id,
+			'answer'      => $this->answer,
+			'score'       => $this->score
 		));
 	}
 }

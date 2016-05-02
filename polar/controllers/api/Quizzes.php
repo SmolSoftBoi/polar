@@ -30,9 +30,15 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function search()
 	{
-		$quiz_items = $this->base_api_search('Quiz_params', 'quiz_model');
+		try
+		{
+			$quiz_items = $this->base_api_search('Quiz_params', 'quiz_model');
 
-		$this->api_output($quiz_items);
+			$this->api_output($quiz_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -40,9 +46,15 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function get_quizzes()
 	{
-		$quiz_items = $this->base_api_gets('quiz_model');
+		try
+		{
+			$quiz_items = $this->base_api_gets('quiz_model');
 
-		$this->api_output($quiz_items);
+			$this->api_output($quiz_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -52,9 +64,15 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function get_quiz($quiz_id)
 	{
-		$quiz_item = $this->base_api_get('quiz_model', $quiz_id);
+		try
+		{
+			$quiz_item = $this->base_api_get('quiz_model', $quiz_id);
 
-		$this->api_output($quiz_item);
+			$this->api_output($quiz_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -64,9 +82,15 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function get_quiz_by_slug($quiz_slug)
 	{
-		$quiz_item = $this->base_api_get('quiz_model', $quiz_slug, 'get_item_by_slug');
+		try
+		{
+			$quiz_item = $this->base_api_get('quiz_model', $quiz_slug, 'get_item_by_slug');
 
-		$this->api_output($quiz_item);
+			$this->api_output($quiz_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -74,8 +98,14 @@ class Quizzes extends POLAR_Controller {
 	 */
 	public function post_quizzes()
 	{
-		$quiz_item = $this->base_api_set('quiz_item', 'quiz_model');
+		try
+		{
+			$quiz_item = $this->base_api_set('quiz_item', 'quiz_model');
 
-		$this->api_output($quiz_item);
+			$this->api_output($quiz_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 }

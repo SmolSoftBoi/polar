@@ -15,10 +15,14 @@ angular.module('polar').factory('questionModel', function ($http, url) {
             return $http.post(url.baseUrl('api/questions/search'), questionParams);
         },
         getItems: function () {
-            return $http.get(url.baseUrl('api/questions'));
+            return $http.get(url.baseUrl('api/questions'), {
+                cache: true
+            });
         },
         getItem: function (questionId) {
-            return $http.get(url.baseUrl('api/questions/' + questionId));
+            return $http.get(url.baseUrl('api/questions/' + questionId), {
+                cache: true
+            });
         },
         setItem: function (questionItem) {
             return $http.post(url.baseUrl('api/questions'), questionItem);
@@ -27,10 +31,14 @@ angular.module('polar').factory('questionModel', function ($http, url) {
             return $http.post(url.baseUrl('api/questions/responses/search'), questionResponseParams);
         },
         getResponseItems: function () {
-            return $http.get(url.baseUrl('api/questions/responses'));
+            return $http.get(url.baseUrl('api/questions/responses'), {
+                cache: true
+            });
         },
         getResponseItem: function (questionResponseId) {
-            return $http.get(url.baseUrl('api/questions/responses/' + questionResponseId));
+            return $http.get(url.baseUrl('api/questions/responses/' + questionResponseId), {
+                cache: true
+            });
         },
         setResponseItem: function (questionResponseItem) {
             return $http.post(url.baseUrl('api/questions/responses'), questionResponseItem);

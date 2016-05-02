@@ -281,17 +281,18 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 * @param int    $level            Level.
 	 * @param string $item_id_property Item ID property.
 	 * @param Item   $item             Item.
+	 * @param string $level_property   Response level property.
 	 *
 	 * @return Item Item.
 	 */
-	protected function base_generate($level, $item_id_property, $item)
+	protected function base_generate($level, $item_id_property, $item, $level_property = 'level')
 	{
-		if ($this->level === 0)
+		if ($this->$level_property === 0)
 		{
-			$this->level = $level;
+			$this->$level_property = $level;
 		}
 
-		$this->level--;
+		$this->$level_property--;
 
 		$item->$item_id_property = intval($item->$item_id_property, 10);
 

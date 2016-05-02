@@ -112,6 +112,8 @@ class POLAR_Controller extends CI_Controller {
 
 		$id = $this->$model_class->$set_item_method($item);
 
+		$this->$model_class->level = 0;
+
 		$item = $this->$model_class->$get_item_method($id);
 
 		return $item;

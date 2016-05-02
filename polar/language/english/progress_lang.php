@@ -14,5 +14,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$lang['question_chart_progress'] = 'Loading Chart…';
 $lang['quiz_progress'] = 'Loading Quiz…';
 $lang['quizzes_progress'] = 'Loading Quizzes…';

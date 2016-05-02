@@ -12,6 +12,9 @@ angular.module('polar').value('userItem', {
     firstName: undefined,
     lastName: undefined,
     emails: [],
+    roles: [],
+    schools: [],
     password: undefined,
-    passwordHash: undefined
+    passwordHash: undefined,
+    initials: undefined
 });

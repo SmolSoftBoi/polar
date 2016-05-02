@@ -88,7 +88,14 @@ class Email_model extends Item_model {
 	 */
 	protected function generate($email_item)
 	{
+		if (is_null($email_item))
+		{
+			return $email_item;
+		}
+
 		$email_item = $this->base_generate(2, 'email_id', $email_item);
+
+		$email_item->verified = boolval($email_item->verified);
 
 		if ($this->level > 0)
 		{

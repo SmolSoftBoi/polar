@@ -9,6 +9,11 @@ namespace Faker\Provider;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Quiz faker.
+ *
+ * @package Polar\Fakers
+ */
 class Quiz extends \Faker\Provider\Base {
 	public function quizName()
 	{

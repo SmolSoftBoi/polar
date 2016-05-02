@@ -15,6 +15,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Question_params extends Params {
 
 	/**
+	 * @var int $answer_id Answer ID.
+	 */
+	public $answer_id;
+
+	/**
 	 * @var int $quiz_id Quiz ID.
 	 */
 	public $quiz_id;

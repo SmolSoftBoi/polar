@@ -10,5 +10,5 @@
 angular.module('polar').value('emailItem', {
     emailId: undefined,
     email: undefined,
-    verified: undefined
+    verified: false
 });

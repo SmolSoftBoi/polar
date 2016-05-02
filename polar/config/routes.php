@@ -76,6 +76,7 @@ $route['auth/signup'] = 'sign/up';
 /**
  * Quiz routes.
  */
+$route['quizzes/create'] = 'quizzes/create';
 $route['quizzes/(:any)'] = 'quizzes/quiz/$1';
 
 /**

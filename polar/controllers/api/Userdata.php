@@ -19,17 +19,23 @@ class Userdata extends POLAR_Controller {
 	 */
 	public function get()
 	{
-		$output = new stdClass();
-
-		$output->polar = new stdClass();
-
-		$output->polar->brandColor = $this->config->item('brand_color');
-
-		if ($this->auth->authed(FALSE))
+		try
 		{
-			$output->user = json_decode($_SESSION['user']);
-		}
+			$output = new stdClass();
 
-		$this->api_output($output);
+			$output->polar = new stdClass();
+
+			$output->polar->brandColor = $this->config->item('brand_color');
+
+			if ($this->auth->authed(FALSE))
+			{
+				$output->user = json_decode($_SESSION['user']);
+			}
+
+			$this->api_output($output);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 }

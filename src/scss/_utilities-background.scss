@@ -9,7 +9,7 @@
 @include bg-variant('.bg-faded', $brand-faded);
 
 .bg-faded {
-	backdrop-filter: blur($spacer);
-	//backdrop-filter: blur($spacer) saturate(200%);
 	color: $gray-dark !important;
+	//backdrop-filter: blur($spacer) saturate(200%);
+	backdrop-filter: blur($spacer);
 }

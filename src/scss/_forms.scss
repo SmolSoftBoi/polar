@@ -5,7 +5,6 @@
 /**
  * Forms.
  */
-
 form {
 	margin: 0 auto;
 	padding: $spacer-y $spacer-x;
@@ -17,6 +16,33 @@ form {
 
 	h1 {
 		margin-bottom: $spacer-y / 2;
+	}
+
+	.form-group.row {
+		label {
+			@include make-col();
+			@include make-col-span(2);
+		}
+
+		.col {
+			@include make-col();
+			@include make-col-span(10);
+		}
+
+		.col-offset {
+			@include make-col-offset(2);
+		}
+	}
+}
+
+.form-auth,
+.form-setup {
+	@include make-col();
+	@include make-col-span(12);
+	max-width: 34em;
+
+	@include media-breakpoint-up(sm) {
+		@include make-col-span(6);
 	}
 
 	.form-group {
@@ -93,17 +119,6 @@ form {
 	.checkbox {
 		margin-right: $input-padding-x-lg;
 		margin-left: $input-padding-x-lg;
-	}
-}
-
-.form-auth,
-.form-setup {
-	@include make-col();
-	@include make-col-span(12);
-	max-width: 34em;
-
-	@include media-breakpoint-up(sm) {
-		@include make-col-span(6);
 	}
 
 	button[type="submit"] {

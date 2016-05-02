@@ -30,9 +30,15 @@ class Questions extends POLAR_Controller {
 	 */
 	public function search()
 	{
-		$question_items = $this->base_api_search('Question_params', 'question_model');
+		try
+		{
+			$question_items = $this->base_api_search('Question_params', 'question_model');
 
-		$this->api_output($question_items);
+			$this->api_output($question_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -40,9 +46,15 @@ class Questions extends POLAR_Controller {
 	 */
 	public function get_questions()
 	{
-		$question_items = $this->base_api_gets('question_model');
+		try
+		{
+			$question_items = $this->base_api_gets('question_model');
 
-		$this->api_output($question_items);
+			$this->api_output($question_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -52,9 +64,15 @@ class Questions extends POLAR_Controller {
 	 */
 	public function get_question($question_id)
 	{
-		$question_item = $this->base_api_get('question_model', $question_id);
+		try
+		{
+			$question_item = $this->base_api_get('question_model', $question_id);
 
-		$this->api_output($question_item);
+			$this->api_output($question_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -62,9 +80,15 @@ class Questions extends POLAR_Controller {
 	 */
 	public function post_questions()
 	{
-		$question_item = $this->base_api_set('question_item', 'question_model');
+		try
+		{
+			$question_item = $this->base_api_set('question_item', 'question_model');
 
-		$this->api_output($question_item);
+			$this->api_output($question_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -72,9 +96,15 @@ class Questions extends POLAR_Controller {
 	 */
 	public function responses_search()
 	{
-		$question_response_items = $this->base_api_search('Question_response_params', 'question_model', 'search_responses');
+		try
+		{
+			$question_response_items = $this->base_api_search('Question_response_params', 'question_model', 'search_responses');
 
-		$this->api_output($question_response_items);
+			$this->api_output($question_response_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -82,9 +112,15 @@ class Questions extends POLAR_Controller {
 	 */
 	public function get_question_responses()
 	{
-		$question_response_items = $this->base_api_gets('question_model', 'search_responses');
+		try
+		{
+			$question_response_items = $this->base_api_gets('question_model', 'search_responses');
 
-		$this->api_output($question_response_items);
+			$this->api_output($question_response_items);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -94,9 +130,15 @@ class Questions extends POLAR_Controller {
 	 */
 	public function get_question_response($question_response_id)
 	{
-		$question_response_item = $this->base_api_get('question_model', $question_response_id, 'get_response_item');
+		try
+		{
+			$question_response_item = $this->base_api_get('question_model', $question_response_id, 'get_response_item');
 
-		$this->api_output($question_response_item);
+			$this->api_output($question_response_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 
 	/**
@@ -104,8 +146,14 @@ class Questions extends POLAR_Controller {
 	 */
 	public function post_question_responses()
 	{
-		$quiz_item = $this->base_api_set('question_item', 'question_model', 'set_response_item', 'get_response_item');
+		try
+		{
+			$question_response_item = $this->base_api_set('question_response_item', 'question_model', 'set_response_item', 'get_response_item');
 
-		$this->api_output($quiz_item);
+			$this->api_output($question_response_item);
+		} catch (Exception $exception)
+		{
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
+		}
 	}
 }

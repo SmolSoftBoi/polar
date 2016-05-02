@@ -32,6 +32,10 @@
 		<directory>polar/vendor/epickris</directory>
 		<directory>src</directory>
 		<file>*.php</file>
+		<file>polar/vendor/epickris/*/*.php</file>
+		<file>polar/vendor/epickris/*/*/*.php</file>
+		<file>polar/vendor/epickris/*/*/*/*.php</file>
+		<file>polar/vendor/epickris/*/*/*/*/*.php</file>
 		<ignore>polar/logs/*</ignore>
 		<ignore>polar/vendor/*</ignore>
 	</files>

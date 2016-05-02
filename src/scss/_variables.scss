@@ -12,6 +12,8 @@ $brand-faded: hsla(hue($gray-lightest), saturation($gray-lightest), lightness($g
 
 $enable-flex: true;
 
+$hr-border-color: $brand-faded;
+
 // Tables
 $table-bg-accent: hsla(hue($gray-lightest), saturation($gray-lightest), lightness($gray-lightest), 0.2);
 $table-bg-hover: hsla(hue($gray-lightest), saturation($gray-lightest), lightness($gray-lightest), 0.2);
@@ -21,3 +23,6 @@ $table-bg-active: hsla(hue($gray-lightest), saturation($gray-lightest), lightnes
 $modal-content-bg: $brand-faded;
 $modal-content-border-color: $brand-faded;
 $modal-backdrop-opacity: 0.8;
+
+// Icons
+$fa-css-prefix: icon;

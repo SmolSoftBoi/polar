@@ -31,34 +31,40 @@ class Form extends POLAR_Controller {
 	 */
 	public function get_unique()
 	{
-		$control = $this->input->get('control', TRUE);
-		$value = $this->input->get('value', TRUE);
-
-		if (is_null($control) || is_null($value))
+		try
 		{
-			$this->api_status(HTTP_BAD_REQUEST);
-		}
+			$control = $this->input->get('control', TRUE);
+			$value = $this->input->get('value', TRUE);
 
-		switch (strtolower($control))
+			if (empty($control) || empty($value))
+			{
+				$this->api_status(HTTP_BAD_REQUEST);
+			}
+
+			switch (strtolower($control))
+			{
+				case 'domain':
+					$unique = $this->unique_domain($value);
+					break;
+				case 'email':
+					$unique = $this->unique_email($value);
+					break;
+				case 'schoolname':
+					$unique = $this->unique_school_name($value);
+					break;
+				default:
+					$this->api_status(HTTP_NOT_FOUND);
+			}
+
+			$output = new stdClass();
+
+			$output->unique = $unique;
+
+			$this->api_output($output);
+		} catch (Exception $exception)
 		{
-			case 'domain':
-				$unique = $this->unique_domain($value);
-				break;
-			case 'email':
-				$unique = $this->unique_email($value);
-				break;
-			case 'schoolname':
-				$unique = $this->unique_school_name($value);
-				break;
-			default:
-				$this->api_status(HTTP_NOT_FOUND);
+			$this->api_status(HTTP_INTERNAL_SERVER_ERROR, $exception->getMessage());
 		}
-
-		$output = new stdClass();
-
-		$output->unique = $unique;
-
-		$this->api_output($output);
 	}
 
 	/**

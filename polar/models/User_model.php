@@ -25,6 +25,7 @@ class User_model extends Item_model {
 	{
 		parent::__construct();
 		$this->load->model(array(
+			'domain_model',
 			'email_model',
 			'role_model',
 			'school_model'
@@ -123,6 +124,16 @@ class User_model extends Item_model {
 
 		$this->db->insert_batch('user_roles', $user_roles);
 
+		foreach ($user_item->schools as $school_item)
+		{
+			$user_schools[] = array(
+				'user_id'   => $user_id,
+				'school_id' => $school_item->school_id
+			);
+		}
+
+		$this->db->insert_batch('user_schools', $user_schools);
+
 		return $user_id;
 	}
 
@@ -140,10 +151,10 @@ class User_model extends Item_model {
 
 		$this->base_build('users');
 
-		$this->db->join('user_emails', 'users.user_id = user_emails.user_id')
-		         ->join('emails', 'user_emails.email_id = emails.email_id')
-		         ->join('user_roles', 'users.user_id = user_roles.user_id')
-		         ->join('roles', 'user_roles.role_id = roles.role_id');
+		$this->db->join('user_emails', 'users.user_id = user_emails.user_id', 'left')
+		         ->join('emails', 'user_emails.email_id = emails.email_id', 'left')
+		         ->join('user_roles', 'users.user_id = user_roles.user_id', 'left')
+		         ->join('roles', 'user_roles.role_id = roles.role_id', 'left');
 
 		$this->build_param($user_params, 'email', 'emails', 'email');
 		$this->build_param($user_params, 'role_key', 'roles', 'role_key');
@@ -158,6 +169,11 @@ class User_model extends Item_model {
 	 */
 	protected function generate($user_item)
 	{
+		if (is_null($user_item))
+		{
+			return $user_item;
+		}
+
 		$user_item = $this->base_generate(2, 'user_id', $user_item);
 
 		$user_item->initials = strtoupper($user_item->first_name[0] . $user_item->last_name[0]);

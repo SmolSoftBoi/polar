@@ -58,6 +58,10 @@ class Role_model extends Item_model {
 	protected function build($role_params = NULL)
 	{
 		$this->base_build('roles');
+
+		$this->db->join('user_roles', 'roles.role_id = user_roles.role_id', 'left');
+
+		$this->build_param($role_params, 'user_id', 'user_roles', 'user_id');
 	}
 
 	/**
@@ -69,6 +73,11 @@ class Role_model extends Item_model {
 	 */
 	protected function generate($role_item)
 	{
+		if (is_null($role_item))
+		{
+			return $role_item;
+		}
+
 		return $this->base_generate(1, 'role_id', $role_item);
 	}
 
@@ -96,7 +105,7 @@ class Role_model extends Item_model {
 	 *
 	 * @param string $role_key Role key.
 	 *
-	 * @return Role_item
+	 * @return Role_item Role item.
 	 */
 	public function get_item_by_key($role_key)
 	{

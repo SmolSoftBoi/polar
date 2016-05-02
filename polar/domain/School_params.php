@@ -15,6 +15,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class School_params extends Params {
 
 	/**
+	 * @var string $domain Domain.
+	 */
+	public $domain;
+
+	/**
 	 * @var string $school_name School name.
 	 */
 	public $school_name;

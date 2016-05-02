@@ -26,3 +26,14 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		</div>
 	</div>
 </noscript>
+<div class="cover-cloak ng-cloak">
+	<div class="site-wrapper">
+		<div class="site-wrapper-inner">
+			<div class="cover-container">
+
+				<progress class="progress progress-striped progress-animated" value="100" max="100"></progress>
+
+			</div>
+		</div>
+	</div>
+</div>

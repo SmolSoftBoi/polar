@@ -64,7 +64,9 @@ class School_model extends Item_model {
 
 		$this->base_build('schools');
 
-		$this->db->join('user_schools', 'schools.school_id = user_schools.school_id');
+		$this->db->join('school_domains', 'schools.school_id = school_domains.school_id', 'left');
+		$this->db->join('domains', 'school_domains.domain_id = domains.domain_id', 'left');
+		$this->db->join('user_schools', 'schools.school_id = user_schools.school_id', 'left');
 
 		$this->build_param($school_params, 'school_name', 'schools', 'school_name');
 		$this->build_param($school_params, 'user_id', 'user_schools', 'user_id');
@@ -79,6 +81,11 @@ class School_model extends Item_model {
 	 */
 	protected function generate($school_item)
 	{
+		if (is_null($school_item))
+		{
+			return $school_item;
+		}
+
 		return $this->base_generate(1, 'school_id', $school_item);
 	}
 }

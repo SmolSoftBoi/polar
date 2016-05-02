@@ -1,21 +1,27 @@
 /*
  * Copyright © 2014 - 2016 Kristian Matthews. All rights reserved.
  */
-// Bootstrap
-@import '../../content/components/bootstrap/scss/bootstrap';
+// Bootstrap core varialbes
+@import '../../content/components/bootstrap/scss/variables';
 // Core variables and mixins
 @import 'variables';
+// Bootstrap and font awesome icons
+@import '../../content/components/bootstrap/scss/bootstrap';
+@import '../../content/components/font-awesome/scss/font-awesome';
 // Core CSS
 @import 'core';
 @import 'grid';
 @import 'forms';
+@import 'buttons';
 // Components
+@import 'ng';
 @import 'custom-forms';
 @import 'admin';
 @import 'cover';
 @import 'errors';
 @import 'connection';
 @import 'quiz';
+@import 'animation';
 @import 'nav';
 @import 'navbar';
 @import 'card';

@@ -10,7 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Authentication controller.
  *
- * @property User_model $user_model User model.
+ * @property School_model $school_model School model.
+ * @property User_model   $user_model   User model.
  */
 class Sign extends POLAR_Controller {
 
@@ -20,7 +21,7 @@ class Sign extends POLAR_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('user_model');
+		$this->load->model(array('school_model', 'user_model'));
 		$this->load->library('form_validation');
 	}
 
@@ -88,8 +89,12 @@ class Sign extends POLAR_Controller {
 			$email_item->email = $this->input->post('email', TRUE);
 			$user_item->emails[] = $email_item;
 
-			$role_item->role_key = ROLE_KEY_ADMIN;
+			$role_item->role_key = ROLE_KEY_STUDENT;
 			$user_item->roles = $role_item;
+
+			$school_params = new School_params();
+			$school_params->domain = substr($email_item->email, strpos($email_item->email, "@") + 1);
+			$user_item->schools = $this->school_model->search($school_params);
 
 			$user_id = $this->user_model->set_item($user_item);
 

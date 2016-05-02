@@ -9,6 +9,11 @@ namespace Faker\Provider\en_KW;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * School faker.
+ *
+ * @package Polar\Fakers
+ */
 class School extends \Faker\Provider\Base {
 	protected $schoolFormats = array(
 		'{{city}} {{schoolSuffix}}',

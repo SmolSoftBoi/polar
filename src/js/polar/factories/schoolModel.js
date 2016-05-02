@@ -15,10 +15,14 @@ angular.module('polar').factory('schoolModel', function ($http, url) {
             return $http.post(url.baseUrl('api/schools/search'), schoolParams);
         },
         getItems: function () {
-            return $http.get(url.baseUrl('api/schools'));
+            return $http.get(url.baseUrl('api/schools'), {
+                cache: true
+            });
         },
         getItem: function (schoolId) {
-            return $http.get(url.baseUrl('api/schools/' + schoolId));
+            return $http.get(url.baseUrl('api/schools/' + schoolId), {
+                cache: true
+            });
         },
         setItem: function (schoolItem) {
             return $http.post(url.baseUrl('api/schools'), schoolItem);

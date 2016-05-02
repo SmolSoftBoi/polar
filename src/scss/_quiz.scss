@@ -64,15 +64,23 @@
 	@extend .text-xs-center;
 
 	h1 {
-		@extend .display-3;
+		@extend .display-2;
 	}
 
 	h2 {
+		@extend .display-3;
+	}
+
+	h3 {
 		@extend .display-4;
 	}
 
 	p {
 		@extend .lead;
+
+		&.correct {
+			color: $brand-success;
+		}
 	}
 
 	.btn-start {
@@ -82,6 +90,11 @@
 
 	.btn-next {
 		@extend .btn-primary;
+		@extend .btn-lg;
+	}
+
+	.btn-show {
+		@extend .btn-secondary;
 		@extend .btn-lg;
 	}
 
@@ -116,14 +129,14 @@
 
 		&.correct {
 			.btn {
-				@extend .btn-success;
+				@extend .btn-correct;
 			}
 		}
 
 		&.incorrect {
 			.btn.active {
 				@extend .active;
-				@extend .btn-danger;
+				@extend .btn-incorrect;
 			}
 		}
 
@@ -169,6 +182,11 @@
 		@include media-breakpoint-up(md) {
 			@include make-col-span(3);
 		}
+	}
+
+	.chart {
+		min-height: 50%;
+		width: 100%;
 	}
 
 	.score {

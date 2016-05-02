@@ -29,7 +29,6 @@ angular.module('polar').directive('ngDomain', function () {
             if (valid) {
                 return valid;
             }
-            []
 
             return false;
         }

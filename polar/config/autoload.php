@@ -123,7 +123,16 @@ $autoload['config'] = array('polar');
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array('buttons', 'environments', 'headings', 'labels', 'messages', 'placeholders', 'polar');
+$autoload['language'] = array(
+	'buttons',
+	'environments',
+	'headings',
+	'labels',
+	'messages',
+	'placeholders',
+	'polar',
+	'progress'
+);
 
 /*
 | -------------------------------------------------------------------

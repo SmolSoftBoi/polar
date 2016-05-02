@@ -72,12 +72,14 @@ class Connection_model extends Item_model {
 			}
 		}
 
+		$connection_item->connection_timestamp = new DateTime();
+
 		$connection_id = $this->base_set_item('connections', 'connection_id', 'connection_id', $connection_item);
 
 		if (isset($connection_item->quiz))
 		{
 			$quiz_connection = array(
-				'quiz_id' => $connection_item->quiz->quiz_id,
+				'quiz_id'       => $connection_item->quiz->quiz_id,
 				'connection_id' => $connection_id
 			);
 
@@ -116,6 +118,11 @@ class Connection_model extends Item_model {
 	 */
 	protected function generate($connection_item)
 	{
+		if (is_null($connection_item))
+		{
+			return $connection_item;
+		}
+
 		$connection_item = $this->base_generate(2, 'connection_id', $connection_item);
 
 		$connection_item->user_id = intval($connection_item->user_id);

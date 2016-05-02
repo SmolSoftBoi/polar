@@ -35,12 +35,17 @@ class Quiz_params extends Params {
 	public $school_id;
 
 	/**
-	 * @var int[]|bool $school_ids School IDs.
+	 * @var int[] $school_ids School IDs.
 	 */
 	public $school_ids = array();
 
 	/**
-	 * @var bool|int $user_id User ID.
+	 * @var int $user_id User ID.
 	 */
 	public $user_id;
+
+	/**
+	 * @var DateTime $min_launch_timestamp Minimum launch timestamp.
+	 */
+	public $min_launch_timestamp;
 }

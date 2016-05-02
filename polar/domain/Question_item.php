@@ -25,6 +25,11 @@ class Question_item extends Item {
 	public $question_type_id;
 
 	/**
+	 * @var int $quiz_id Quiz ID.
+	 */
+	public $quiz_id;
+
+	/**
 	 * @var string $question Question.
 	 */
 	public $question;
@@ -35,9 +40,36 @@ class Question_item extends Item {
 	public $time_limit;
 
 	/**
+	 * @var Question_response_item[] $responses Responses.
+	 */
+	public $responses = array();
+
+	/**
 	 * @var Answer_item[] $answers Answers
 	 */
 	public $answers = array();
+
+	/**
+	 * JSON deserialize.
+	 *
+	 * @param object $object Object.
+	 */
+	public function jsonDeserialize($object)
+	{
+		$object = $this->base_json_deserialize('Question_item', $object);
+
+		if (isset($object->answers))
+		{
+			foreach ($object->answers as $answer)
+			{
+				$answer_item = new Answer_item();
+
+				$answer_item->jsonDeserialize($answer);
+
+				$this->answers[] = $answer_item;
+			}
+		}
+	}
 
 	/**
 	 * Database set.
@@ -47,6 +79,7 @@ class Question_item extends Item {
 		$this->db->set(array(
 			'question_id'      => $this->question_id,
 			'question_type_id' => $this->question_type_id,
+			'quiz_id'          => $this->quiz_id,
 			'question'         => $this->question,
 			'time_limit'       => $this->time_limit
 		));

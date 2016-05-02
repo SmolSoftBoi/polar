@@ -8,17 +8,13 @@
 
 /*global angular */
 angular.module('polar')
-    .controller('welcome', function ($rootScope, $scope, quizParams, quizModel) {
+    .controller('welcome', function ($rootScope, $scope, $filter, quizParams, quizModel) {
         'use strict';
 
         function load() {
             $scope.go = go;
 
-            $rootScope.session.then(function (session) {
-                angular.forEach(session.user.schools, function (school) {
-                    quizParams.schoolIds.push(school.schoolId);
-                });
-
+            $rootScope.session.then(function () {
                 loadQuizzes();
             });
         }
@@ -28,10 +24,26 @@ angular.module('polar')
 
             search.schoolIds = [];
 
-            quizModel.search(search).then(function successCallback(response) {
-                var quizzes = angular.fromJson(response.data);
+            $rootScope.session.then(function () {
+                var roles = Object.keys($rootScope.user.roles).map(function (roleId) {
+                    return $rootScope.user.roles[roleId];
+                });
 
-                $scope.quizzes = quizzes;
+                if ($filter('filter')(roles, {roleKey: 'teacher'}, true).length === 1) {
+                    search.userId = $rootScope.user.userId;
+                } else {
+                    search.minLaunchTimestamp = new Date(Date.now());
+                }
+
+                angular.forEach($rootScope.user.schools, function (school) {
+                    search.schoolIds.push(school.schoolId);
+                });
+
+                quizModel.search(search).then(function successCallback(response) {
+                    var quizzes = angular.fromJson(response.data);
+
+                    $scope.quizzes = quizzes;
+                });
             });
         }
 

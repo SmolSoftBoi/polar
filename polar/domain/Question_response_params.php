@@ -13,4 +13,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @package Polar\Domain\Params
  */
 class Question_response_params extends Params {
+
+	/**
+	 * @var int $question_id Question ID.
+	 */
+	public $question_id;
 }

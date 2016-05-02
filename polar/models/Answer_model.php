@@ -58,7 +58,7 @@ class Answer_model extends Item_model {
 	 */
 	public function set_item($answer_item)
 	{
-		return $this->base_set_item('answers', 'answer_id', 'answer_id', 'answer_item', $answer_item);
+		return $this->base_set_item('answers', 'answer_id', 'answer_id', $answer_item);
 	}
 
 	/**
@@ -75,6 +75,10 @@ class Answer_model extends Item_model {
 
 		$this->base_build('answers');
 
+		$this->db->select('quizzes.user_id')
+		         ->join('questions', 'answers.question_id = questions.question_id', 'left')
+		         ->join('quizzes', 'questions.quiz_id = quizzes.quiz_id', 'left');
+
 		$this->build_param($answer_params, 'question_id', 'answers', 'question_id');
 	}
 
@@ -87,9 +91,15 @@ class Answer_model extends Item_model {
 	 */
 	protected function generate($answer_item)
 	{
+		if (is_null($answer_item))
+		{
+			return $answer_item;
+		}
+
 		$answer_item = $this->base_generate(1, 'answer_id', $answer_item);
 
 		$answer_item->question_id = intval($answer_item->question_id);
+		$answer_item->user_id = intval($answer_item->user_id);
 		$answer_item->score = intval($answer_item->score);
 
 		if ($this->level > 0)

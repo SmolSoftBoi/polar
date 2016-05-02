@@ -11,5 +11,7 @@ angular.module('polar').value('questionResponseItem', {
     questionResponseId: undefined,
     answerId: undefined,
     userId: undefined,
-    answer: {}
+    answer: undefined,
+    correctAnswerId: undefined,
+    score: undefined
 });

@@ -9,8 +9,9 @@
 /*global angular */
 angular.module('polar').value('quizParams', {
     code: undefined,
+    connectionId: undefined,
     quizSlug: undefined,
-    schoolId: undefined,
     schoolIds: [],
-    userId: undefined
+    userId: undefined,
+    minLaunchTimestamp: undefined
 });

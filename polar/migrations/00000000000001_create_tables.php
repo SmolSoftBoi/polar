@@ -245,6 +245,11 @@ class Migration_Create_tables extends CI_Migration {
 				'unsigned'       => TRUE,
 				'auto_increment' => TRUE
 			),
+			'question_id'      => array(
+				'type'     => 'INTEGER',
+				'unsigned' => TRUE,
+				'null'     => TRUE
+			),
 			'user_id'          => array(
 				'type'     => 'INTEGER',
 				'unsigned' => TRUE
@@ -259,7 +264,8 @@ class Migration_Create_tables extends CI_Migration {
 				'unique'     => TRUE
 			),
 			'description'      => array(
-				'type' => 'TEXT'
+				'type' => 'TEXT',
+				'NULL' => TRUE
 			),
 			'code'             => array(
 				'type'       => 'VARCHAR',
@@ -323,7 +329,8 @@ class Migration_Create_tables extends CI_Migration {
 			),
 			'time_limit'       => array(
 				'type'     => 'INTEGER',
-				'unsigned' => TRUE
+				'unsigned' => TRUE,
+				'null'     => TRUE
 			)
 		));
 		$this->dbforge->add_key('question_id', TRUE);
@@ -481,6 +488,9 @@ class Migration_Create_tables extends CI_Migration {
 		$this->dbforge->add_foreign_key('connection_id', 'connections', 'connection_id', 'CASCADE', 'CASCADE');
 		$this->dbforge->create_table('quiz_connections', TRUE);
 
+		// Add quiz foreign key
+		$this->dbforge->add_foreign_key_to_table('quizzes', 'question_id', 'questions', 'question_id', 'CASCADE', 'SET NULL');
+
 		$this->db->trans_complete();
 	}
 
@@ -491,47 +501,35 @@ class Migration_Create_tables extends CI_Migration {
 	{
 		$this->db->trans_start();
 
-		// Drop answers
-		$this->dbforge->drop_table('answers', TRUE);
-
-		// Drop API
-		$this->dbforge->drop_table('api', TRUE);
+		// Drop quiz connections
+		$this->dbforge->drop_table('quiz_connections', TRUE);
 
 		// Drop connections
 		$this->dbforge->drop_table('connections', TRUE);
 
-		// Drop domains
-		$this->dbforge->drop_table('domains', TRUE);
-
-		// Drop email verifications
-		$this->dbforge->drop_table('email_verifications', TRUE);
-
-		// Drop emails
-		$this->dbforge->drop_table('emails', TRUE);
+		// Drop question media
+		$this->dbforge->drop_table('question_media', TRUE);
 
 		// Drop media
 		$this->dbforge->drop_table('media', TRUE);
 
-		// Drop question media
-		$this->dbforge->drop_table('question_media', TRUE);
-
 		// Drop question responses
 		$this->dbforge->drop_table('question_responses', TRUE);
 
-		// Drop question types
-		$this->dbforge->drop_table('question_types', TRUE);
+		// Drop answers
+		$this->dbforge->drop_table('answers', TRUE);
 
 		// Drop questions
 		$this->dbforge->drop_table('questions', TRUE);
 
-		// Drop quiz connections
-		$this->dbforge->drop_table('quiz_connections', TRUE);
+		// Drop question types
+		$this->dbforge->drop_table('question_types', TRUE);
 
 		// Drop quizzes
 		$this->dbforge->drop_table('quizzes', TRUE);
 
-		// Drop roles
-		$this->dbforge->drop_table('roles', TRUE);
+		// Drop user schools
+		$this->dbforge->drop_table('user_schools', TRUE);
 
 		// Drop school domains
 		$this->dbforge->drop_table('school_domains', TRUE);
@@ -539,14 +537,26 @@ class Migration_Create_tables extends CI_Migration {
 		// Drop schools
 		$this->dbforge->drop_table('schools', TRUE);
 
-		// Drop user emails
-		$this->dbforge->drop_table('user_emails', TRUE);
-
 		// Drop user roles
 		$this->dbforge->drop_table('user_roles', TRUE);
 
+		// Drop user emails
+		$this->dbforge->drop_table('user_emails', TRUE);
+
 		// Drop users
 		$this->dbforge->drop_table('users', TRUE);
+
+		// Drop roles
+		$this->dbforge->drop_table('roles', TRUE);
+
+		// Drop email verifications
+		$this->dbforge->drop_table('email_verifications', TRUE);
+
+		// Drop emails
+		$this->dbforge->drop_table('emails', TRUE);
+
+		// Drop domains
+		$this->dbforge->drop_table('domains', TRUE);
 
 		$this->db->trans_complete();
 	}
