@@ -113,7 +113,6 @@ class User_model extends Item_model {
 		$this->db->where('user_id', $user_id)->where_not_in('role_id', $role_ids)->delete('user_roles');
 
 		$user_roles = array();
-
 		foreach ($role_ids as $role_id)
 		{
 			$user_roles[] = array(
@@ -122,8 +121,12 @@ class User_model extends Item_model {
 			);
 		}
 
-		$this->db->insert_batch('user_roles', $user_roles);
+		if ( ! empty($user_roles))
+		{
+			$this->db->insert_batch('user_roles', $user_roles);
+		}
 
+		$user_schools = array();
 		foreach ($user_item->schools as $school_item)
 		{
 			$user_schools[] = array(
@@ -132,7 +135,10 @@ class User_model extends Item_model {
 			);
 		}
 
-		$this->db->insert_batch('user_schools', $user_schools);
+		if ( ! empty($user_schools))
+		{
+			$this->db->insert_batch('user_schools', $user_schools);
+		}
 
 		return $user_id;
 	}
