@@ -85,12 +85,13 @@ class Sign extends POLAR_Controller {
 
 			$user_item->first_name = $this->input->post('firstName', TRUE);
 			$user_item->last_name = $this->input->post('lastName', TRUE);
+			$user_item->password = $this->input->post('password', TRUE);
 
 			$email_item->email = $this->input->post('email', TRUE);
 			$user_item->emails[] = $email_item;
 
 			$role_item->role_key = ROLE_KEY_STUDENT;
-			$user_item->roles = $role_item;
+			$user_item->roles[] = $role_item;
 
 			$school_params = new School_params();
 			$school_params->domain = substr($email_item->email, strpos($email_item->email, "@") + 1);

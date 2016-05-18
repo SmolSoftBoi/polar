@@ -80,9 +80,9 @@ class User_model extends Item_model {
 			}
 		}
 
-		foreach ($user_item->roles as $index => $role)
+		foreach ($user_item->roles as $index => $role_item)
 		{
-			$user_item->roles[$index] = $this->role_model->get_item_by_key($role->role_key);
+			$user_item->roles[$index] = $this->role_model->get_item_by_key($role_item->role_key);
 		}
 
 		$user_id = $this->base_set_item('users', 'user_id', 'user_id', $user_item);
@@ -92,7 +92,6 @@ class User_model extends Item_model {
 		$this->db->where('user_id', $user_id)->where_not_in('email_id', $email_ids)->delete('user_emails');
 
 		$user_emails = array();
-
 		foreach ($email_ids as $email_id)
 		{
 			$user_emails[] = array(
@@ -101,7 +100,10 @@ class User_model extends Item_model {
 			);
 		}
 
-		$this->db->insert_batch('user_emails', $user_emails);
+		if ( ! empty($user_emails))
+		{
+			$this->db->insert_batch('user_emails', $user_emails);
+		}
 
 		$role_ids = array();
 
