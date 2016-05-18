@@ -34,7 +34,7 @@ class Email_model extends Item_model {
 	 */
 	public function search($email_params = NULL)
 	{
-		return $this->base_search('email_item', 'email_id', $email_params);
+		return $this->base_search('Email_item', 'email_id', $email_params);
 	}
 
 	/**
@@ -46,7 +46,7 @@ class Email_model extends Item_model {
 	 */
 	public function get_item($email_id)
 	{
-		return $this->base_get_item('emails', 'email_id', 'email_item', $email_id);
+		return $this->base_get_item('emails', 'email_id', 'Email_item', $email_id);
 	}
 
 	/**

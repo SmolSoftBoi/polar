@@ -34,7 +34,7 @@ class Answer_model extends Item_model {
 	 */
 	public function search($answer_params = NULL)
 	{
-		return $this->base_search('answer_item', 'answer_id', $answer_params);
+		return $this->base_search('Answer_item', 'answer_id', $answer_params);
 	}
 
 	/**
@@ -46,7 +46,7 @@ class Answer_model extends Item_model {
 	 */
 	public function get_item($answer_id)
 	{
-		return $this->base_get_item('answers', 'answer_id', 'answer_item', $answer_id);
+		return $this->base_get_item('answers', 'answer_id', 'Answer_item', $answer_id);
 	}
 
 	/**

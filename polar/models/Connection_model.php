@@ -34,7 +34,7 @@ class Connection_model extends Item_model {
 	 */
 	public function search($connection_params = NULL)
 	{
-		return $this->base_search('connection_item', 'connection_id', $connection_params);
+		return $this->base_search('Connection_item', 'connection_id', $connection_params);
 	}
 
 	/**
@@ -46,7 +46,7 @@ class Connection_model extends Item_model {
 	 */
 	public function get_item($connection_id)
 	{
-		return $this->base_get_item('connections', 'connection_id', 'connection_item', $connection_id);
+		return $this->base_get_item('connections', 'connection_id', 'Connection_item', $connection_id);
 	}
 
 	/**

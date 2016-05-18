@@ -44,7 +44,7 @@ class Question_model extends Item_model {
 	 */
 	public function search($question_params = NULL)
 	{
-		return $this->base_search('question_item', 'question_id', $question_params);
+		return $this->base_search('Question_item', 'question_id', $question_params);
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Question_model extends Item_model {
 	 */
 	public function get_item($question_id)
 	{
-		return $this->base_get_item('questions', 'question_id', 'question_item', $question_id);
+		return $this->base_get_item('questions', 'question_id', 'Question_item', $question_id);
 	}
 
 	/**
@@ -158,7 +158,7 @@ class Question_model extends Item_model {
 	 */
 	public function search_responses($question_response_params = NULL)
 	{
-		return $this->base_search('question_response_item', 'question_response_id', $question_response_params, 'build_response', 'generate_response');
+		return $this->base_search('Question_response_item', 'question_response_id', $question_response_params, 'build_response', 'generate_response');
 	}
 
 	/**
@@ -189,7 +189,7 @@ class Question_model extends Item_model {
 	 */
 	public function get_response_item($question_response_id)
 	{
-		return $this->base_get_item('question_responses', 'question_response_id', 'question_response_item', $question_response_id, 'build_response', 'generate_response');
+		return $this->base_get_item('question_responses', 'question_response_id', 'Question_response_item', $question_response_id, 'build_response', 'generate_response');
 	}
 
 	/**
@@ -249,7 +249,7 @@ class Question_model extends Item_model {
 	 */
 	public function search_types($question_type_params = NULL)
 	{
-		return $this->base_search('question_type_item', 'question_type_id', $question_type_params, 'build_type', 'generate_type');
+		return $this->base_search('Question_type_item', 'question_type_id', $question_type_params, 'build_type', 'generate_type');
 	}
 
 	/**
@@ -280,7 +280,7 @@ class Question_model extends Item_model {
 	 */
 	public function get_type_item($question_type_id)
 	{
-		return $this->base_get_item('question_types', 'question_type_id', 'question_type_item', $question_type_id, 'build_type', 'generate_type');
+		return $this->base_get_item('question_types', 'question_type_id', 'Question_type_item', $question_type_id, 'build_type', 'generate_type');
 	}
 
 	/**
@@ -342,7 +342,7 @@ class Question_model extends Item_model {
 	 */
 	public function get_type_item_by_key($question_type_key)
 	{
-		return $this->base_get_item('question_types', 'question_type_key', 'question_type_item', $question_type_key, 'build_type', 'generate_type');
+		return $this->base_get_item('question_types', 'question_type_key', 'Question_type_item', $question_type_key, 'build_type', 'generate_type');
 	}
 
 	/**
