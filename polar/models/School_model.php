@@ -23,7 +23,7 @@ class School_model extends Item_model {
 	 */
 	public function search($school_params = NULL)
 	{
-		return $this->base_search('school_item', 'school_id', $school_params);
+		return $this->base_search('School_item', 'school_id', $school_params);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class School_model extends Item_model {
 	 */
 	public function get_item($school_id)
 	{
-		return $this->base_get_item('schools', 'school_id', 'school_item', $school_id);
+		return $this->base_get_item('schools', 'school_id', 'School_item', $school_id);
 	}
 
 	/**

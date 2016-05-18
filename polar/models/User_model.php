@@ -41,7 +41,7 @@ class User_model extends Item_model {
 	 */
 	public function search($user_params = NULL)
 	{
-		return $this->base_search('user_item', 'user_id', $user_params);
+		return $this->base_search('User_item', 'user_id', $user_params);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class User_model extends Item_model {
 	 */
 	public function get_item($user_id)
 	{
-		return $this->base_get_item('users', 'user_id', 'user_item', $user_id);
+		return $this->base_get_item('users', 'user_id', 'User_item', $user_id);
 	}
 
 	/**

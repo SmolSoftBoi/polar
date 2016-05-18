@@ -23,7 +23,7 @@ class Role_model extends Item_model {
 	 */
 	public function search($role_params = NULL)
 	{
-		return $this->base_search('role_item', 'role_id', $role_params);
+		return $this->base_search('Role_item', 'role_id', $role_params);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Role_model extends Item_model {
 	 */
 	public function get_item($role_id)
 	{
-		return $this->base_get_item('roles', 'role_id', 'role_item', $role_id);
+		return $this->base_get_item('roles', 'role_id', 'Role_item', $role_id);
 	}
 
 	/**
@@ -109,6 +109,6 @@ class Role_model extends Item_model {
 	 */
 	public function get_item_by_key($role_key)
 	{
-		return $this->base_get_item('roles', 'role_key', 'role_item', $role_key);
+		return $this->base_get_item('roles', 'role_key', 'Role_item', $role_key);
 	}
 }

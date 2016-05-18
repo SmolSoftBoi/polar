@@ -82,7 +82,7 @@ class Questions extends POLAR_Controller {
 	{
 		try
 		{
-			$question_item = $this->base_api_set('question_item', 'question_model');
+			$question_item = $this->base_api_set('Question_item', 'question_model');
 
 			$this->api_output($question_item);
 		} catch (Exception $exception)
@@ -148,7 +148,7 @@ class Questions extends POLAR_Controller {
 	{
 		try
 		{
-			$question_response_item = $this->base_api_set('question_response_item', 'question_model', 'set_response_item', 'get_response_item');
+			$question_response_item = $this->base_api_set('Question_response_item', 'question_model', 'set_response_item', 'get_response_item');
 
 			$this->api_output($question_response_item);
 		} catch (Exception $exception)

@@ -23,7 +23,7 @@ class Domain_model extends Item_model {
 	 */
 	public function search($domain_params = NULL)
 	{
-		return $this->base_search('domain_item', 'domain_id', $domain_params);
+		return $this->base_search('Domain_item', 'domain_id', $domain_params);
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Domain_model extends Item_model {
 	 */
 	public function get_item($domain_id)
 	{
-		return $this->base_get_item('domains', 'domain_id', 'domain_item', $domain_id);
+		return $this->base_get_item('domains', 'domain_id', 'Domain_item', $domain_id);
 	}
 
 	/**

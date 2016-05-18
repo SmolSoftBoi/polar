@@ -34,7 +34,7 @@ class Quiz_model extends Item_model {
 	 */
 	public function search($quiz_params = NULL)
 	{
-		return $this->base_search('quiz_item', 'quiz_id', $quiz_params);
+		return $this->base_search('Quiz_item', 'quiz_id', $quiz_params);
 	}
 
 	/**
@@ -46,7 +46,7 @@ class Quiz_model extends Item_model {
 	 */
 	public function get_item($quiz_id)
 	{
-		return $this->base_get_item('quizzes', 'quiz_id', 'quiz_item', $quiz_id);
+		return $this->base_get_item('quizzes', 'quiz_id', 'Quiz_item', $quiz_id);
 	}
 
 	/**
@@ -231,6 +231,6 @@ class Quiz_model extends Item_model {
 	 */
 	public function get_item_by_slug($quiz_slug)
 	{
-		return $this->base_get_item('quizzes', 'quiz_slug', 'quiz_item', $quiz_slug);
+		return $this->base_get_item('quizzes', 'quiz_slug', 'Quiz_item', $quiz_slug);
 	}
 }

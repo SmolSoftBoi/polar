@@ -64,7 +64,7 @@ class Schools extends POLAR_Controller {
 	{
 		try
 		{
-			$school_item = $this->base_api_set('school_item', 'school_model');
+			$school_item = $this->base_api_set('School_item', 'school_model');
 
 			$this->api_output($school_item);
 		} catch (Exception $exception)

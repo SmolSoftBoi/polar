@@ -100,7 +100,7 @@ class Quizzes extends POLAR_Controller {
 	{
 		try
 		{
-			$quiz_item = $this->base_api_set('quiz_item', 'quiz_model');
+			$quiz_item = $this->base_api_set('Quiz_item', 'quiz_model');
 
 			$this->api_output($quiz_item);
 		} catch (Exception $exception)
