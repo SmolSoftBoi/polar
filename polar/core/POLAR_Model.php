@@ -86,6 +86,9 @@ class POLAR_Model extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
+		$this->load->driver('cache', array(
+			'adapter' => 'file'
+		));
 	}
 }
 
@@ -220,9 +223,20 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 */
 	protected function base_get_item($table, $id_field, $item_class, $id, $build_method = 'build', $generate_method = 'generate')
 	{
-		$this->$build_method();
+		$cache_id = $table . '-' . $id_field . '-' . $id;
 
-		$item = $this->db->where($table . '.' . $id_field, $id)->get()->row(0, $item_class);
+		if ($item = $this->cache->get($cache_id))
+		{
+			$item = deserialize($item);
+		}
+		else
+		{
+			$this->$build_method();
+
+			$item = $this->db->where($table . '.' . $id_field, $id)->get()->row(0, $item_class);
+
+			$this->cache->save(serialize($item), $cache_id);
+		}
 
 		return $this->$generate_method($item);
 	}
@@ -239,6 +253,10 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 */
 	protected function base_set_item($table, $id_field, $item_id_property, $item)
 	{
+		$cache_id = $table . '-' . $id_field . '-' . $item->$item_id_property;
+
+		$this->cache->delete($cache_id);
+
 		$item->db_set();
 
 		if ( ! isset($item->$item_id_property) || $item->$item_id_property === 0)
