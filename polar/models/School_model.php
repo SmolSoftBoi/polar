@@ -15,6 +15,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class School_model extends Item_model {
 
 	/**
+	 * School model constructor.
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('domain_model');
+	}
+
+	/**
 	 * Search.
 	 *
 	 * @param School_params|null $school_params School parameters.
@@ -47,7 +56,27 @@ class School_model extends Item_model {
 	 */
 	public function set_item($school_item)
 	{
-		$this->base_set_item('schools', 'school_id', 'school_id', $school_item);
+		$school_id = $this->base_set_item('schools', 'school_id', 'school_id', $school_item);
+
+		$domain_ids = $this->domain_model->set_items($school_item->domains);
+
+		$this->db->where('school_id', $school_id)->where_not_in('domain_id', $domain_ids)->delete('school_domains');
+
+		$school_domains = array();
+		foreach ($domain_ids as $domain_id)
+		{
+			$school_domains[] = array(
+				'school_id'  => $school_id,
+				'domain_id' => $domain_id
+			);
+		}
+
+		if ( ! empty($school_domains))
+		{
+			$this->db->insert_batch('school_domains', $school_domains);
+		}
+
+		return $school_id;
 	}
 
 	/**
