@@ -25,6 +25,31 @@ class School_item extends Item {
 	public $school_name;
 
 	/**
+	 * @var Domain_item[] $domains Domains.
+	 */
+	public $domains = array();
+
+	/**
+	 * JSON deserialize.
+	 *
+	 * @param object $object Object.
+	 */
+	public function jsonDeserialize($object)
+	{
+		$object = $this->base_json_deserialize('School_item', $object);
+
+		if (isset($object->domains))
+		{
+			foreach ($object->domains as $domain)
+			{
+				$domain_item = new Domain_item();
+				$domain_item->jsonDeserialize($domain);
+				$this->domains[] = $domain_item;
+			}
+		}
+	}
+
+	/**
 	 * Database set.
 	 */
 	public function db_set()
