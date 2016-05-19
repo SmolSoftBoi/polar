@@ -113,9 +113,26 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 */
 	public function count($params = NULL)
 	{
-		$this->build($params);
+		$cache_id = $cache_id = get_class($this) . '_count';
 
-		return $this->db->count_all_results();
+		if ( ! $count = $this->cache->get($cache_id) || is_null($params))
+		{
+			$this->build($params);
+
+			$count = $this->db->count_all_results();
+
+			if (is_null($params))
+			{
+				$this->cache->save($count, $cache_id);
+			}
+		}
+
+		if (is_string($count))
+		{
+			$count = intval($count);
+		}
+
+		return $count;
 	}
 
 	/**
@@ -223,7 +240,7 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 */
 	protected function base_get_item($table, $id_field, $item_class, $id, $build_method = 'build', $generate_method = 'generate')
 	{
-		$cache_id = $table . '-' . $id_field . '-' . $id;
+		$cache_id = get_class($this) . $table . '_' . $id_field . '_' . $id;
 
 		if ($item = $this->cache->get($cache_id))
 		{
@@ -253,9 +270,8 @@ abstract class Item_model extends POLAR_Model implements Item_model_interface {
 	 */
 	protected function base_set_item($table, $id_field, $item_id_property, $item)
 	{
-		$cache_id = $table . '-' . $id_field . '-' . $item->$item_id_property;
-
-		$this->cache->delete($cache_id);
+		$this->cache->delete(get_class($this) . '_count');
+		$this->cache->delete(get_class($this) . $table . '_' . $id_field . '_' . $item->$item_id_property);
 
 		$item->db_set();
 
