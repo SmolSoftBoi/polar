@@ -11,6 +11,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * School model.
  *
  * @package Polar\Models
+ *
+ * @property Domain_model $domain_model Domain model.
  */
 class School_model extends Item_model {
 
@@ -76,6 +78,10 @@ class School_model extends Item_model {
 			$this->db->insert_batch('school_domains', $school_domains);
 		}
 
+		$domain_items = $this->domain_model->get_items($domain_ids);
+
+		$this->domain_model->set_items($domain_items);
+
 		return $school_id;
 	}
 
@@ -97,6 +103,7 @@ class School_model extends Item_model {
 		$this->db->join('domains', 'school_domains.domain_id = domains.domain_id', 'left');
 		$this->db->join('user_schools', 'schools.school_id = user_schools.school_id', 'left');
 
+		$this->build_param($school_params, 'domain', 'domains', 'domain');
 		$this->build_param($school_params, 'school_name', 'schools', 'school_name');
 		$this->build_param($school_params, 'user_id', 'user_schools', 'user_id');
 	}

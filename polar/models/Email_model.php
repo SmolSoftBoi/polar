@@ -77,6 +77,11 @@ class Email_model extends Item_model {
 
 		$this->build_param($email_params, 'email', 'emails', 'email');
 		$this->build_param($email_params, 'emails', 'emails', 'email');
+
+		if ( ! empty($email_params->domain))
+		{
+			$this->db->like('emails.email', '@' . $email_params->domain, 'before');
+		}
 	}
 
 	/**

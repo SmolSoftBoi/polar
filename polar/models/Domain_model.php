@@ -11,8 +11,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Domain model.
  *
  * @package Polar\Models
+ *
+ * @property Email_model $email_model Email model.
  */
 class Domain_model extends Item_model {
+
+	/**
+	 * Domain model constructor.
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('email_model');
+	}
 
 	/**
 	 * Search.
@@ -47,7 +58,37 @@ class Domain_model extends Item_model {
 	 */
 	public function set_item($domain_item)
 	{
-		return $this->base_set_item('domains', 'domain_id', 'domain_id', $domain_item);
+		$domain_id = $this->base_set_item('domains', 'domain_id', 'domain_id', $domain_item);
+
+		$school_params = new School_params();
+		$school_params->domain = $domain_item->domain;
+		$school_items = $this->school_model->search($school_params);
+
+		if (count($school_items) > 0)
+		{
+			$email_params = new Email_params();
+			$email_params->domain = $domain_item->domain;
+			$email_items = $this->email_model->search($email_params);
+
+			$user_schools = array();
+			foreach ($email_items as $email_item)
+			{
+				if ( ! isset($email_item->user->schools[reset($school_items)->school_id]))
+				{
+					$user_schools[] = array(
+						'user_id' => $email_item->user->user_id,
+						'school_id' => reset($school_items)->school_id
+					);
+				}
+			}
+
+			if ( ! empty($user_schools))
+			{
+				$this->db->insert_batch('user_schools', $user_schools);
+			}
+		}
+
+		return $domain_id;
 	}
 
 	/**
