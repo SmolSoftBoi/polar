@@ -52,7 +52,9 @@ class Sign extends POLAR_Controller {
 			$email_item->email = $this->input->post('email', TRUE);
 			$user_item->emails[] = $email_item;
 
-			$this->auth->sign_in($user_item, $this->input->post('remember', TRUE));
+			$remember = ! is_null($this->input->post('remember', TRUE));
+
+			$this->auth->sign_in($user_item, $remember);
 
 			redirect($this->auth->get_uri());
 		}
