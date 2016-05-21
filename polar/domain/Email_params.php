@@ -15,6 +15,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Email_params extends Params {
 
 	/**
+	 * @var string $domain Domain.
+	 */
+	public $domain;
+
+	/**
 	 * @var string $email Email.
 	 */
 	public $email;
