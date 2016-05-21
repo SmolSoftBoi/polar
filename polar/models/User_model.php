@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @package Polar\Models
  *
+ * @property Domain_model $domain_model Domain model.
  * @property Email_model  $email_model  Email model.
  * @property Role_model   $role_model   Role model.
  * @property School_model $school_model School model.
@@ -182,7 +183,7 @@ class User_model extends Item_model {
 			return $user_item;
 		}
 
-		$user_item = $this->base_generate(2, 'user_id', $user_item);
+		$user_item = $this->base_generate(3, 'user_id', $user_item);
 
 		$user_item->initials = strtoupper($user_item->first_name[0] . $user_item->last_name[0]);
 
