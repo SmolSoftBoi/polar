@@ -215,6 +215,11 @@ angular.module('polar')
             if ($scope.quiz.userId === $rootScope.user.userId) {
                 var quiz = angular.copy($scope.quiz);
 
+                if (questionId === 0 || questionId === -1)
+                {
+                    quiz.questionId = null;
+                }
+
                 quiz.questions = [];
 
                 quizModel.setItem(quiz);
