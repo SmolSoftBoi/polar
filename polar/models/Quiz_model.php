@@ -23,6 +23,7 @@ class Quiz_model extends Item_model {
 	{
 		parent::__construct();
 		$this->load->model('question_model');
+		$this->load->helper('string');
 	}
 
 	/**
@@ -86,6 +87,36 @@ class Quiz_model extends Item_model {
 		}
 
 		$quiz_id = $this->base_set_item('quizzes', 'quiz_id', 'quiz_id', $quiz_item);
+
+		$quiz_item = $this->get_item($quiz_id);
+
+		if (is_null($quiz_item->code))
+		{
+			mt_srand($quiz_id);
+			$code = random_string('basic', 4);
+
+			$quiz_params = new Quiz_params();
+			$quiz_params->code = $code;
+			$quiz_items = $this->search($quiz_params);
+			$quiz_items_count = count($quiz_items);
+
+			while ($quiz_items_count > 0)
+			{
+				$code = random_string('basic', 4);
+
+				$quiz_params->code = $code;
+				$quiz_items = $this->search($quiz_params);
+				$quiz_items_count = count($quiz_items);
+			}
+
+			$this->db->update('quizzes', array(
+				'code' => $code
+			), array(
+				'quiz_id' => $quiz_id
+			));
+
+			$this->cache->delete(get_class($this) . 'quizzes_quiz_id_' . $quiz_id);
+		}
 
 		if (isset($quiz_item->questions))
 		{
