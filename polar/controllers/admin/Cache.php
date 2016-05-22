@@ -22,6 +22,10 @@ class Cache extends POLAR_Controller {
 		parent::__construct();
 		$this->auth->authed_by_role('admin');
 
+		$this->load->driver('cache', array(
+			'adapter' => 'file'
+		));
+
 		$data['nav'] = 'cache';
 		$this->load->vars($data);
 	}
