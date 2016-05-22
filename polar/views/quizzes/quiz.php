@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			<div class="quiz ng-hide" ng-show="quiz && questionId === 0" ng-cloak>
 				<h1>{{quiz.quizName}}</h1>
 				<p>{{quiz.description}}</p>
+				<p>{{quiz.code}}</p>
 				<div class="connections">
 					<div class="connection" ng-repeat="connection in connections">
 						{{connection.user.initials}}
