@@ -379,10 +379,10 @@ $config['encryption_key'] = hex2bin('195f2153aa59642f3527ae47cc5d1587');
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] = 'files';
+$config['sess_driver'] = 'memcached';
 $config['sess_cookie_name'] = 'polar_session';
 $config['sess_expiration'] = 31449600;
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = 'polar.ituidm.cfg.euw1.cache.amazonaws.com:11211';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 2620800;
 $config['sess_regenerate_destroy'] = FALSE;
