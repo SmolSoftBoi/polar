@@ -1,0 +1,347 @@
+repo_name: SmolSoftBoi/polar
+report_id: 9d7554a3fa077cb7ba30ea17710974cd
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-17T01:45:34+00:00'
+requested_by: SmolSoftBoi
+provider: github
+branch: master
+detected_tools_count: 27
+tools:
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/SmolSoftBoi/polar
+  detection_source: Repo Metadata
+- name: PHP
+  description: A popular general-purpose scripting language that is especially suited
+    to web development
+  website_url: http://www.php.net/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/991/hwUcGZ41_400x400.jpg
+  detection_source_url: https://github.com/SmolSoftBoi/polar
+  detection_source: Repo Metadata
+- name: Bootstrap
+  description: Simple and flexible HTML, CSS, and JS for popular UI components and
+    interactions
+  website_url: http://getbootstrap.com/
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Front-End Frameworks
+  image_url: https://img.stackshare.io/service/1101/C9QJ7V3X.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:38:53.000000000 Z
+- name: Highcharts
+  description: A charting library written in pure JavaScript, offering an easy way
+    of adding interactive charts to your web site or web application
+  website_url: http://www.highcharts.com/products/highcharts
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Charting Libraries
+  image_url: https://img.stackshare.io/service/1435/Vx4_Psj1.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-05-02 21:05:45.000000000 Z
+- name: jQuery
+  description: The Write Less, Do More, JavaScript Library.
+  website_url: http://jquery.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript UI Libraries
+  image_url: https://img.stackshare.io/service/1021/lxEKmMnB_400x400.jpg
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:38:53.000000000 Z
+- name: Bower
+  description: A package manager for the web
+  website_url: http://bower.io
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/service/847/66db62603f426a8fc6664081811be6d4.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:58:22.000000000 Z
+- name: Browserify
+  description: Browser-side require() the node.js way
+  website_url: http://browserify.org/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/849/9esmqty2.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar
+  detection_source: Repo Metadata
+- name: gulp
+  description: The streaming build system
+  website_url: http://gulpjs.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JS Build Tools / JS Task Runners
+  image_url: https://img.stackshare.io/service/844/iruTC031.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: npm
+  description: The package manager for JavaScript.
+  website_url: https://www.npmjs.com/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-02-08 00:29:41.000000000 Z
+- name: Font Awesome
+  description: The internet's most popular icon toolkit
+  website_url: https://fontawesome.com/
+  open_source: true
+  hosted_saas: false
+  category: Design
+  sub_category: Fonts
+  image_url: https://img.stackshare.io/service/3244/1_Mr1Fy00XjPGNf1Kkp_hWtw_2x.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-05-02 21:05:45.000000000 Z
+- name: bower
+  description: The browser package manager
+  package_url: https://www.npmjs.com/bower
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16205/default_b4f5b6f31c5ab1ffee4bacf20842cd41a8f2658d.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:58:22.000000000 Z
+- name: gulp-autoprefixer
+  description: Prefix CSS
+  package_url: https://www.npmjs.com/gulp-autoprefixer
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16090/default_8725384794b44fe56f31da1d21ae759cf07be7a5.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: gulp-browserify
+  description: Bundle modules with Browserify
+  package_url: https://www.npmjs.com/gulp-browserify
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16725/default_5ea3918e441555ef1fd413f4100fe15fe23b366f.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: gulp-copy
+  description: Plugin copying files to a new destination and using that destination
+    for other actions
+  package_url: https://www.npmjs.com/gulp-copy
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17603/default_b06ec1ccf403dac1459596b8571a4fb6a46577e1.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: gulp-cssnano
+  description: Minify CSS with cssnano
+  package_url: https://www.npmjs.com/gulp-cssnano
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16774/default_cc1793e454d6d035c188f0198b037d58f372e7f2.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: gulp-rename
+  description: Rename files
+  package_url: https://www.npmjs.com/gulp-rename
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15895/default_e4668902f8489350db9b0fb228523a571ef05b26.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: gulp-sass
+  description: Gulp plugin for sass
+  package_url: https://www.npmjs.com/gulp-sass
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16002/default_f8be85789693a9901dbcfa43c135c60525ae49a1.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/package.json
+  detection_source: package.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:37:12.000000000 Z
+- name: angular
+  description: Bower package for AngularJS
+  package_url: http://bower.io/angular
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/bower/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:38:53.000000000 Z
+- name: angular-animate
+  description: Bower package for the AngularJS animation module
+  package_url: http://bower.io/angular-animate
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/bower/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:38:53.000000000 Z
+- name: angular-messages
+  package_url: http://bower.io/angular-messages
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/bower/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:38:53.000000000 Z
+- name: bootstrap
+  description: The most popular front-end framework for developing responsive
+  package_url: http://bower.io/bootstrap
+  version: 4.0.0
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/bower/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:38:53.000000000 Z
+- name: highcharts
+  description: Official shim repo for Highcharts releases
+  package_url: http://bower.io/highcharts
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/bower/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-05-02 21:05:45.000000000 Z
+- name: trianglify
+  description: Trianglify is a javascript library for generating colorful triangle
+    meshes that can be used as SVG images and CSS backgrounds
+  package_url: http://bower.io/trianglify
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/bower/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/bower.json
+  detection_source: bower.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 17:38:53.000000000 Z
+- name: aws/aws-sdk-php
+  description: AWS SDK for PHP - Use Amazon Web Services in your PHP project
+  package_url: https://packagist.org/aws/aws-sdk-php
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:15:02.000000000 Z
+- name: fzaninotto/faker
+  description: Faker is a PHP library that generates fake data for you
+  package_url: https://packagist.org/fzaninotto/faker
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-20 18:00:07.000000000 Z
+- name: phpdocumentor/phpdocumentor
+  description: Documentation Generator for PHP
+  package_url: https://packagist.org/phpdocumentor/phpdocumentor
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/SmolSoftBoi/polar/blob/master/composer.json
+  detection_source: composer.json
+  last_updated_by: Kristian Matthews
+  last_updated_on: 2016-03-01 23:15:02.000000000 Z
